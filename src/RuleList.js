@@ -19,19 +19,22 @@ export default class RuleList extends Component{
     
     { field: 'ruleid', 
         headerName: 'Rule ID', 
-        width: 150,
+        flex: 0.5,
+        minWidth: 150,
         editable: true,
     },
     {
         field: 'description',
         headerName: 'Description',
-        width: 350,    
+        flex: 2,
+        minWidth: 350,    
         editable: true,
     },
     {
         field: 'status',
         headerName: 'Status',
-        width: 150,
+        flex: 0.5,
+        minWidth: 150,
     },
     {
         field: '',
@@ -44,7 +47,6 @@ export default class RuleList extends Component{
             const onClick = () => {
             //const api: GridApi = params.api; 
             this.setState({rows: [...this.state.rows, this.newRow], selected: [], nbRender: 1});
-            history.push('/LoadRule');
             };
             return <IconButton onClick={onClick}><Icon color="primary">add_circle_outline</Icon></IconButton>;
         },
@@ -75,6 +77,7 @@ export default class RuleList extends Component{
     pageSize={5}
     checkboxSelection
     disableSelectionOnClick
+    disableExtendRowFullWidth = {false}
   />
 </div>
 </div>
