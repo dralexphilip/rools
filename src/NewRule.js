@@ -3,7 +3,6 @@ import './App.css';
 import QueryBuilder from "./QueryBuilder";
 import React, { useState } from "react";
 import DataTable from './RuleList';
-import Routes from './Routes';
 
 const filters = [
   {
@@ -143,7 +142,7 @@ const filters = [
   },
 ];
 
-function App() {
+function LoadRule() {
   const [query, setQuery] = useState({
     combinator: "and",
     rules: [
@@ -177,11 +176,25 @@ const formattedQuery = QueryBuilder.formatQuery(query);
 console.log(formattedQuery);
   return (
     <div className="App App-canvas">
-        <Routes />
+        <QueryBuilder
+                filters={filters}
+                query={query}
+                maxLevels={4}
+                onChange={(query, valid) => {
+                    setQuery(query);
+                }}
+            />
+        <div align="left">
+            <pre>
+            {JSON.stringify(formattedQuery, null, 2)}
+       
+        </pre>
+        
+        </div>
             
     </div>
   );
   
 }
 
-export default App;
+export default LoadRule;

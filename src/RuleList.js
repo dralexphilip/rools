@@ -3,14 +3,18 @@ import { DataGrid } from '@material-ui/data-grid';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import './Rulelist.css'
+import { Switch, Route, Link } from "react-router-dom";
+import NewRule from './NewRule';
+import history from './history';
 
-class DataTable extends Component{
+export default class RuleList extends Component{
     rows = [{ id: 1, ruleid: 'RULE_1', description: '1', status: 'Active'},
     { id: 2, ruleid: 'RULE_2', description: '1', status: 'Active'},
-    { id: 3, ruleid: 'RULE_251', description: '1', status: 'Active'},
-    { id: 4, ruleid: 'RULE_120', description: '1', status: 'Active'}];
-    newRow = { id: this.rows.length + 1, description: '1', status: 'Active'};
-    state={rows: this.rows, selected: [], nbRender: 1};
+    { id: 3, ruleid: 'RULE_120', description: '1', status: 'Active'}];
+    
+    state={rows: this.rows};
+    newRowId = this.state.rows.length + 1;
+    newRow = { id: this.newRowId, ruleid: 'RULE_'+this.newRowId, description: '1', status: 'Active'};
     columns = [
     
     { field: 'ruleid', 
@@ -40,15 +44,16 @@ class DataTable extends Component{
             const onClick = () => {
             //const api: GridApi = params.api; 
             this.setState({rows: [...this.state.rows, this.newRow], selected: [], nbRender: 1});
+            history.push('/LoadRule');
             };
             return <IconButton onClick={onClick}><Icon color="primary">add_circle_outline</Icon></IconButton>;
         },
         renderCell: (params) => {     
             const onClick = () => {
             //const api: GridApi = params.api; 
-            this.setState({rows: [...this.state.rows, this.newRow], selected: [], nbRender: 1});
+            history.push('/LoadRule');
             };
-            return <IconButton onClick={onClick}><Icon color="secondary">delete</Icon></IconButton>;
+            return <IconButton onClick={onClick}><Icon color="secondary">edit</Icon></IconButton>;
         }
     },
     
@@ -77,4 +82,4 @@ class DataTable extends Component{
   }
 }
 
-export default DataTable;
+//export default DataTable;
