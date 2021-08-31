@@ -85,7 +85,7 @@ const Value = React.memo(
                         getOptionLabel={(option) => option.label}
                         getOptionSelected={(option, value) => option.value === value.value}
                         limitTags={-1}
-                        options={filter.options}
+                        options={filter.options} 
                         renderInput={(params) => <TextField {...params} />}
                         size="small"
                         style={{ paddingTop: 4, width: "auto" }}

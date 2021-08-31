@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import QueryBuilder from "./QueryBuilder";
 import React, { useState } from "react";
+import DataTable from './RuleList';
 
 const filters = [
   {
@@ -132,6 +133,11 @@ const filters = [
               value: "medical_name1",
               type: "text",
           },
+          {
+            label: "Date",
+            value: "test_date",
+            type: "date",
+          },
       ],
   },
 ];
@@ -170,6 +176,7 @@ const formattedQuery = QueryBuilder.formatQuery(query);
 console.log(formattedQuery);
   return (
     <div className="App App-canvas">
+        <DataTable />
         <QueryBuilder
                 filters={filters}
                 query={query}
