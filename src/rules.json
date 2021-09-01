@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "ruleid": "RULE_22",
+        "description": "Rule 22 - Clone Express Scripts APWU000",
+        "status": "Active",
+        "rules":{
+            "combinator": "and",
+            "rules": [
+                {
+                    "field": "carrier_name",
+                    "operator": "equal",
+                    "value": "EXPRESS_SCRIPTS"
+                },
+                {
+                    "field": "subgroup_number",
+                    "operator": "in",
+                    "value": ["APWU000"]
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "ruleid": "RULE_23",
+        "description": "Rule 23 - Clone Express Scripts BCBS MA",
+        "status": "Active",
+        "rules":{
+            "combinator": "and",
+            "rules": [
+                {
+                    "field": "carrier_name",
+                    "operator": "equal",
+                    "value": "EXPRESS_SCRIPTS"
+                },
+                {
+                    "field": "subgroup_number",
+                    "operator": "in",
+                    "value": ["L4TA", "MASA", "MDXA"]
+                }
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "ruleid": "RULE_24",
+        "description": "Rule 24 - Clone Express Scripts BCBS MI",
+        "status": "Active",
+        "rules":{
+            "combinator": "and",
+            "rules": [
+                {
+                    "field": "carrier_name",
+                    "operator": "equal",
+                    "value": "EXPRESS_SCRIPTS"
+                },
+                {
+                    "field": "subgroup_number",
+                    "operator": "in",
+                    "value": ["BCBSMROC", "BCBSMRX1", "MIBCNRX", "BCNRXPD"]
+                }
+            ]
+        }
+    }
+]

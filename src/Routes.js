@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 
-import LoadRule from "./NewRule";
+import ManageRule from "./ManageRule";
 import RuleList from "./RuleList";
 import history from './history';
 
@@ -11,7 +11,7 @@ export default class Routes extends Component {
             <Router history={history}>
                 <Switch>
                     <Route path="/" exact component={RuleList} />
-                    <Route path="/LoadRule" component={LoadRule} />
+                    <Route path="/LoadRule" component={ManageRule} />
                 </Switch>
             </Router>
         )

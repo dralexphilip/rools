@@ -450,9 +450,57 @@ const QueryBuilder = React.memo(
     }
 );
 
+//SQL Query
+export function sqlQuery(qr) {
+    let exp = '';
+
+    for (const obj of qr.rules) {
+
+        if (obj.field) {
+            let field = obj.field;            
+            const numCheck = field.substring(field.length - 1);
+            if (numCheck === '1'){
+                field = field.substring(0, field.length - 1);
+            }
+            let operator = obj.operator;
+            console.log(operator)
+            
+            operator = operators.find(o=> (o.value === obj.operator)).symbol;
+            console.log(operator)
+
+            let value = obj.value;
+            if (typeof obj.value != 'boolean') {
+                if (Array.isArray(obj.value)) {
+                    let conval = '';
+                    obj.value.forEach(val => {
+                        conval = conval + " '" + val + "',";
+                    });
+                    value = '(' + conval + ')';
+                }
+                else if (obj.value != null) {
+                    if(obj.operator === 'equal' || obj.operator === 'not_equal')
+                        value = `'${obj.value}'`;
+                    else
+                    value = `'%${obj.value}%'`;
+                }
+                else {
+                    value = "";
+                }
+            }
+            exp = `${exp} (${field} ${operator} ${value}) ` + qr.combinator;
+        }
+        else if (obj.rules) {
+            exp = `${exp} (${sqlQuery(obj)}) `;
+        }
+    }
+    exp = exp.substring(0, exp.length - 3);
+    return exp;
+}
+
 QueryBuilder.formatQuery = formatQuery;
 QueryBuilder.isQueryValid = isGroupValid;
 QueryBuilder.operators = operators;
+QueryBuilder.sqlQuery = sqlQuery;
 
 QueryBuilder.defaultProps = {
     customOperators: {},

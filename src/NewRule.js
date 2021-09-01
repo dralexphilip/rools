@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import QueryBuilder from "./QueryBuilder";
 import React, { useState } from "react";
-import DataTable from './RuleList';
+import queryString from 'query-string';
 
 const filters = [
   {
@@ -173,7 +173,6 @@ function LoadRule() {
     ],
 });
 const formattedQuery = QueryBuilder.formatQuery(query);
-console.log(formattedQuery);
   return (
     <div className="App App-canvas">
         <QueryBuilder

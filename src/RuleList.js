@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import './Rulelist.css'
-import { Switch, Route, Link } from "react-router-dom";
-import NewRule from './NewRule';
+import './Rulelist.css';
 import history from './history';
+import rules from './rules.json'
 
 export default class RuleList extends Component{
-    rows = [{ id: 1, ruleid: 'RULE_1', description: '1', status: 'Active'},
-    { id: 2, ruleid: 'RULE_2', description: '1', status: 'Active'},
-    { id: 3, ruleid: 'RULE_120', description: '1', status: 'Active'}];
+    rows = rules;
     
-    state={rows: this.rows};
+    state={rows: this.rows, sortModel: [{field: 'id', sort: 'desc',}]};
     newRowId = this.state.rows.length + 1;
     newRow = { id: this.newRowId, ruleid: 'RULE_'+this.newRowId, description: '1', status: 'Active'};
     columns = [
+    { field: 'id', 
+        headerName: 'ID', 
+        flex: 0.5,
+        minWidth: 150,
+        editable: false,
+    },
     
     { field: 'ruleid', 
         headerName: 'Rule ID', 
@@ -46,20 +49,23 @@ export default class RuleList extends Component{
         renderHeader: (params) => {     
             const onClick = () => {
             //const api: GridApi = params.api; 
-            this.setState({rows: [...this.state.rows, this.newRow], selected: [], nbRender: 1});
+            this.setState(prevState => ({rows: [...prevState.rows, { id: this.state.rows.length + 1, ruleid: 'RULE_'+(this.state.rows.length + 1), description: '', status: 'Active'}]}));
             };
             return <IconButton onClick={onClick}><Icon color="primary">add_circle_outline</Icon></IconButton>;
         },
         renderCell: (params) => {     
             const onClick = () => {
             //const api: GridApi = params.api; 
-            history.push('/LoadRule');
+            history.push('/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleid);
+            console.log(params.row.id)
             };
             return <IconButton onClick={onClick}><Icon color="secondary">edit</Icon></IconButton>;
         }
     },
     
     ];
+
+    
 
   render (){
     return (
@@ -77,7 +83,7 @@ export default class RuleList extends Component{
     pageSize={5}
     checkboxSelection
     disableSelectionOnClick
-    disableExtendRowFullWidth = {false}
+    sortModel={this.state.sortModel}
   />
 </div>
 </div>
