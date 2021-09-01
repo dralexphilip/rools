@@ -3,6 +3,7 @@ import QueryBuilder from "./QueryBuilder";
 import ruleoptions from './filters.json';
 import rules from './rules.json';
 import Button from '@material-ui/core/Button';
+import history from './history';
 
 export default class ManageRule extends Component {
 
@@ -47,9 +48,6 @@ export default class ManageRule extends Component {
         const selectedRule = rules.find(rule => ''+rule.id === this.rowId).rules;
         let formattedQuery = QueryBuilder.formatQuery(selectedRule);
         let sqlQuery = QueryBuilder.sqlQuery(selectedRule);
-        const stdSql1 = 'insert into clone_lead ';
-        const stdSql2 = 'select *, "'+this.ruleId+'" from cob_lead_staging ';
-        const stdSql3 = 'where ';
         
         return (
             <div className="App App-canvas">
@@ -67,18 +65,22 @@ export default class ManageRule extends Component {
                         {JSON.stringify(formattedQuery, null, 2)}     
                     </pre>
                 </div>
-                <div align="left" style={{ paddingLeft: 500, paddingTop: 50 }}> 
-                    {stdSql1} <br/>
-                    {stdSql2} <br/>
-                    {stdSql3+sqlQuery+';'}
+                <div align="left" style={{ paddingLeft: 500, paddingTop: 20, paddingRight: 50 }}> 
+                <span style={{fontWeight: 500}}>
+                    <span style={{color: "#3f51b5"}}>insert into</span> <span style={{color: "#f50057"}}> clone_lead </span><br/>
+                    <span style={{color: "#3f51b5"}}>select </span> *, {this.ruleId} <span style={{color: "#3f51b5"}}> from </span> <span style={{color: "#f50057"}}> cob_lead_staging </span> <br/>
+                    <span style={{color: "#3f51b5"}}>where </span> {sqlQuery+';'}</span>
                 </div>
                 </div>
+                <div align="right" style={{ position: 'sticky', bottom: 0, zIndex: 1, padding: 10 }}>
                 <Button
                     variant="contained"
                     color="secondary"
+                    onClick={()=> history.push('/')}
                 >
                     Close
                 </Button>
+                </div>
             </div>
         );
     }
