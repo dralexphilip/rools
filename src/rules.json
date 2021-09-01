@@ -4,7 +4,7 @@
         "ruleid": "RULE_22",
         "description": "Rule 22 - Clone Express Scripts APWU000",
         "status": "Active",
-        "rules":{
+        "rules": {
             "combinator": "and",
             "rules": [
                 {
@@ -15,7 +15,9 @@
                 {
                     "field": "subgroup_number",
                     "operator": "in",
-                    "value": ["APWU000"]
+                    "value": [
+                        "APWU000"
+                    ]
                 }
             ]
         }
@@ -25,7 +27,7 @@
         "ruleid": "RULE_23",
         "description": "Rule 23 - Clone Express Scripts BCBS MA",
         "status": "Active",
-        "rules":{
+        "rules": {
             "combinator": "and",
             "rules": [
                 {
@@ -36,7 +38,11 @@
                 {
                     "field": "subgroup_number",
                     "operator": "in",
-                    "value": ["L4TA", "MASA", "MDXA"]
+                    "value": [
+                        "L4TA",
+                        "MASA",
+                        "MDXA"
+                    ]
                 }
             ]
         }
@@ -46,7 +52,7 @@
         "ruleid": "RULE_24",
         "description": "Rule 24 - Clone Express Scripts BCBS MI",
         "status": "Active",
-        "rules":{
+        "rules": {
             "combinator": "and",
             "rules": [
                 {
@@ -60,12 +66,27 @@
                         {
                             "field": "subgroup_number",
                             "operator": "in",
-                            "value": ["BCBSMROC", "BCBSMRX1", "MIBCNRX", "BCNRXPD"]
+                            "value": [
+                                "BCBSMROC",
+                                "BCBSMRX1",
+                                "MIBCNRX",
+                                "BCNRXPD"
+                            ]
                         },
                         {
-                            "field": "group_number1",
-                            "operator": "contains",
-                            "value": "YUUI"
+                            "combinator": "and",
+                            "rules": [
+                                {
+                                    "field": "subgroup_number1",
+                                    "operator": "equal",
+                                    "value": "BCBSMAN"
+                                },
+                                {
+                                    "field": "member_id2",
+                                    "operator": "not_equal",
+                                    "value": "XYZ"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -77,7 +98,7 @@
         "ruleid": "RULE_25",
         "description": "Rule 25 - Clone Express Scripts BCBS TN",
         "status": "Active",
-        "rules":{
+        "rules": {
             "combinator": "and",
             "rules": [
                 {
@@ -88,7 +109,10 @@
                 {
                     "field": "subgroup_number",
                     "operator": "in",
-                    "value": ["BCTMAPD", "BCTCOMM"]
+                    "value": [
+                        "BCTMAPD",
+                        "BCTCOMM"
+                    ]
                 }
             ]
         }
@@ -98,7 +122,7 @@
         "ruleid": "RULE_26",
         "description": "Rule 26 - Clone Express Scripts",
         "status": "Active",
-        "rules":{
+        "rules": {
             "combinator": "and",
             "rules": [
                 {
@@ -107,36 +131,126 @@
                     "value": "EXPRESS_SCRIPTS"
                 },
                 {
-                  "combinator": "or",
-                  "rules": [
-                    {
-                      "field": "subgroup_number",
-                      "operator": "in",
-                      "value": ["KHYA","GH3A","KHXA","KJ2A","L4JA","L4SA", "SSEU371"]
-                    },
-                    {
-                      "combinator": "and",
-                      "rules": [
+                    "combinator": "or",
+                    "rules": [
                         {
-                          "field": "subgroup_number1",
-                          "operator": "equal",
-                          "value": "UFTWFRX"
+                            "field": "subgroup_number",
+                            "operator": "in",
+                            "value": [
+                                "KHYA",
+                                "GH3A",
+                                "KHXA",
+                                "KJ2A",
+                                "L4JA",
+                                "L4SA",
+                                "SSEU371"
+                            ]
                         },
                         {
-                          "field": "pbm_person_code",
-                          "operator": "equal",
-                          "value": "01"
+                            "combinator": "and",
+                            "rules": [
+                                {
+                                    "field": "subgroup_number1",
+                                    "operator": "equal",
+                                    "value": "UFTWFRX"
+                                },
+                                {
+                                    "field": "pbm_person_code",
+                                    "operator": "equal",
+                                    "value": "01"
+                                }
+                            ]
                         }
-                      ]
-                    }
-                  ]
+                    ]
                 },
                 {
-                  "field": "coalesce (group_name, '')",
-                  "operator": "not_contains",
-                  "value": "PRESCRIPTION ONLY"
+                    "field": "group_name2",
+                    "operator": "not_contains",
+                    "value": "PRESCRIPTION ONLY"
                 }
             ]
         }
+    },
+    {
+        "id": 6,
+        "ruleid": "RULE_27",
+        "description": "Rule 27 - Clone Express Scripts Excellus BCBS",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "combinator": "or",
+                "rules": [
+                  {
+                    "field": "subgroup_number",
+                    "operator": "in",
+                    "value": [
+                      "EXC11",
+                      "EXC14",
+                      "EXC15",
+                      "EXLHPRX",
+                      "EXLHXRX"
+                    ]
+                  },
+                  {
+                    "field": "group_name1",
+                    "operator": "equal",
+                    "value": "EXCELLUS BLUECROSS BLUESH"
+                  }
+                ]
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "U ADMIN"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "U INDIVIDUAL"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "U SMALL"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "U ESSENTIAL"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "U EXPERIENCE"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "U HARP"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "U MINIMUM"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "UNIVERA"
+              },
+              {
+                "field": "group_name2",
+                "operator": "not_contains",
+                "value": "UNIV S CHOICE"
+              }
+            ]
+          }
     }
 ]

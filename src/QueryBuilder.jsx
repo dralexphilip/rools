@@ -457,10 +457,13 @@ export function sqlQuery(qr) {
     for (const obj of qr.rules) {
 
         if (obj.field) {
-            let field = obj.field;            
+            let field = obj.field;         
             const numCheck = field.substring(field.length - 1);
             if (numCheck === '1'){
                 field = field.substring(0, field.length - 1);
+            }
+            else if(numCheck === '2'){
+                field = "coalesce("+field.substring(0, field.length - 1)+", '')";
             }
             let operator = obj.operator;
             console.log(operator)

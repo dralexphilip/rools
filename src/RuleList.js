@@ -70,11 +70,10 @@ export default class RuleList extends Component{
   render (){
     return (
     <div style={{ overflowX: 'hidden'}}>
-    <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10 }}>
-    <div style={{ float: 'left' }}>
-        <h2>Rule List</h2>
+    <div align="left" style={{ width: "100%", paddingBottom: 20 }}>
+        <h3>Carrier Edit Rules</h3>
+        <hr></hr>
     </div>
-</div>
 <div style={{ height: 400, padding: 10 }}>
        
   <DataGrid

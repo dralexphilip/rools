@@ -147,6 +147,26 @@
                     {
                         "label": "SSEU371",
                         "value": "SSEU371"
+                    },
+                    {
+                        "label": "EXC11",
+                        "value": "EXC11"
+                    },
+                    {
+                        "label": "EXC14",
+                        "value": "EXC14"
+                    },
+                    {
+                        "label": "EXC15",
+                        "value": "EXC15"
+                    },
+                    {
+                        "label": "EXLHPRX",
+                        "value": "EXLHPRX"
+                    },
+                    {
+                        "label": "EXLHXRX",
+                        "value": "EXLHXRX"
                     }
                 ]
             },
@@ -207,18 +227,37 @@
         "options": [
             {
                 "label": "Coalesce Group Name",
-                "value": "coalesce (group_name, '')",
+                "value": "group_name2",
                 "type": "text"
             },
             {
                 "label": "Coalesce Group Number",
-                "value": "coalesce (group_number, '')",
+                "value": "group_number2",
                 "type": "text"
             },
             {
                 "label": "Coalesce Member ID",
-                "value": "coalesce (member_id, '')",
+                "value": "member_id2",
                 "type": "text"
+            },
+            {
+                "label": "Coalesce Policy Employer Name",
+                "value": "policy_employer_name2",
+                "type": "multiselect",
+                "options": [
+                    {
+                        "label": "UHC",
+                        "value": "UHC"
+                    },
+                    {
+                        "label": "PACIFICARE",
+                        "value": "PACIFICARE"
+                    },
+                    {
+                        "label": "INDEMNITY",
+                        "value": "INDEMNITY"
+                    }
+                ]
             }
         ]
     }

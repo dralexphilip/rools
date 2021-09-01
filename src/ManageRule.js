@@ -51,6 +51,11 @@ export default class ManageRule extends Component {
         
         return (
             <div className="App App-canvas">
+                <div align="left" style={{ width: "100%", paddingBottom: 20 }}>
+                    <h3>Carrier Edit Rule - Detection and Insertion - {this.ruleId}</h3>
+                    <hr></hr>
+                </div>
+                
                 <QueryBuilder
                     filters={this.filters}
                     query={selectedRule}
@@ -59,13 +64,16 @@ export default class ManageRule extends Component {
                         this.setState(selectedRule);
                     }}
                 />
-                <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10 }}>
-                <div align="left" style={{ float: 'left' }}>
+                <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10, paddingTop: 20 }}>
+                
+                <div align="left" style={{ float: 'left', paddingRight: 50 }}>
+                    <b>JSON Rules</b>
                     <pre>
                         {JSON.stringify(formattedQuery, null, 2)}     
                     </pre>
                 </div>
-                <div align="left" style={{ paddingLeft: 400, paddingTop: 20, paddingRight: 50 }}> 
+                <div align="left" style={{ paddingLeft: 300, paddingRight: 50 }}> 
+                <b>Generated SQL</b><br/><br/>
                 <span style={{fontWeight: 500}}>
                     <span style={{color: "#3f51b5"}}>insert into</span> <span style={{color: "#f50057"}}> clone_lead </span><br/>
                     <span style={{color: "#3f51b5"}}>select </span> *, {this.ruleId} <span style={{color: "#3f51b5"}}> from </span> <span style={{color: "#f50057"}}> cob_lead_staging </span> <br/>
