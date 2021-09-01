@@ -487,13 +487,16 @@ export function sqlQuery(qr) {
                     value = "";
                 }
             }
-            exp = `${exp} (${field} ${operator} ${value}) ` + qr.combinator;
+            exp = `${exp} ${field} ${operator} ${value} ` + qr.combinator;
         }
         else if (obj.rules) {
-            exp = `${exp} (${sqlQuery(obj)}) `;
+            exp = `${exp} (${sqlQuery(obj)}) ` + qr.combinator;
         }
     }
-    exp = exp.substring(0, exp.length - 2);
+    if(exp.substring(exp.length - 2) === "or")
+        exp = exp.substring(0, exp.length - 2);
+    else if(exp.substring(exp.length - 3) === "and")
+        exp = exp.substring(0, exp.length - 3);
     return exp;
 }
 

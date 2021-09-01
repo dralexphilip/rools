@@ -17,7 +17,7 @@ const removeIconStyles = (t) => ({
         marginTop: t.spacing(0.75),
     },
     removeIcon: {
-        fill: "rgba(255, 0, 0, 0.9)",
+        fill: "#f50057",
     },
 });
 

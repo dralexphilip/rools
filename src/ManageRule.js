@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import QueryBuilder from "./QueryBuilder";
-import ruleoptions from './filters.json'
-import rules from './rules.json'
+import ruleoptions from './filters.json';
+import rules from './rules.json';
+import Button from '@material-ui/core/Button';
 
 export default class ManageRule extends Component {
 
@@ -46,7 +47,9 @@ export default class ManageRule extends Component {
         const selectedRule = rules.find(rule => ''+rule.id === this.rowId).rules;
         let formattedQuery = QueryBuilder.formatQuery(selectedRule);
         let sqlQuery = QueryBuilder.sqlQuery(selectedRule);
-        const stdSql = 'insert into clone_lead select *, "'+this.ruleId+'" from cob_lead_staging where '
+        const stdSql1 = 'insert into clone_lead ';
+        const stdSql2 = 'select *, "'+this.ruleId+'" from cob_lead_staging ';
+        const stdSql3 = 'where ';
         
         return (
             <div className="App App-canvas">
@@ -64,11 +67,18 @@ export default class ManageRule extends Component {
                         {JSON.stringify(formattedQuery, null, 2)}     
                     </pre>
                 </div>
-                <div align="left"> 
-                    {stdSql+sqlQuery}
+                <div align="left" style={{ paddingLeft: 500, paddingTop: 50 }}> 
+                    {stdSql1} <br/>
+                    {stdSql2} <br/>
+                    {stdSql3+sqlQuery+';'}
                 </div>
                 </div>
-
+                <Button
+                    variant="contained"
+                    color="secondary"
+                >
+                    Close
+                </Button>
             </div>
         );
     }
