@@ -111,6 +111,42 @@
                     {
                         "label": "BCNRXPD",
                         "value": "BCNRXPD"
+                    },
+                    {
+                        "label": "BCTMAPD",
+                        "value": "BCTMAPD"
+                    },
+                    {
+                        "label": "BCTCOMM",
+                        "value": "BCTCOMM"
+                    },
+                    {
+                        "label": "KHYA",
+                        "value": "KHYA"
+                    },
+                    {
+                        "label": "GH3A",
+                        "value": "GH3A"
+                    },
+                    {
+                        "label": "KHXA",
+                        "value": "KHXA"
+                    },
+                    {
+                        "label": "KJ2A",
+                        "value": "KJ2A"
+                    },
+                    {
+                        "label": "L4JA",
+                        "value": "L4JA"
+                    },
+                    {
+                        "label": "L4SA",
+                        "value": "L4SA"
+                    },
+                    {
+                        "label": "SSEU371",
+                        "value": "SSEU371"
                     }
                 ]
             },
@@ -158,11 +194,31 @@
                 "label": "Medical Name",
                 "value": "medical_name1",
                 "type": "text"
+            }, 
+            {
+              "label": "Pbm Person Code",
+              "value": "pbm_person_code",
+              "type": "text"
+            }
+        ]
+    },
+    {
+        "label": "Coalesce Functions",
+        "options": [
+            {
+                "label": "Coalesce Group Name",
+                "value": "coalesce (group_name, '')",
+                "type": "text"
             },
             {
-              "label": "Date",
-              "value": "test_date",
-              "type": "date"
+                "label": "Coalesce Group Number",
+                "value": "coalesce (group_number, '')",
+                "type": "text"
+            },
+            {
+                "label": "Coalesce Member ID",
+                "value": "coalesce (member_id, '')",
+                "type": "text"
             }
         ]
     }

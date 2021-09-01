@@ -55,9 +55,86 @@
                     "value": "EXPRESS_SCRIPTS"
                 },
                 {
+                    "combinator": "or",
+                    "rules": [
+                        {
+                            "field": "subgroup_number",
+                            "operator": "in",
+                            "value": ["BCBSMROC", "BCBSMRX1", "MIBCNRX", "BCNRXPD"]
+                        },
+                        {
+                            "field": "group_number1",
+                            "operator": "contains",
+                            "value": "YUUI"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 4,
+        "ruleid": "RULE_25",
+        "description": "Rule 25 - Clone Express Scripts BCBS TN",
+        "status": "Active",
+        "rules":{
+            "combinator": "and",
+            "rules": [
+                {
+                    "field": "carrier_name",
+                    "operator": "equal",
+                    "value": "EXPRESS_SCRIPTS"
+                },
+                {
                     "field": "subgroup_number",
                     "operator": "in",
-                    "value": ["BCBSMROC", "BCBSMRX1", "MIBCNRX", "BCNRXPD"]
+                    "value": ["BCTMAPD", "BCTCOMM"]
+                }
+            ]
+        }
+    },
+    {
+        "id": 5,
+        "ruleid": "RULE_26",
+        "description": "Rule 26 - Clone Express Scripts",
+        "status": "Active",
+        "rules":{
+            "combinator": "and",
+            "rules": [
+                {
+                    "field": "carrier_name",
+                    "operator": "equal",
+                    "value": "EXPRESS_SCRIPTS"
+                },
+                {
+                  "combinator": "or",
+                  "rules": [
+                    {
+                      "field": "subgroup_number",
+                      "operator": "in",
+                      "value": ["KHYA","GH3A","KHXA","KJ2A","L4JA","L4SA", "SSEU371"]
+                    },
+                    {
+                      "combinator": "and",
+                      "rules": [
+                        {
+                          "field": "subgroup_number1",
+                          "operator": "equal",
+                          "value": "UFTWFRX"
+                        },
+                        {
+                          "field": "pbm_person_code",
+                          "operator": "equal",
+                          "value": "01"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "field": "coalesce (group_name, '')",
+                  "operator": "not_contains",
+                  "value": "PRESCRIPTION ONLY"
                 }
             ]
         }

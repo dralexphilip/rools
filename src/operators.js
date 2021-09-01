@@ -9,7 +9,7 @@ const operators = [
         label: "not equal to",
         value: "not_equal",
         types: ["date", "integer", "number", "radio", "select", "switch", "text"],
-        symbol: "!=",
+        symbol: "<>",
     },
     {
         label: "contains",

@@ -493,7 +493,7 @@ export function sqlQuery(qr) {
             exp = `${exp} (${sqlQuery(obj)}) `;
         }
     }
-    exp = exp.substring(0, exp.length - 3);
+    exp = exp.substring(0, exp.length - 2);
     return exp;
 }
 
