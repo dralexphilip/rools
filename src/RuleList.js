@@ -57,7 +57,6 @@ export default class RuleList extends Component{
             const onClick = () => {
             //const api: GridApi = params.api; 
             history.push('/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleid);
-            console.log(params.row.id)
             };
             return <IconButton onClick={onClick}><Icon color="secondary">edit</Icon></IconButton>;
         }
@@ -74,15 +73,16 @@ export default class RuleList extends Component{
         <h3>Carrier Edit Rules</h3>
         <hr></hr>
     </div>
-<div style={{ height: 400, padding: 10 }}>
+<div style={{ height: 800, padding: 10 }}>
        
   <DataGrid
     rows={this.state.rows}
     columns={this.columns}
-    pageSize={5}
+    pageSize={10}
     checkboxSelection
     disableSelectionOnClick
     sortModel={this.state.sortModel}
+    rowsPerPageOptions={[5, 10, 20]}
   />
 </div>
 </div>
