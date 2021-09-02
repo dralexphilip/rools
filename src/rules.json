@@ -252,5 +252,400 @@
               }
             ]
           }
+    },
+    {
+        "id": 7,
+        "ruleid": "RULE_28",
+        "description": "Rule 28 - Clone Express Scripts HealthNow BCBS",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+                {
+                    "field": "carrier_name",
+                    "operator": "equal",
+                    "value": "EXPRESS_SCRIPTS"
+                },
+                {
+                    "field": "subgroup_number",
+                    "operator": "in",
+                    "value": [
+                        "HNRXS",
+                        "HNMED",
+                        "HNKAL",
+                        "HNEXCHG"
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "ruleid": "RULE_29",
+        "description": "Rule 29 - Clone Express Scripts Highmark BCBS",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+                {
+                    "field": "carrier_name",
+                    "operator": "equal",
+                    "value": "EXPRESS_SCRIPTS"
+                },
+                {
+                  "combinator": "or",
+                  "rules": [
+                    {
+                      "field": "subgroup_number",
+                      "operator": "in",
+                      "value": [
+                        "AAAECRX",
+                        "DCSGRX9",
+                        "GTEAGLE",
+                        "HMRK001",
+                        "KMTPHRM",
+                        "NCCRX4U",
+                        "SELMEDRX",
+                        "SPBLUE1",
+                        "SPBLUE3",
+                        "UBCCFRX",
+                        "YCBA"
+                      ]
+                    },
+                    {
+                      "field": "subgroup_number1",
+                      "operator": "contains",
+                      "value": " "
+                    }
+                  ]
+                },
+                {
+                  "combinator": "or",
+                  "rules": [
+                    {
+                      "field": "group_name",
+                      "operator": "in",
+                      "value": [
+                        "00177509",
+                        "00177511",
+                        "FPH",
+                        "GIANT EAGLE",
+                        "HBG CENTRAL PA",
+                        "HCA WESTERN PA",
+                        "HCRX FPH",
+                        "HCRX PA HHIC CENTRAL",
+                        "HCRX PA HHIC WESTERN",
+                        "HCRX PA KEYSTONE",
+                        "NEPA",
+                        "FREEDOM BLUE"
+                      ]
+                    },
+                    {
+                      "field": "group_name1",
+                      "operator": "contains",
+                      "value": "HIGHMARK"
+                    }
+                  ]
+                },
+                {
+                  "field": "group_name3",
+                  "operator": "not_in",
+                  "value": [
+                    "HCRX DE",
+                    "HCRX WV",
+                    "HIGHMARK BCBS WV",
+                    "HIGHMARK CDHP",
+                    "HIGHMARK PLANS"
+                  ]
+                },
+                {
+                  "field": "group_number3",
+                  "operator": "not_in",
+                  "value": [
+                    "LXS000000362917",
+                    "HRK019969650010",
+                    "HRK097356000010",
+                    "HRK102068520010",
+                    "HRK097356010010"
+                  ]
+                }
+            ]
+        }
+    },
+    {
+        "id": 9,
+        "ruleid": "RULE_30",
+        "description": "Rule 30 - Clone Express Scripts Medical Mutual",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number",
+                "operator": "in",
+                "value": [
+                  "MMODRUG",
+                  "MMOMDRX",
+                  "MMOEXCH"
+                ]
+              }
+            ]
+          }
+    },
+    {
+        "id": 10,
+        "ruleid": "RULE_31",
+        "description": "Rule 31 - Clone Express Scripts Premera Lifewise of Washington",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number1",
+                "operator": "equal",
+                "value": "LWWAPDP"
+              }
+            ]
+          }
+    },
+    {
+        "id": 11,
+        "ruleid": "RULE_33",
+        "description": "Rule 33 - Clone Express Scripts Premera BC WA",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number",
+                "operator": "in",
+                "value": [
+                  "BARAPDP",
+                  "BCWAPDP"
+                ]
+              }
+            ]
+          }
+    },
+    {
+        "id": 12,
+        "ruleid": "RULE_34",
+        "description": "Rule 34 - Clone Express Scripts Priority Health",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number",
+                "operator": "in",
+                "value": [
+                  "PHCMRCL",
+                  "PHCMADB",
+                  "PHEXADB",
+                  "PHMEDCR"
+                ]
+              }
+            ]
+          }
+    },
+    {
+        "id": 13,
+        "ruleid": "RULE_35",
+        "description": "Rule 35 - Clone Express Scripts Scan Health Plan",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number1",
+                "operator": "equal",
+                "value": "AN9A"
+              }
+            ]
+          }
+    },
+    {
+        "id": 14,
+        "ruleid": "RULE_36",
+        "description": "Rule 36 - Clone Express Scripts Samba",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number1",
+                "operator": "equal",
+                "value": "SAMBARX"
+              }
+            ]
+          }
+    },
+    {
+        "id": 15,
+        "ruleid": "RULE_37",
+        "description": "Rule 37 - Clone Express Scripts Sanford",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number",
+                "operator": "in",
+                "value": [
+                  "NDPA",
+                  "SVHA"
+                ]
+              }
+            ]
+          }
+    },
+    {
+        "id": 16,
+        "ruleid": "RULE_38",
+        "description": "Rule 38 - Clone Express Scripts UCARE",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number",
+                "operator": "in",
+                "value": [
+                  "L4NA",
+                  "MNUA"
+                ]
+              }
+            ]
+          }
+    },
+    {
+        "id": 17,
+        "ruleid": "RULE_39",
+        "description": "Rule 39 - Clone Express Scripts UPMC",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number",
+                "operator": "in",
+                "value": [
+                  "L4GA",
+                  "L4YA",
+                  "L9BA",
+                  "PMDA",
+                  "PMDC"
+                ]
+              }
+            ]
+          }
+    },
+    {
+        "id": 18,
+        "ruleid": "RULE_40",
+        "description": "Rule 40 - Clone Express Scripts THPUOV",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number1",
+                "operator": "equal",
+                "value": "THPMEDI"
+              }
+            ]
+          }
+    },
+    {
+        "id": 19,
+        "ruleid": "RULE_40B",
+        "description": "New Rule - Rule 40B - Clone Express Scripts THPUOV",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "EXPRESS_SCRIPTS"
+              },
+              {
+                "field": "subgroup_number1",
+                "operator": "equal",
+                "value": "3602"
+              }
+            ]
+          }
+    },
+    {
+        "id": 20,
+        "ruleid": "RULE_43",
+        "description": "Rule 43 - Clone Catamaran Asuris",
+        "status": "Active",
+        "rules": {
+            "combinator": "and",
+            "rules": [
+              {
+                "field": "carrier_name",
+                "operator": "equal",
+                "value": "CATAMARAN"
+              },
+              {
+                "field": "subgroup_number1",
+                "operator": "contains",
+                "value": "ASURIS"
+              }
+            ]
+          }
     }
 ]
