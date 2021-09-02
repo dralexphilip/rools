@@ -462,11 +462,14 @@ export function sqlQuery(qr) {
             if (numCheck === '1'){
                 field = field.substring(0, field.length - 1);
             }
-            else if(numCheck === '2' || numCheck === '3'){
+            else if(numCheck === '2'){
                 field = "coalesce("+field.substring(0, field.length - 1)+", '')";
             }
-            let operator = obj.operator;            
+            let operator = obj.operator;
+            console.log(operator)
+            
             operator = operators.find(o=> (o.value === obj.operator)).symbol;
+            console.log(operator)
 
             let value = obj.value;
             if (typeof obj.value != 'boolean') {

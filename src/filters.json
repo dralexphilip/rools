@@ -33,54 +33,6 @@
                     {
                         "label": "CENTRAL STATES HLTH FUND",
                         "value": "CENTRAL STATES HLTH FUND"
-                    },
-                    {
-                        "label": "00177509",
-                        "value": "00177509"
-                    },
-                    {
-                        "label": "00177511",
-                        "value": "00177511"
-                    },
-                    {
-                        "label": "FPH",
-                        "value": "FPH"
-                    },
-                    {
-                        "label": "GIANT EAGLE",
-                        "value": "GIANT EAGLE"
-                    },
-                    {
-                        "label": "HBG CENTRAL PA",
-                        "value": "HBG CENTRAL PA"
-                    },
-                    {
-                        "label": "HCA WESTERN PA",
-                        "value": "HCA WESTERN PA"
-                    },
-                    {
-                        "label": "HCRX FPH",
-                        "value": "HCRX FPH"
-                    },
-                    {
-                        "label": "HCRX PA HHIC CENTRAL",
-                        "value": "HCRX PA HHIC CENTRAL"
-                    },
-                    {
-                        "label": "HCRX PA HHIC WESTERN",
-                        "value": "HCRX PA HHIC WESTERN"
-                    },
-                    {
-                        "label": "HCRX PA KEYSTONE",
-                        "value": "HCRX PA KEYSTONE"
-                    },
-                    {
-                        "label": "NEPA",
-                        "value": "NEPA"
-                    },
-                    {
-                        "label": "FREEDOM BLUE",
-                        "value": "FREEDOM BLUE"
                     }
                 ]
             },
@@ -104,26 +56,6 @@
                     {
                         "label": "0273",
                         "value": "0273"
-                    },
-                    {
-                        "label": "LXS000000362917",
-                        "value": "LXS000000362917"
-                    },
-                    {
-                        "label": "HRK019969650010",
-                        "value": "HRK019969650010"
-                    },
-                    {
-                        "label": "HRK097356000010",
-                        "value": "HRK097356000010"
-                    },
-                    {
-                        "label": "HRK102068520010",
-                        "value": "HRK102068520010"
-                    },
-                    {
-                        "label": "HRK097356010010",
-                        "value": "HRK097356010010"
                     }
                 ]
             },
@@ -235,150 +167,6 @@
                     {
                         "label": "EXLHXRX",
                         "value": "EXLHXRX"
-                    },
-                    {
-                        "label": "HNRXS",
-                        "value": "HNRXS"
-                    },
-                    {
-                        "label": "HNMED",
-                        "value": "HNMED"
-                    },
-                    {
-                        "label": "HNKAL",
-                        "value": "HNKAL"
-                    },
-                    {
-                        "label": "HNEXCHG",
-                        "value": "HNEXCHG"
-                    },
-                    {
-                        "label": "AAAECRX",
-                        "value": "AAAECRX"
-                    },
-                    {
-                        "label": "DCSGRX9",
-                        "value": "DCSGRX9"
-                    },
-                    {
-                        "label": "GTEAGLE",
-                        "value": "GTEAGLE"
-                    },
-                    {
-                        "label": "HMRK001",
-                        "value": "HMRK001"
-                    },
-                    {
-                        "label": "KMTPHRM",
-                        "value": "KMTPHRM"
-                    },
-                    {
-                        "label": "NCCRX4U",
-                        "value": "NCCRX4U"
-                    },
-                    {
-                        "label": "SELMEDRX",
-                        "value": "SELMEDRX"
-                    },
-                    {
-                        "label": "SPBLUE1",
-                        "value": "SPBLUE1"
-                    },
-                    {
-                        "label": "SPBLUE3",
-                        "value": "SPBLUE3"
-                    },
-                    {
-                        "label": "UBCCFRX",
-                        "value": "UBCCFRX"
-                    },
-                    {
-                        "label": "YCBA",
-                        "value": "YCBA"
-                    },
-                    {
-                        "label": "MMODRUG",
-                        "value": "MMODRUG"
-                    },
-                    {
-                        "label": "MMOMDRX",
-                        "value": "MMOMDRX"
-                    },
-                    {
-                        "label": "MMOEXCH",
-                        "value": "MMOEXCH"
-                    },
-                    {
-                        "label": "LWWAPDP",
-                        "value": "LWWAPDP"
-                    },
-                    {
-                        "label": "BARAPDP",
-                        "value": "BARAPDP"
-                    },
-                    {
-                        "label": "BCWAPDP",
-                        "value": "BCWAPDP"
-                    },
-                    {
-                        "label": "PHCMRCL",
-                        "value": "PHCMRCL"
-                    },
-                    {
-                        "label": "PHCMADB",
-                        "value": "PHCMADB"
-                    },
-                    {
-                        "label": "PHEXADB",
-                        "value": "PHEXADB"
-                    },
-                    {
-                        "label": "PHMEDCR",
-                        "value": "PHMEDCR"
-                    },
-                    {
-                        "label": "AN9A",
-                        "value": "AN9A"
-                    },
-                    {
-                        "label": "SAMBARX",
-                        "value": "SAMBARX"
-                    },
-                    {
-                        "label": "NDPA",
-                        "value": "NDPA"
-                    },
-                    {
-                        "label": "SVHA",
-                        "value": "SVHA"
-                    },
-                    {
-                        "label": "L4NA",
-                        "value": "L4NA"
-                    },
-                    {
-                        "label": "MNUA",
-                        "value": "MNUA"
-                    },
-                    {
-                        "label": "L4GA",
-                        "value": "L4GA"
-                    },
-                    {
-                        "label": "L4YA",
-                        "value": "L4YA"
-                    },
-                    {
-                        "label": "L9BA",
-                        "value": "L9BA"
-                    },
-                    {
-                        "label": "PMDA",
-                        "value": "PMDA"
-                    },
-                    {
-                        "label": "PMDC",
-                        "value": "PMDC"
                     }
                 ]
             },
@@ -443,63 +231,9 @@
                 "type": "text"
             },
             {
-                "label": "Coalesce Group Name - Multiselect",
-                "value": "group_name3",
-                "type": "multiselect",
-                "options": [
-                    {
-                        "label": "HCRX DE",
-                        "value": "HCRX DE"
-                    },
-                    {
-                        "label": "HCRX WV",
-                        "value": "HCRX WV"
-                    },
-                    {
-                        "label": "HIGHMARK BCBS WV",
-                        "value": "HIGHMARK BCBS WV"
-                    },
-                    {
-                        "label": "HIGHMARK CDHP",
-                        "value": "HIGHMARK CDHP"
-                    },
-                    {
-                        "label": "HIGHMARK PLANS",
-                        "value": "HIGHMARK PLANS"
-                    }
-                ]
-            },
-            {
                 "label": "Coalesce Group Number",
                 "value": "group_number2",
                 "type": "text"
-            },
-            {
-                "label": "Coalesce Group Number - Multiselect",
-                "value": "group_number3",
-                "type": "multiselect",
-                "options": [
-                    {
-                        "label": "LXS000000362917",
-                        "value": "LXS000000362917"
-                    },
-                    {
-                        "label": "HRK019969650010",
-                        "value": "HRK019969650010"
-                    },
-                    {
-                        "label": "HRK097356000010",
-                        "value": "HRK097356000010"
-                    },
-                    {
-                        "label": "HRK102068520010",
-                        "value": "HRK102068520010"
-                    },
-                    {
-                        "label": "HRK097356010010",
-                        "value": "HRK097356010010"
-                    }
-                ]
             },
             {
                 "label": "Coalesce Member ID",
