@@ -24,6 +24,18 @@ const operators = [
         symbol: "not like",
     },
     {
+        label: "begins with",
+        value: "begins_with",
+        types: ["text"],
+        symbol: "like",
+    },
+    {
+        label: "ends with",
+        value: "ends_with",
+        types: ["text"],
+        symbol: "like",
+    },
+    {
         label: "less than",
         value: "less",
         types: ["number", "integer"],

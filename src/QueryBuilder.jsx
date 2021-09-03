@@ -480,8 +480,12 @@ export function sqlQuery(qr) {
                 else if (obj.value != null) {
                     if(obj.operator === 'equal' || obj.operator === 'not_equal')
                         value = `'${obj.value}'`;
-                    else
-                    value = `'%${obj.value}%'`;
+                    else if(obj.operator === 'contains' || obj.operator === 'not_contains')
+                        value = `'%${obj.value}%'`;
+                    else if(obj.operator === 'begins_with')
+                        value = `'${obj.value}%'`;
+                    else if(obj.operator === 'ends_with')
+                        value = `'%${obj.value}'`;
                 }
                 else {
                     value = "";

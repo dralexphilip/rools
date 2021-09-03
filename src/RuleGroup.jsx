@@ -210,7 +210,7 @@ RuleGroup.defaultProps = {
     combinators: [
         { label: "AND", value: "and" },
         { label: "OR", value: "or" },
-        //{ label: "COALESCE", value: "coalesce" },
+        { label: "CASE", value: "case" },
     ],
     rules: [],
 };
