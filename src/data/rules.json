@@ -23,6 +23,73 @@
                     ]
                 }
             ]
+        },
+        "updateRules": {
+          "combinator": "set",
+          "sets": [
+            {
+              "field": "pbm_bin",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "pbm_pcn",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "carrier_name",
+              "operator": "equals",
+              "value": "ASURIS NORTHWEST HEALTH"
+            },
+            {
+              "field": "member_id",
+              "operator": "left",
+              "value": 9
+            },
+            {
+              "field": "group_number3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "group_name3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "combinator": "case",
+              "cfield": "plan_type",
+              "sets": [
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "PA",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MM"
+                },
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "MD",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MC"
+                }
+              ]
+            }
+          ]
+        },
+        "updateConditions": {
+          "combinator":"and",
+          "rules": [
+            {
+              "field": "match_carrier_rule_id_extra",
+              "operator": "equal",
+              "value": "RULE_22"
+            }
+          ]
         }
     },
     {
@@ -51,6 +118,73 @@
                     ]
                 }
             ]
+        },
+        "updateRules": {
+          "combinator": "set",
+          "sets": [
+            {
+              "field": "pbm_bin",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "pbm_pcn",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "carrier_name",
+              "operator": "equals",
+              "value": "ASURIS NORTHWEST HEALTH"
+            },
+            {
+              "field": "member_id",
+              "operator": "left",
+              "value": 9
+            },
+            {
+              "field": "group_number3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "group_name3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "combinator": "case",
+              "cfield": "plan_type",
+              "sets": [
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "PA",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MM"
+                },
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "MD",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MC"
+                }
+              ]
+            }
+          ]
+        },
+        "updateConditions": {
+          "combinator":"and",
+          "rules": [
+            {
+              "field": "match_carrier_rule_id_extra",
+              "operator": "equal",
+              "value": "RULE_23"
+            }
+          ]
         }
     },
     {
@@ -100,6 +234,73 @@
                     ]
                 }
             ]
+        },
+        "updateRules": {
+          "combinator": "set",
+          "sets": [
+            {
+              "field": "pbm_bin",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "pbm_pcn",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "carrier_name",
+              "operator": "equals",
+              "value": "ASURIS NORTHWEST HEALTH"
+            },
+            {
+              "field": "member_id",
+              "operator": "left",
+              "value": 9
+            },
+            {
+              "field": "group_number3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "group_name3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "combinator": "case",
+              "cfield": "plan_type",
+              "sets": [
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "PA",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MM"
+                },
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "MD",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MC"
+                }
+              ]
+            }
+          ]
+        },
+        "updateConditions": {
+          "combinator":"and",
+          "rules": [
+            {
+              "field": "match_carrier_rule_id_extra",
+              "operator": "equal",
+              "value": "RULE_24"
+            }
+          ]
         }
     },
     {
@@ -127,6 +328,73 @@
                     ]
                 }
             ]
+        },
+        "updateRules": {
+          "combinator": "set",
+          "sets": [
+            {
+              "field": "pbm_bin",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "pbm_pcn",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "carrier_name",
+              "operator": "equals",
+              "value": "ASURIS NORTHWEST HEALTH"
+            },
+            {
+              "field": "member_id",
+              "operator": "left",
+              "value": 9
+            },
+            {
+              "field": "group_number3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "group_name3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "combinator": "case",
+              "cfield": "plan_type",
+              "sets": [
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "PA",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MM"
+                },
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "MD",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MC"
+                }
+              ]
+            }
+          ]
+        },
+        "updateConditions": {
+          "combinator":"and",
+          "rules": [
+            {
+              "field": "match_carrier_rule_id_extra",
+              "operator": "equal",
+              "value": "RULE_25"
+            }
+          ]
         }
     },
     {
@@ -184,6 +452,73 @@
                     "value": "PRESCRIPTION ONLY"
                 }
             ]
+        },
+        "updateRules": {
+          "combinator": "set",
+          "sets": [
+            {
+              "field": "pbm_bin",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "pbm_pcn",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "carrier_name",
+              "operator": "equals",
+              "value": "ASURIS NORTHWEST HEALTH"
+            },
+            {
+              "field": "member_id",
+              "operator": "left",
+              "value": 9
+            },
+            {
+              "field": "group_number3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "group_name3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "combinator": "case",
+              "cfield": "plan_type",
+              "sets": [
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "PA",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MM"
+                },
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "MD",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MC"
+                }
+              ]
+            }
+          ]
+        },
+        "updateConditions": {
+          "combinator":"and",
+          "rules": [
+            {
+              "field": "match_carrier_rule_id_extra",
+              "operator": "equal",
+              "value": "RULE_26"
+            }
+          ]
         }
     },
     {
@@ -269,6 +604,73 @@
                 "value": "UNIV S CHOICE"
               }
             ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_27"
+              }
+            ]
           }
     },
     {
@@ -298,6 +700,73 @@
                     ]
                 }
             ]
+        },
+        "updateRules": {
+          "combinator": "set",
+          "sets": [
+            {
+              "field": "pbm_bin",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "pbm_pcn",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "carrier_name",
+              "operator": "equals",
+              "value": "ASURIS NORTHWEST HEALTH"
+            },
+            {
+              "field": "member_id",
+              "operator": "left",
+              "value": 9
+            },
+            {
+              "field": "group_number3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "group_name3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "combinator": "case",
+              "cfield": "plan_type",
+              "sets": [
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "PA",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MM"
+                },
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "MD",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MC"
+                }
+              ]
+            }
+          ]
+        },
+        "updateConditions": {
+          "combinator":"and",
+          "rules": [
+            {
+              "field": "match_carrier_rule_id_extra",
+              "operator": "equal",
+              "value": "RULE_28"
+            }
+          ]
         }
     },
     {
@@ -394,6 +863,73 @@
                   ]
                 }
             ]
+        },
+        "updateRules": {
+          "combinator": "set",
+          "sets": [
+            {
+              "field": "pbm_bin",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "pbm_pcn",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "carrier_name",
+              "operator": "equals",
+              "value": "ASURIS NORTHWEST HEALTH"
+            },
+            {
+              "field": "member_id",
+              "operator": "left",
+              "value": 9
+            },
+            {
+              "field": "group_number3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "field": "group_name3",
+              "operator": "as_null",
+              "value": null
+            },
+            {
+              "combinator": "case",
+              "cfield": "plan_type",
+              "sets": [
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "PA",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MM"
+                },
+                {
+                  "field": "plan_type1",
+                  "operator": "contains",
+                  "value": "MD",
+                  "tfield": "plan_type1",
+                  "toperator": "equals",
+                  "tvalue": "MC"
+                }
+              ]
+            }
+          ]
+        },
+        "updateConditions": {
+          "combinator":"and",
+          "rules": [
+            {
+              "field": "match_carrier_rule_id_extra",
+              "operator": "equal",
+              "value": "RULE_29"
+            }
+          ]
         }
     },
     {
@@ -422,6 +958,73 @@
                 ]
               }
             ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_30"
+              }
+            ]
           }
     },
     {
@@ -444,6 +1047,73 @@
                 "field": "subgroup_number1",
                 "operator": "equal",
                 "value": "LWWAPDP"
+              }
+            ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_31"
               }
             ]
           }
@@ -471,6 +1141,73 @@
                   "BARAPDP",
                   "BCWAPDP"
                 ]
+              }
+            ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_33"
               }
             ]
           }
@@ -502,6 +1239,73 @@
                 ]
               }
             ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_34"
+              }
+            ]
           }
     },
     {
@@ -526,6 +1330,73 @@
                 "value": "AN9A"
               }
             ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_35"
+              }
+            ]
           }
     },
     {
@@ -548,6 +1419,73 @@
                 "field": "subgroup_number1",
                 "operator": "equal",
                 "value": "SAMBARX"
+              }
+            ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_36"
               }
             ]
           }
@@ -577,6 +1515,73 @@
                 ]
               }
             ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_37"
+              }
+            ]
           }
     },
     {
@@ -602,6 +1607,73 @@
                   "L4NA",
                   "MNUA"
                 ]
+              }
+            ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_38"
               }
             ]
           }
@@ -632,6 +1704,73 @@
                   "PMDA",
                   "PMDC"
                 ]
+              }
+            ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_39"
               }
             ]
           }
