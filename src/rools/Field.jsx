@@ -9,7 +9,8 @@ import Context from "./context";
 const Field = React.memo(
     (props) => {
         const context = React.useContext(Context);
-        const { field, id, testId } = props;
+        
+        const { field, id, testId, placeholder } = props;
 
         const { dispatch, filtersByValue, flattenedFilters, operatorsByType } = context;
         const filter = field ? filtersByValue[field] : null;
@@ -25,7 +26,7 @@ const Field = React.memo(
                     return option.value === value.value;
                 }}
                 options={flattenedFilters}
-                renderInput={(params) => <TextField {...params} placeholder="Field" size="small" />}
+                renderInput={(params) => <TextField {...params} placeholder={placeholder} size="small" variant="outlined" />}
                 style={{ minWidth: 250 }}
                 value={filter}
                 onChange={(event, selected) => {
@@ -48,6 +49,7 @@ Field.propTypes = {
     field: PropTypes.string,
     id: PropTypes.number.isRequired,
     testId: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
 };
 
 Field.whyDidYouRender = false;

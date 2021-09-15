@@ -3,8 +3,8 @@ import { DataGrid } from '@material-ui/data-grid';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import './Rulelist.css';
-import history from './history';
-import rules from './rules.json'
+import history from '../history';
+import rules from '../data/rules.json'
 
 export default class RuleList extends Component{
     rows = rules;
@@ -15,33 +15,41 @@ export default class RuleList extends Component{
     columns = [
     { field: 'id', 
         headerName: 'ID', 
-        flex: 0.5,
-        minWidth: 150,
+        flex: 0.2,
+        minWidth: 100,
         editable: false,
     },
     
     { field: 'ruleid', 
         headerName: 'Rule ID', 
-        flex: 0.5,
-        minWidth: 150,
+        flex: 0.25,
         editable: true,
     },
     {
         field: 'description',
         headerName: 'Description',
-        flex: 2,
-        minWidth: 350,    
+        flex: 0.7, 
         editable: true,
     },
     {
         field: 'status',
         headerName: 'Status',
-        flex: 0.5,
-        minWidth: 150,
+        flex: 0.3,
+    },
+    {
+        field: 'version',
+        headerName: 'Version',
+        flex: 0.2,
+    },
+    {
+        field: 'created_datetime',
+        headerName: 'Created Date',
+        flex: 0.2,
     },
     {
         field: '',
         headerName: 'Add/Delete',
+        flex: 0.15,
         sortable: false,
         disableColumnMenu: true,
         showColumnRightBorder: false,

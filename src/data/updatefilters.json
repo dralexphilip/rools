@@ -1,0 +1,92 @@
+[
+    {
+        "label": "COB Lead Staging - Update",
+        "options": [
+            {
+                "label": "PBM BIN",
+                "value": "pbm_bin",
+                "type": "update"
+            },
+            {
+                "label": "PBM PCN",
+                "value": "pbm_pcn",
+                "type": "update"
+            },
+            {
+                "label": "Carrier Name",
+                "value": "carrier_name",
+                "type": "update"
+            },
+            {
+                "label": "Member ID",
+                "value": "member_id",
+                "type": "substring"
+            },
+            {
+                "label": "Group Name",
+                "value": "group_name3",
+                "type": "update"
+            }, 
+            {
+                "label": "Group Number",
+                "value": "group_number3",
+                "type": "update"
+            }, 
+            {
+                "label": "Plan Type",
+                "value": "plan_type",
+                "type": "update"
+            }, 
+            {
+                "label": "Subgroup Number",
+                "value": "subgroup_number3",
+                "type": "update"
+            }, 
+            {
+                "label": "Member State",
+                "value": "member_State",
+                "type": "update"
+            }, 
+            {
+                "label": "Policy SSN",
+                "value": "policy_ssn",
+                "type": "update"
+            }, 
+            {
+                "label": "Member SSN",
+                "value": "member_ssn",
+                "type": "update"
+            }, 
+            {
+              "label": "Pbm Person Code",
+              "value": "pbm_person_code",
+              "type": "text"
+            },
+            {
+                "label": "Policy ID",
+                "value": "policy_id",
+                "type": "update"
+            }, 
+            {
+                "label": "Policy ID ALT",
+                "value": "policy_id_alt",
+                "type": "update"
+            }, 
+            {
+                "label": "Member ID ALT",
+                "value": "member_id_alt",
+                "type": "update"
+            }
+        ]
+    },
+    {
+        "label": "COB Lead Staging - Text",
+        "options": [
+            {
+                "label": "Plan Type",
+                "value": "plan_type1",
+                "type": "text"
+            }
+        ]
+    }
+]

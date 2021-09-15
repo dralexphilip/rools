@@ -4,7 +4,10 @@
         "ruleid": "RULE_22",
         "description": "Rule 22 - Clone Express Scripts APWU000",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
                 {
@@ -27,7 +30,10 @@
         "ruleid": "RULE_23",
         "description": "Rule 23 - Clone Express Scripts BCBS MA",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
                 {
@@ -52,7 +58,10 @@
         "ruleid": "RULE_24",
         "description": "Rule 24 - Clone Express Scripts BCBS MI",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
                 {
@@ -98,7 +107,10 @@
         "ruleid": "RULE_25",
         "description": "Rule 25 - Clone Express Scripts BCBS TN",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
                 {
@@ -122,7 +134,10 @@
         "ruleid": "RULE_26",
         "description": "Rule 26 - Clone Express Scripts",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
                 {
@@ -176,7 +191,10 @@
         "ruleid": "RULE_27",
         "description": "Rule 27 - Clone Express Scripts Excellus BCBS",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -258,7 +276,10 @@
         "ruleid": "RULE_28",
         "description": "Rule 28 - Clone Express Scripts HealthNow BCBS",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
                 {
@@ -284,7 +305,10 @@
         "ruleid": "RULE_29",
         "description": "Rule 29 - Clone Express Scripts Highmark BCBS",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
                 {
@@ -377,7 +401,10 @@
         "ruleid": "RULE_30",
         "description": "Rule 30 - Clone Express Scripts Medical Mutual",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -402,7 +429,10 @@
         "ruleid": "RULE_31",
         "description": "Rule 31 - Clone Express Scripts Premera Lifewise of Washington",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -423,7 +453,10 @@
         "ruleid": "RULE_33",
         "description": "Rule 33 - Clone Express Scripts Premera BC WA",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -447,7 +480,10 @@
         "ruleid": "RULE_34",
         "description": "Rule 34 - Clone Express Scripts Priority Health",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -473,7 +509,10 @@
         "ruleid": "RULE_35",
         "description": "Rule 35 - Clone Express Scripts Scan Health Plan",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -494,7 +533,10 @@
         "ruleid": "RULE_36",
         "description": "Rule 36 - Clone Express Scripts Samba",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -515,7 +557,10 @@
         "ruleid": "RULE_37",
         "description": "Rule 37 - Clone Express Scripts Sanford",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -539,7 +584,10 @@
         "ruleid": "RULE_38",
         "description": "Rule 38 - Clone Express Scripts UCARE",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -563,7 +611,10 @@
         "ruleid": "RULE_39",
         "description": "Rule 39 - Clone Express Scripts UPMC",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -590,7 +641,10 @@
         "ruleid": "RULE_40",
         "description": "Rule 40 - Clone Express Scripts THPUOV",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -604,6 +658,75 @@
                 "value": "THPMEDI"
               }
             ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "THE HEALTH PLAN OF UPPER OHIO VALLEY"
+              },
+              {
+                "field": "group_number3",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "sets": [
+                  {
+                    "field": "plan_type",
+                    "operator": "equal",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type",
+                    "operator": "equal",
+                    "value": "PM",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type",
+                    "operator": "equal",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_40"
+              }
+            ]
           }
     },
     {
@@ -611,7 +734,10 @@
         "ruleid": "RULE_40B",
         "description": "New Rule - Rule 40B - Clone Express Scripts THPUOV",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -625,6 +751,75 @@
                 "value": "3602"
               }
             ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "THE HEALTH PLAN OF UPPER OHIO VALLEY"
+              },
+              {
+                "field": "group_number3",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "sets": [
+                  {
+                    "field": "plan_type",
+                    "operator": "equal",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type",
+                    "operator": "equal",
+                    "value": "PM",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type",
+                    "operator": "equal",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_40B"
+              }
+            ]
           }
     },
     {
@@ -632,7 +827,10 @@
         "ruleid": "RULE_43",
         "description": "Rule 43 - Clone Catamaran Asuris",
         "status": "Active",
-        "rules": {
+        "version":"1.0",
+        "created_datetime":"",
+        "updated_datetime":"",
+        "selectRules": {
             "combinator": "and",
             "rules": [
               {
@@ -644,6 +842,73 @@
                 "field": "subgroup_number1",
                 "operator": "contains",
                 "value": "ASURIS"
+              }
+            ]
+          },
+          "updateRules": {
+            "combinator": "set",
+            "sets": [
+              {
+                "field": "pbm_bin",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "pbm_pcn",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "carrier_name",
+                "operator": "equals",
+                "value": "ASURIS NORTHWEST HEALTH"
+              },
+              {
+                "field": "member_id",
+                "operator": "left",
+                "value": 9
+              },
+              {
+                "field": "group_number3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "field": "group_name3",
+                "operator": "as_null",
+                "value": null
+              },
+              {
+                "combinator": "case",
+                "cfield": "plan_type",
+                "sets": [
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "PA",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MM"
+                  },
+                  {
+                    "field": "plan_type1",
+                    "operator": "contains",
+                    "value": "MD",
+                    "tfield": "plan_type1",
+                    "toperator": "equals",
+                    "tvalue": "MC"
+                  }
+                ]
+              }
+            ]
+          },
+          "updateConditions": {
+            "combinator":"and",
+            "rules": [
+              {
+                "field": "match_carrier_rule_id_extra",
+                "operator": "equal",
+                "value": "RULE_43"
               }
             ]
           }

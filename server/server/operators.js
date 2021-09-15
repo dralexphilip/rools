@@ -1,0 +1,142 @@
+const operators = [
+    {
+        label: "equal to",
+        value: "equal",
+        types: ["date", "integer", "number", "radio", "select", "switch", "text"],
+        symbol: "=",
+    },
+    {
+        label: "not equal to",
+        value: "not_equal",
+        types: ["date", "integer", "number", "radio", "select", "switch", "text"],
+        symbol: "<>",
+    },
+    {
+        label: "contains",
+        value: "contains",
+        types: ["text"],
+        symbol: "like",
+    },
+    {
+        label: "does not contain",
+        value: "not_contains",
+        types: ["text"],
+        symbol: "not like",
+    },
+    {
+        label: "begins with",
+        value: "begins_with",
+        types: ["text"],
+        symbol: "like",
+    },
+    {
+        label: "ends with",
+        value: "ends_with",
+        types: ["text"],
+        symbol: "like",
+    },
+    {
+        label: "less than",
+        value: "less",
+        types: ["number", "integer"],
+        symbol: "<",
+    },
+    {
+        label: "greater than",
+        value: "greater",
+        types: ["number", "integer"],
+        symbol: ">",
+    },
+    {
+        label: "less or equal to",
+        value: "less_equal",
+        types: ["number", "integer"],
+        symbol: "<=",
+    },
+    {
+        label: "greater or equal to",
+        value: "greater_equal",
+        types: ["number", "integer"],
+        symbol: ">=",
+    },
+    {
+        label: "before than",
+        value: "before",
+        types: ["date"],
+        symbol: "<",
+    },
+    {
+        label: "after than",
+        value: "after",
+        types: ["date"],
+        symbol: ">",
+    },
+    {
+        label: "before or equal to",
+        value: "before_equal",
+        types: ["date"],
+        symbol: "<=",
+    },
+    {
+        label: "after or equal to",
+        value: "after_equal",
+        types: ["date"],
+        symbol: ">=",
+    },
+    {
+        label: "in",
+        value: "in",
+        types: ["multiselect"],
+        symbol: "in",
+    },
+    {
+        label: "not in",
+        value: "not_in",
+        types: ["multiselect"],
+        symbol: "not in",
+    },
+    {
+        label: "is null",
+        value: "null",
+        types: ["date", "integer", "number", "multiselect", "radio", "select", "switch", "text"],
+        symbol: "is null",
+    },
+    {
+        label: "as null",
+        value: "as_null",
+        types: ["update"],
+        symbol: "is null",
+    },
+    {
+        label: "is not null",
+        value: "not_null",
+        types: ["date", "integer", "number", "multiselect", "radio", "select", "switch", "text"],
+        symbol: "is not null",
+    },
+    {
+        label: "=",
+        value: "equals",
+        types: ["update"],
+        symbol: "=",
+    },
+    {
+        label: "Left Substring",
+        value: "left",
+        types: ["substring"],
+        symbol: "=",
+    },
+    {
+        label: "Right Substring",
+        value: "right",
+        types: ["substring"],
+        symbol: "=",
+    },
+    {
+        label: "Substring",
+        value: "substring",
+        types: ["substring"],
+        symbol: "=",
+    },
+];
+
+module.exports = { operators };

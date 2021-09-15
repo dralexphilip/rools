@@ -431,6 +431,11 @@
               "label": "Pbm Person Code",
               "value": "pbm_person_code",
               "type": "text"
+            }, 
+            {
+                "label": "Match Carrier Rule ID",
+                "value": "match_carrier_rule_id_extra",
+                "type": "text"
             }
         ]
     },

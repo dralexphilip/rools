@@ -21,7 +21,7 @@ const removeIconStyles = (t) => ({
     },
 });
 
-const useRuleStyles = makeStyles((t) => {
+const useSetStyles = makeStyles((t) => {
     return {
         ...removeIconStyles(t),
         container: {
@@ -37,25 +37,28 @@ const useRuleStyles = makeStyles((t) => {
     };
 });
 
-const Rule = (props) => {
-    const classes = useRuleStyles();
+const Set = (props) => {
+    const classes = useSetStyles();
     const context = React.useContext(Context);
 
-    const { id, level, position, rule } = props;
-    const { combinator, field, operator, rules, value } = rule;
+    const { id, level, position, set, combi } = props;
+    const { combinator, field, operator, sets, value, tfield, toperator, tvalue } = set;
 
     const { dispatch } = context;
 
     const testId = `${level}-${position}`;
+    const whenCombi = [{label: "WHEN", value: "when"}];
 
     return combinator ? (
-        <RuleGroup combinator={combinator} id={id} level={level + 1} rules={rules} />
+        <>
+        <SetGroup combinator={combinator} id={id} level={level + 1} sets={sets} />
+        </>
     ) : (
-        <Grid container className={classes.container} data-testid={`rule-${testId}`} spacing={2}>
+        <Grid container className={classes.container} data-testid={`set-${testId}`} spacing={2}>
             <Grid item>
                 <IconButton
                     className={classes.removeButton}
-                    data-testid={`rule-${testId}-remove`}
+                    data-testid={`set-${testId}-remove`}
                     size="small"
                     onClick={() => {
                         dispatch({ type: "remove-node", id });
@@ -64,27 +67,96 @@ const Rule = (props) => {
                     <RemoveIcon className={classes.removeIcon} />
                 </IconButton>
             </Grid>
+            {combi === "case" ? (
+            <>            
             <Grid item>
-                <Field field={field} id={id} testId={testId} />
+                <ToggleButtonGroup
+                            exclusive
+                            size="small"
+                            value={"when"}
+                            onChange={(event, value) => {
+                                if (value) {
+                                    dispatch({ type: "set-combinator", id, value });
+                                }
+                            }}
+                        >
+                            {whenCombi.map((item) => (
+                                <ToggleButton
+                                    key={item.value}
+                                    data-testid={`${testId}-combinator-${item.value}`}
+                                    className={classes.combinator}
+                                    value={item.value}
+                                >
+                                    <Typography variant="body2">{item.label}</Typography>
+                                </ToggleButton>
+                            ))}
+                        </ToggleButtonGroup>                    
+            </Grid>
+            </>
+                ): ""}
+            <Grid item>
+                <Field field={field} id={id} testId={testId} placeholder="Field"/>
             </Grid>
             <Grid item>
                 <Operator field={field} id={id} operator={operator} testId={testId} />
             </Grid>
             <Grid item className={classes.valueGridItem}>
-                <Value field={field} id={id} operator={operator} testId={testId} value={value} />
+                <Value field={field} id={id} operator={operator} testId={testId} value={value} vtype="field"/>
             </Grid>
+            
+            {combi === "case" ? (
+            <>
+           
+            
+            <Grid item>
+                <ToggleButtonGroup
+                            exclusive
+                            size="small"
+                            value={"then"}
+                            onChange={(event, value) => {
+                                if (value) {
+                                    dispatch({ type: "set-combinator", id, value });
+                                }
+                            }}
+                        >
+                            {[{label: "THEN", value: "then"}].map((item) => (
+                                <ToggleButton
+                                    key={item.value}
+                                    data-testid={`${testId}-combinator-${item.value}`}
+                                    className={classes.combinator}
+                                    value={item.value}
+                                >
+                                    <Typography variant="body2">{item.label}</Typography>
+                                </ToggleButton>
+                            ))}
+                        </ToggleButtonGroup>                    
+            </Grid>
+            <Grid item className={classes.valueGridItem}>
+                <Value field={field} id={id} operator={toperator} testId={testId} value={tvalue} vtype="case"/>
+            </Grid>
+            </>
+            ): ""}
+            
         </Grid>
     );
 };
 
-Rule.propTypes = {
+Set.propTypes = {
     id: PropTypes.number.isRequired,
     level: PropTypes.number.isRequired,
     position: PropTypes.number.isRequired,
-    rule: PropTypes.object.isRequired,
+    set: PropTypes.object.isRequired,
 };
 
-const useRuleGroupStyles = makeStyles((t) => ({
+//*******************************/
+
+
+//*******************************************/
+
+
+
+
+const useSetGroupStyles = makeStyles((t) => ({
     actionButton: {
         "& svg": {
             marginRight: t.spacing(0.5),
@@ -105,18 +177,18 @@ const useRuleGroupStyles = makeStyles((t) => ({
     ...removeIconStyles(t),
 }));
 
-const RuleGroup = (props) => {
-    const classes = useRuleGroupStyles(props);
+const SetGroup = (props) => {
+    const classes = useSetGroupStyles(props);
     const context = React.useContext(Context);
 
-    const { combinator, combinators, id, level, rules } = props;
+    const { combinator, combinators, id, level, sets, cfield } = props;
     const testId = `group-${level}`;
 
     const { dispatch, maxLevels } = context;
 
     return level <= maxLevels ? (
         <Grid container className={classes.group} data-testid={testId} direction="column" spacing={1}>
-            <Grid item>
+            <Grid item>            
                 <Grid container spacing={2}>
                     <Grid item>
                         <IconButton
@@ -131,40 +203,22 @@ const RuleGroup = (props) => {
                             <RemoveIcon className={level > 0 ? classes.removeIcon : null} />
                         </IconButton>
                     </Grid>
+                    {combinator === "case" ? (
                     <Grid item>
-                        <ToggleButtonGroup
-                            exclusive
-                            size="small"
-                            value={combinator}
-                            onChange={(event, value) => {
-                                if (value) {
-                                    dispatch({ type: "set-combinator", id, value });
-                                }
-                            }}
-                        >
-                            {combinators.map((item) => (
-                                <ToggleButton
-                                    key={item.value}
-                                    data-testid={`${testId}-combinator-${item.value}`}
-                                    className={classes.combinator}
-                                    value={item.value}
-                                >
-                                    <Typography variant="body2">{item.label}</Typography>
-                                </ToggleButton>
-                            ))}
-                        </ToggleButtonGroup>
+                        <Field field={sets[0].field} id={id} testId={testId} placeholder="Case" />
                     </Grid>
+                    ): ""}
                     <Grid item>
                         <Button
                             className={classes.actionButton}
                             color="primary"
-                            data-testid={`${testId}-add-rule`}
+                            data-testid={`${testId}-add-set`}
                             onClick={() => {
-                                dispatch({ type: "add-rule", id });
+                                dispatch({ type: "add-set", id });
                             }}
                         >
                             <AddIcon />
-                            Rule
+                            Field
                         </Button>
                     </Grid>
                     {level < maxLevels && (
@@ -178,22 +232,22 @@ const RuleGroup = (props) => {
                                 }}
                             >
                                 <AddIcon />
-                                Group
+                                Case
                             </Button>
                         </Grid>
                     )}
                 </Grid>
             </Grid>
-            {rules?.length > 0 && (
+            {sets?.length > 0 && (
                 <Grid item>
                     <DraggableContainer
                         onDrop={({ addedIndex, removedIndex }) => {
-                            dispatch({ type: "move-rule", addedIndex, id, removedIndex });
+                            dispatch({ type: "move-set", addedIndex, id, removedIndex });
                         }}
                     >
-                        {rules.map((rule, position) => (
-                            <Draggable key={rule.id}>
-                                <Rule id={rule.id} level={level} position={position} rule={rule} />
+                        {sets.map((set, position) => (
+                            <Draggable key={set.id}>
+                                <Set id={set.id} level={level} position={position} set={set} combi={combinator}/>
                             </Draggable>
                         ))}
                     </DraggableContainer>
@@ -205,22 +259,22 @@ const RuleGroup = (props) => {
     );
 };
 
-RuleGroup.defaultProps = {
-    combinator: "and",
+SetGroup.defaultProps = {
+    combinator: "case",
     combinators: [
-        { label: "AND", value: "and" },
-        { label: "OR", value: "or" },
+        { label: "SET", value: "set" },
         { label: "CASE", value: "case" },
     ],
-    rules: [],
+    sets: [],
 };
 
-RuleGroup.propTypes = {
+SetGroup.propTypes = {
     combinator: PropTypes.string,
     combinators: PropTypes.array,
     id: PropTypes.number.isRequired,
     level: PropTypes.number.isRequired,
-    rules: PropTypes.array,
+    sets: PropTypes.array,
+    cfield: PropTypes.string,
 };
 
-export default RuleGroup;
+export default SetGroup;

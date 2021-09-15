@@ -26,7 +26,7 @@ const Operator = React.memo(
                 getOptionSelected={(option, value) => option.value === value.value}
                 options={options}
                 renderInput={(params) => (
-                    <TextField {...params} placeholder="Operator" size="small" />
+                    <TextField {...params} placeholder="Operator" size="small" variant="outlined" />
                 )}
                 style={{ minWidth: 200 }}
                 value={value}

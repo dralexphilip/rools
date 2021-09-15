@@ -30,7 +30,7 @@ const Value = React.memo(
         };
         const context = React.useContext(Context);
 
-        const { field, id, operator, value } = props;
+        const { field, id, operator, value, vtype } = props;
         const { customOperators, dispatch, filtersByValue } = context;
 
         if (/null/i.test(operator)) {
@@ -44,7 +44,7 @@ const Value = React.memo(
             filter.type = customOperator?.type;
         }
         const handleTextFieldChange = (event) => {
-            dispatch({ type: "set-value", id, value: event.target.value });
+            dispatch({ type: "set-value", id, value: event.target.value, vtype: vtype });
         };
         switch (filter.type) {
             case "date":
@@ -172,9 +172,18 @@ const Value = React.memo(
                         }}
                     />
                 );
+            case "substring":
+            return (
+                <TextField
+                    data-testid={testId}
+                    type="number"
+                    value={readNumericValue(value)}
+                    onChange={handleTextFieldChange}
+                />
+            );
             default:
                 return (
-                    <TextField fullWidth data-testid={testId} value={value || ""} onChange={handleTextFieldChange} />
+                    <TextField fullWidth data-testid={testId} value={value || ""} onChange={handleTextFieldChange} vtype={vtype}/>
                 );
         }
     },
@@ -190,6 +199,7 @@ Value.propTypes = {
     operator: PropTypes.string,
     testId: PropTypes.string.isRequired,
     value: PropTypes.any,
+    vtype: PropTypes.string,
 };
 
 Value.whyDidYouRender = false;

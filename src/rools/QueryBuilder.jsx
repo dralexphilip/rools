@@ -6,6 +6,7 @@ import React from "react";
 import Context from "./context";
 import operators from "./operators";
 import RuleGroup from "./RuleGroup";
+import UpdateQueryBuilder from "./UpdateQueryBuilder";
 
 /**
  * Allows retrieving filters by value, in O(1) time.
@@ -205,6 +206,21 @@ export function resetNodeIds(query, mode) {
     return query;
 }
 
+
+export function newResetNodeIds(query, mode) {
+    const random = mode === "random";
+    if(query.selectRules){
+        resetNodeIds(query.selectRules);        
+    }
+    if(query.updateRules){
+        UpdateQueryBuilder.resetNodeIds(query.updateRules);        
+    }
+    if(query.updateConditions){
+        resetNodeIds(query.updateConditions);        
+    }
+    return query;
+}
+
 /**
  * Deep clones a query.
  *
@@ -227,6 +243,12 @@ export function formatQuery(query) {
     return query;
 }
 
+
+export function newFormatQuery(query) {
+    query = cloneQuery(query);
+    query = newResetNodeIds(query);
+    return query;
+}
 /**
  * Verifies if a group is valid, i.e. all rules and nested groups are filled.
  *
@@ -431,7 +453,7 @@ const QueryBuilder = React.memo(
         }, [context, props, props.onChange, state]);
 
         return state.id && context ? (
-            <Context.Provider value={context}>
+            <Context.Provider value={context}>                
                 <RuleGroup combinator={state.combinator} id={state.id} level={0} rules={state.rules} />
                 {props.debug && (
                     <>
@@ -504,10 +526,95 @@ export function sqlQuery(qr) {
     return exp;
 }
 
+export function setConditions(qr) {
+    let exp = '';
+
+    for (const obj of qr.sets) {
+        if (obj.field) {
+            let field = obj.field;
+            const numCheck = field.substring(field.length - 1);
+            if (numCheck === '1' || numCheck === '3'){
+                field = field.substring(0, field.length - 1);
+            }
+            let operator = obj.operator;            
+            operator = operators.find(o=> (o.value === obj.operator)).symbol;            
+            let value = obj.value;
+            if (typeof obj.value != 'boolean') {
+                if (Array.isArray(obj.value)) {
+                    let conval = '';
+                    obj.value.forEach(val => {
+                        conval = conval + " '" + val + "',";
+                    });
+                    value = '(' + conval + ')';
+                }
+                else if (obj.value != null) {
+                    if(obj.operator === 'equal' || obj.operator === 'not_equal')
+                        value = `'${obj.value}'`;
+                    else if(obj.operator === 'contains' || obj.operator === 'not_contains')
+                        value = `'%${obj.value}%'`;
+                    else if(obj.operator === 'begins_with')
+                        value = `'${obj.value}%'`;
+                    else if(obj.operator === 'ends_with')
+                        value = `'%${obj.value}'`;
+                    else if(obj.operator === 'equals')
+                        value = `'${obj.value}'`;
+                    else if(obj.operator === 'left')
+                        value = `left(${obj.field},${obj.value})`;
+                    else if(obj.operator === 'right')
+                        value = `right(${obj.field},${obj.value})`;
+                    else if(obj.operator === 'substring')
+                        value = `substring(${obj.field},${obj.value})`;
+                }
+                else {
+                    value = "NULL";
+                }
+            }
+            
+            if (obj.tfield){
+                exp = ` ${exp} when ${field} ${operator} ${value} then = '{${obj.tvalue}}' `;
+            }
+            else 
+                exp = `${exp} ${field} ${operator} ${value +','} `;
+        }
+        else if (obj.sets) {
+            if (obj.combinator === 'case'){
+                let cfield = obj.sets[0].field;
+                const numCheck = cfield.substring(cfield.length - 1);
+                if (numCheck === '1' || numCheck === '3'){
+                    cfield = cfield.substring(0, cfield.length - 1);
+                }
+                exp =  ` ${exp }${cfield} = ${obj.combinator} ${setConditions(obj)} else ${cfield} end `;
+            }
+        }
+    }
+    if(exp.substring(exp.length - 2) === "set")
+        exp = exp.substring(0, exp.length - 2);
+    else if(exp.substring(exp.length - 4) === "case")
+        exp = exp.substring(0, exp.length - 4);
+    return exp;
+}
+
+export function ruleQuery(query){
+    let queryJson = {};
+    if(query.selectRules){
+        queryJson['selectRules'] = sqlQuery(query.selectRules);
+    }
+    if(query.updateConditions){
+        queryJson['updateConditions'] = sqlQuery(query.updateConditions);
+    }
+    if(query.updateRules){
+        queryJson['updateRules'] = setConditions(query.updateRules);
+    }
+
+    return queryJson;
+}
+
 QueryBuilder.formatQuery = formatQuery;
+QueryBuilder.newFormatQuery = newFormatQuery;
 QueryBuilder.isQueryValid = isGroupValid;
 QueryBuilder.operators = operators;
 QueryBuilder.sqlQuery = sqlQuery;
+QueryBuilder.ruleQuery = ruleQuery;
 
 QueryBuilder.defaultProps = {
     customOperators: {},

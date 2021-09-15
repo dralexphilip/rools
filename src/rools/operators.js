@@ -102,10 +102,40 @@ const operators = [
         symbol: "is null",
     },
     {
+        label: "as null",
+        value: "as_null",
+        types: ["update"],
+        symbol: "=",
+    },
+    {
         label: "is not null",
         value: "not_null",
         types: ["date", "integer", "number", "multiselect", "radio", "select", "switch", "text"],
         symbol: "is not null",
+    },
+    {
+        label: "=",
+        value: "equals",
+        types: ["update"],
+        symbol: "=",
+    },
+    {
+        label: "Left Substring",
+        value: "left",
+        types: ["substring"],
+        symbol: "=",
+    },
+    {
+        label: "Right Substring",
+        value: "right",
+        types: ["substring"],
+        symbol: "=",
+    },
+    {
+        label: "Substring",
+        value: "substring",
+        types: ["substring"],
+        symbol: "=",
     },
 ];
 
