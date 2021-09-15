@@ -54,11 +54,14 @@ export default class ManageRule extends Component {
         }
     },
         activeTabIndex: 0,
+        ruleQuery: {},
     };
 
     rowIdParam = new URLSearchParams(this.props.location.search);
     rowId = this.rowIdParam.get('row');
     ruleId = this.rowIdParam.get('ruleId');
+
+    
     
 
     render() {
@@ -66,9 +69,11 @@ export default class ManageRule extends Component {
         if(rules.find(rule => '' + rule.id === this.rowId)){
             defaultRule = rules.find(rule => '' + rule.id === this.rowId);
         }
-        let ruleQuery = QueryBuilder.ruleQuery(defaultRule);
+        let ruleQuery = this.state.ruleQuery;
         
         const activeTabIndex = this.state.activeTabIndex;
+
+        
 
         return (
             <div className="App App-canvas">
@@ -83,6 +88,17 @@ export default class ManageRule extends Component {
                         textColor="primary"
                         onChange={(event, activeTabIndex) => {
                             this.setState({activeTabIndex: activeTabIndex});
+                            fetch('http://localhost:3001/api', {
+                                method: 'POST',
+                                headers: {'Content-Type':'application/json'},
+                                body: JSON.stringify(defaultRule)
+                    
+                            })
+                            .then(res => res.json())
+                            .then(
+                                (result) => {
+                                    this.setState((prevState) => ({ruleQuery: result.query}));
+                                })
                           }}                          
                     >
                         <Tab label="Rule Config" />
@@ -95,7 +111,7 @@ export default class ManageRule extends Component {
                         
                        
                 
-                <div align="left" class="header"><b>Insertion:</b></div>
+                <div align="left" class="header"><b>When:</b></div>
                 <QueryBuilder
                     filters={this.filters}
                     query={defaultRule.selectRules}
@@ -104,7 +120,7 @@ export default class ManageRule extends Component {
                         this.setState(defaultRule.selectRules);
                     }}
                 />
-                <div align="left"><b>Updation:</b></div>
+                <div align="left"><b>Clone the Lead and Change:</b></div>
                 <UpdateQueryBuilder
                     filters={updateoptions}
                     query={defaultRule.updateRules}

@@ -84,13 +84,13 @@ const operators = [
         symbol: ">=",
     },
     {
-        label: "in",
+        label: "is",
         value: "in",
         types: ["multiselect"],
         symbol: "in",
     },
     {
-        label: "not in",
+        label: "is not",
         value: "not_in",
         types: ["multiselect"],
         symbol: "not in",

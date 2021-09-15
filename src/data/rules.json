@@ -62,7 +62,7 @@
               "cfield": "plan_type",
               "sets": [
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "PA",
                   "tfield": "plan_type1",
@@ -70,7 +70,7 @@
                   "tvalue": "MM"
                 },
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "MD",
                   "tfield": "plan_type1",
@@ -157,7 +157,7 @@
               "cfield": "plan_type",
               "sets": [
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "PA",
                   "tfield": "plan_type1",
@@ -165,7 +165,7 @@
                   "tvalue": "MM"
                 },
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "MD",
                   "tfield": "plan_type1",
@@ -273,7 +273,7 @@
               "cfield": "plan_type",
               "sets": [
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "PA",
                   "tfield": "plan_type1",
@@ -281,7 +281,7 @@
                   "tvalue": "MM"
                 },
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "MD",
                   "tfield": "plan_type1",
@@ -367,7 +367,7 @@
               "cfield": "plan_type",
               "sets": [
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "PA",
                   "tfield": "plan_type1",
@@ -375,7 +375,7 @@
                   "tvalue": "MM"
                 },
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "MD",
                   "tfield": "plan_type1",
@@ -491,7 +491,7 @@
               "cfield": "plan_type",
               "sets": [
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "PA",
                   "tfield": "plan_type1",
@@ -499,7 +499,7 @@
                   "tvalue": "MM"
                 },
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "MD",
                   "tfield": "plan_type1",
@@ -643,7 +643,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -651,7 +651,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -739,7 +739,7 @@
               "cfield": "plan_type",
               "sets": [
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "PA",
                   "tfield": "plan_type1",
@@ -747,7 +747,7 @@
                   "tvalue": "MM"
                 },
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "MD",
                   "tfield": "plan_type1",
@@ -902,7 +902,7 @@
               "cfield": "plan_type",
               "sets": [
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "PA",
                   "tfield": "plan_type1",
@@ -910,7 +910,7 @@
                   "tvalue": "MM"
                 },
                 {
-                  "field": "plan_type1",
+                  "field": "plan_type",
                   "operator": "contains",
                   "value": "MD",
                   "tfield": "plan_type1",
@@ -997,7 +997,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1005,7 +1005,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1088,7 +1088,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1096,7 +1096,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1182,7 +1182,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1190,7 +1190,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1278,7 +1278,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1286,7 +1286,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1369,7 +1369,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1377,7 +1377,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1460,7 +1460,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1468,7 +1468,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1554,7 +1554,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1562,7 +1562,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1648,7 +1648,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1656,7 +1656,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1745,7 +1745,7 @@
                 "cfield": "plan_type",
                 "sets": [
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "PA",
                     "tfield": "plan_type1",
@@ -1753,7 +1753,7 @@
                     "tvalue": "MM"
                   },
                   {
-                    "field": "plan_type1",
+                    "field": "plan_type",
                     "operator": "contains",
                     "value": "MD",
                     "tfield": "plan_type1",
@@ -1803,12 +1803,12 @@
             "sets": [
               {
                 "field": "pbm_bin",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {
                 "field": "pbm_pcn",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {
@@ -1818,12 +1818,12 @@
               },
               {
                 "field": "group_number3",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {
                 "field": "group_name3",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {
@@ -1896,12 +1896,12 @@
             "sets": [
               {
                 "field": "pbm_bin",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {
                 "field": "pbm_pcn",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {
@@ -1911,12 +1911,12 @@
               },
               {
                 "field": "group_number3",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {
                 "field": "group_name3",
-                "operator": "null",
+                "operator": "as_null",
                 "value": null
               },
               {

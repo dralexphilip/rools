@@ -164,7 +164,7 @@ const RuleGroup = (props) => {
                             }}
                         >
                             <AddIcon />
-                            Rule
+                            Condition
                         </Button>
                     </Grid>
                     {level < maxLevels && (
@@ -178,7 +178,7 @@ const RuleGroup = (props) => {
                                 }}
                             >
                                 <AddIcon />
-                                Group
+                                Sub-condition
                             </Button>
                         </Grid>
                     )}
