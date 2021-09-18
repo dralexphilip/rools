@@ -23,7 +23,7 @@ export default class RuleList extends Component{
     { field: 'ruleid', 
         headerName: 'Rule ID', 
         flex: 0.25,
-        editable: true,
+        editable: false,
     },
     {
         field: 'description',
@@ -57,14 +57,14 @@ export default class RuleList extends Component{
         renderHeader: (params) => {     
             const onClick = () => {
             //const api: GridApi = params.api; 
-            this.setState(prevState => ({rows: [...prevState.rows, { id: this.state.rows.length + 1, ruleid: 'RULE_'+(this.state.rows.length + 1), description: '', status: 'Active'}]}));
+            this.setState(prevState => ({rows: [...prevState.rows, { id: this.state.rows.length + 1, ruleid: 'RULE_'+(this.state.rows.length + 1000), description: '', status: 'Active'}]}));
             };
             return <IconButton onClick={onClick}><Icon color="primary">add_circle_outline</Icon></IconButton>;
         },
         renderCell: (params) => {     
             const onClick = () => {
             //const api: GridApi = params.api; 
-            history.push('/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleid);
+            history.push('/rools/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleid);
             };
             return <IconButton onClick={onClick}><Icon color="secondary">edit</Icon></IconButton>;
         }
