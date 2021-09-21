@@ -64,7 +64,7 @@ export default class RuleList extends Component{
         renderCell: (params) => {     
             const onClick = () => {
             //const api: GridApi = params.api; 
-            history.push('/rools/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleid);
+            history.push('/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleid);
             };
             return <IconButton onClick={onClick}><Icon color="secondary">edit</Icon></IconButton>;
         }

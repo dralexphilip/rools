@@ -86,7 +86,7 @@ const Value = React.memo(
                         getOptionSelected={(option, value) => option.value === value.value}
                         limitTags={-1}
                         options={filter.options} 
-                        renderInput={(params) => <TextField {...params} />}
+                        renderInput={(params) => <TextField {...params}  variant="outlined" size="small"/>}
                         size="small"
                         style={{ paddingTop: 4, width: "auto" }}
                         value={filter.options.filter((op) => value?.includes(op.value))}
@@ -151,7 +151,7 @@ const Value = React.memo(
                         getOptionLabel={(option) => option.label}
                         getOptionSelected={(option, value) => option.value === value.value}
                         options={filter.options}
-                        renderInput={(params) => <TextField {...params} />}
+                        renderInput={(params) => <TextField {...params} variant="outlined" size="small" />}
                         style={{ width: "100%" }}
                         value={filter.options.find((op) => value === op.value)}
                         onChange={(event, selected) => {
@@ -179,11 +179,13 @@ const Value = React.memo(
                     type="number"
                     value={readNumericValue(value)}
                     onChange={handleTextFieldChange}
+                    variant="outlined" 
+                    size="small"
                 />
             );
             default:
                 return (
-                    <TextField fullWidth data-testid={testId} value={value || ""} onChange={handleTextFieldChange} vtype={vtype}/>
+                    <TextField fullWidth data-testid={testId} value={value || ""} onChange={handleTextFieldChange} vtype={vtype} variant="outlined" size="small"/>
                 );
         }
     },
