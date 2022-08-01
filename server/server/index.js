@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const services = require('./services');
+const sqlServices = require('./sqltojson')
 const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
@@ -27,6 +28,10 @@ app.use(express.static(path.resolve(__dirname, '../../build')));
 // Handle GET requests to /api route
 app.post("/api", (req, res) => {
   res.json({query: services.ruleQuery(req.body)});
+});
+
+app.get("/sqltojs", (req, res) => {
+  res.json({query: sqlServices.sqlToJson(req.body)});
 });
 
 // All other GET requests not handled before will return our React app
