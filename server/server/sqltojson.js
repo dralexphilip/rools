@@ -75,10 +75,10 @@ function processInsert(sql){
     
     rule.rules = processOperators(rule.rules)
 
-    return shitshow(r[r.length-1])//shitshow(r[r.length-1]);
+    return breakdown(r[r.length-1])//shitshow(r[r.length-1]);
 }
 
-function shitshow(str) {
+function breakdown(str) {
     var i = 0;
     var trailingWhiteSpace = str[str.length - 1] === " ";
     function main() {
