@@ -28,20 +28,23 @@ function sqlToJson(sql) {
 
 function processInsert(sql){
    
-    let select = {
+    let rule = {
                     "combinator": "and",
                     "rules": []
                 }
-
+    sql = '('+sql.trim()+')'
     var a = [], r = [];
     for(var i=0; i < sql.length; i++){
         if(sql.charAt(i) == '('){
             a.push(i);
         }
         if(sql.charAt(i) == ')'){
-            let lowSql = sql.substring(a.pop()+1,i)
-            if(lowSql.includes('('))
+            let lowSql = '('+sql.substring(a.pop()+1,i)+')'
+            //if(lowSql.includes('(')&&(lowSql.includes('AND')||lowSql.includes('OR'))){
+                if(lowSql.includes('(')&&lowSql.includes('IN'))
+                    lowSql.replace('(', '{').replace(')', '}')
                 r.push(lowSql);
+            //}
         }
     }  
     
@@ -66,14 +69,77 @@ function processInsert(sql){
             exp[i] = exp[i].split('AND');  
             exp[i] = processOperators(exp[i])            
         }        
-        select.rules.push(exp[i])
+        rule.rules.push(exp[i])
     }
 
     
-    select.rules = processOperators(select.rules)
+    rule.rules = processOperators(rule.rules)
 
-    return select;
+    return shitshow(r[r.length-1])//shitshow(r[r.length-1]);
 }
+
+function shitshow(str) {
+    var i = 0;
+    var trailingWhiteSpace = str[str.length - 1] === " ";
+    function main() {
+      var arr = [];
+      var startIndex = i;
+      function addWord() {
+        if (i-1 > startIndex) {
+          arr.push(str.slice(startIndex, i-1));
+        }
+      }
+      while (i < str.length) {
+        switch(str[i++]) {          
+            case " and ":
+                arr.push(main());
+                startIndex = i;
+                continue;
+            case " or ":
+                arr.push(main());
+                startIndex = i;
+                continue;
+            case "(":
+                arr.push(main());
+                startIndex = i;
+                continue;
+            case ")":
+                addWord();
+                return arr;
+        }
+      }
+      if(!trailingWhiteSpace){
+        i = i + 1;
+        addWord();
+      }
+      return arr;
+    }
+    return main();
+  }
+
+  function blah(string) {
+	string = string.replace(/\(/g, "[");
+	string = string.replace(/\)\s/g, "], ");
+	string = string.replace(/\)/g, "]");
+	string = string.replace(/\s+/, ", ");
+	string = "[" + string + "]";
+	string = string.replace(/[^\[\]\,\s]+/g, "\"$&\"");
+	string = string.replace(/" /g, "\", ");
+
+	return JSON.parse(string);
+}
+
+function processText(text) {
+    const levels = []
+    let depth = 0
+    for (const c of text) {
+      if (c === '(') depth++
+      if (depth >= levels.length) levels.push([])
+      levels[depth].push(c)
+      if (c === ')') depth--
+    }
+    return levels.map(level => level.join(''))
+  }
 
 function processOperators(rules){
     for(var y = 0; y < rules.length; y++) {
