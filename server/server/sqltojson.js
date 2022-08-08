@@ -26,7 +26,19 @@ function sqlToJson(sql) {
             }
         }
         else if(allRools[y].toString().includes('update', 0)){
+            let updateStatement = allRools[y].toString().trim().split('where ')
+            let sqlContent = updateStatement[0].toString().trim().split('set')[1].toUpperCase().trim()
+            console.log(updateStatement.length)
+            let conditions = updateStatement[1].toUpperCase().trim()
+            let maxD = maxDepth(sqlContent);
             //rools[y-1].updateSql = allRools[y].toString().trim()
+            if(maxD<2&&rools[y-1].depth<2){
+                //rool.insertSql = allRools[y].toString().trim()
+                //rools[y-1].updateSql = allRools[y].toString().trim()
+                rools[y-1].updateRules = processUpdate(sqlContent)
+                rools[y-1].updateDepth = maxD
+                rools[y-1].updateConditions = processInsert(conditions)
+            }
         }
         rools.push(rool)
     }
@@ -35,45 +47,13 @@ function sqlToJson(sql) {
     return select;
 }
 
-function processInsert(sql){
-   
+function processInsert(sql){   
     let rule = {
                     "combinator": "and",
                     "rules": []
                 }
     sql = sql.trim()
-    var a = [], r = [];
-    for(var i=0; i < sql.length; i++){
-        if(sql.charAt(i) == '('){
-            a.push(i);
-        }
-        if(sql.charAt(i) == ')'){
-            let lowSql = '('+sql.substring(a.pop()+1,i)+')'
-            let lowSql1 = '('+sql.substring(a.pop()+1,i)+')'
-            if(lowSql.includes('AND')||lowSql.includes('OR')){
-                //if(lowSql.includes('(')&&lowSql.includes('IN'))
-                    //lowSql.replace('(', '{').replace(')', '}')
-                    r.push(lowSql);
-                
-            }
-            else{
-                lowSql = lowSql.replace('(', '{').replace(')', '}')
-                r.push(lowSql);
-                
-                //if(sql.includes(lowSql.substring(1,lowSql.length-1))){
-                    //sql = sql.replace(lowSql1, lowSql)
-                //    console.log(lowSql)
-                //}
-            }
-        }
-    }  
-
-    //r = r.filter(item => item.includes('AND', 0)||item.includes('OR', 0))
-    
-
-    
-    exp = sql.split('AND');
-    
+    exp = sql.split('AND');  
     
     for(var i = 0; i < exp.length; i++) {
         exp[i] = exp[i].trim()
@@ -94,19 +74,26 @@ function processInsert(sql){
             exp[i] = processOperators(exp[i])            
         }        
         rule.rules.push(exp[i])
-    }
+    }    
+    rule.rules = processOperators(rule.rules)   
 
-    
-    rule.rules = processOperators(rule.rules)
-    rule.rules.forEach(ru => {
-        console.log(ru)
-        //rule.rules.push(processInsert(ru))
-    })
-
-    return rule//shitshow(r[r.length-1]);
+    return rule
 }
-function maxDepth(s){
- 
+
+function processUpdate(sql){   
+    let rule = {
+                    "combinator": "set",
+                    "sets": []
+                }
+    sql = sql.trim()
+    exp = sql.split(',');  
+       
+    rule.sets = processUpdateOperators(exp)   
+
+    return rule
+}
+
+function maxDepth(s){ 
     let count = 0
     let st = []
     for(let i=0;i<s.length;i++){
@@ -120,11 +107,32 @@ function maxDepth(s){
             // keeping track of the parenthesis and storing
             // it before removing it when it gets balanced
             st.pop()
-            //console.log(st)
         }
     }
         
     return count
+}
+
+function getR(sql) {
+    var a = [], r = [];
+    for(var i=0; i < sql.length; i++){
+        if(sql.charAt(i) == '('){
+            a.push(i);
+        }
+        if(sql.charAt(i) == ')'){
+            let lowSql = '('+sql.substring(a.pop()+1,i)+')'
+            let lowSql1 = '('+sql.substring(a.pop()+1,i)+')'
+            if(lowSql.includes('AND')||lowSql.includes('OR')){
+                r.push(lowSql);
+                
+            }
+            else{
+                lowSql = lowSql.replace('(', '{').replace(')', '}')
+                r.push(lowSql);
+            }
+        }
+    } 
+    return r
 }
 
 function processOperators(rules){
@@ -197,7 +205,7 @@ function processOperators(rules){
                 let rule = {"value": []}
                 rule.field = field
                 rule.operator = op
-                rule.value.push(v)
+                rule.value.push(v.trim())
                 rule.fieldDisplayType = 'textbox'
                 rules[y].rules.push(rule)
             });
@@ -219,7 +227,7 @@ function processOperators(rules){
                 let rule = {"value": []}
                 rule.field = field
                 rule.operator = op
-                rule.value.push(v)
+                rule.value.push(v.trim())
                 rule.fieldDisplayType = 'textbox'
                 rules[y].rules.push(rule)
             });
@@ -235,6 +243,20 @@ function processOperators(rules){
             rules[y].value.push(temp[1].trim().split("'").join(""))
             rules[y].fieldDisplayType = 'textbox'
         }
+    }
+    return rules;
+}
+
+function processUpdateOperators(rules){
+    for(var y = 0; y < rules.length; y++) {
+        if(rules[y].toString().includes('=', 0)){
+            let temp = rules[y].split('=')
+            rules[y] = {"value": []}
+            rules[y].field = temp[0].trim()
+            rules[y].operator = 'equal to'
+            rules[y].value.push(temp[1].trim().split("'").join(""))
+            rules[y].fieldDisplayType = 'textbox'
+        }       
     }
     return rules;
 }
