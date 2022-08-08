@@ -2,8 +2,9 @@ const operators = require('./operators')
 
 function sqlToJson(sql) {
     let select = {}
+    const path = require("path");
     var fs = require('fs');
-    var text = fs.readFileSync("D:/React/rule-builder/rools/server/server/sql.sql", 'utf-8');
+    var text = fs.readFileSync(path.resolve(__dirname, "sql.sql"), 'utf-8');
     var allRools = text.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)|(--[^.].*)/gm, '').replace(/^\s*\n/gm, "").replace(/^\s+/gm, "").split(';')
 
     let rools = []
@@ -17,7 +18,9 @@ function sqlToJson(sql) {
                 let index = allRools[y].toString().indexOf("'")
                 rool.id = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
                 rool.description = rool.id
-                rool.insertSql = allRools[y].toString().trim()
+                rool.status = 'Draft'
+                rool.version = '1.0'
+                //rool.insertSql = allRools[y].toString().trim()
                 rool.selectRules = processInsert(sqlContent)
                 rool.depth = maxD
             }
@@ -128,20 +131,24 @@ function processOperators(rules){
     for(var y = 0; y < rules.length; y++) {
         if(rules[y].toString().includes('=', 0)){
             let temp = rules[y].split('=')
-            rules[y] = {}
+            rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
             else
                 rules[y].field = temp[0].trim()
             rules[y].operator = 'equal'
-            rules[y].value = temp[1].trim().split("'").join("")
+            rules[y].value.push(temp[1].trim().split("'").join(""))
+            if(rules[y].field == 'CARRIER_NAME')
+                rules[y].fieldDisplayType = 'single select'
+            else
+                rules[y].fieldDisplayType = 'textbox'
         }
         else if(rules[y].toString().includes(' NOT LIKE ', 0)){
             let temp = rules[y].split(' NOT LIKE ')
             let value = temp[1].trim().split("'").join("")
             let begins_with = value.substring(0,1)
             let ends_with = value.substring(value.length-1)
-            rules[y] = {}
+            rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
             else
@@ -152,14 +159,15 @@ function processOperators(rules){
                 rules[y].operator = 'does_not_end_with'
             else if(begins_with!='%'&&ends_with=='%')
                 rules[y].operator = 'does_not_begin_with'
-            rules[y].value = value.split("%").join("")
+            rules[y].value.push(value.split("%").join(""))
+            rules[y].fieldDisplayType = 'textbox'
         }
         else if(rules[y].toString().includes(' LIKE ', 0)){
             let temp = rules[y].split(' LIKE ')
             let value = temp[1].trim().split("'").join("")
             let begins_with = value.substring(0,1)
             let ends_with = value.substring(value.length-1)
-            rules[y] = {}
+            rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
             else
@@ -170,7 +178,8 @@ function processOperators(rules){
                 rules[y].operator = 'ends_with'
             else if(begins_with!='%'&&ends_with=='%')
                 rules[y].operator = 'begins_with'
-            rules[y].value = value.split("%").join("")
+            rules[y].value.push(value.split("%").join(""))
+            rules[y].fieldDisplayType = 'textbox'
         }
         else if(rules[y].toString().includes(' NOT IN ', 0)){
             let temp = rules[y].toString().split("'").join("").split(' NOT IN ')
@@ -185,10 +194,11 @@ function processOperators(rules){
                 field = temp[0].trim()
             let op = 'not_equal'
             values.forEach(v => {
-                let rule = {}
+                let rule = {"value": []}
                 rule.field = field
                 rule.operator = op
-                rule.value = v
+                rule.value.push(v)
+                rule.fieldDisplayType = 'textbox'
                 rules[y].rules.push(rule)
             });
             
@@ -206,22 +216,24 @@ function processOperators(rules){
                 field = temp[0].trim()
             let op = 'equal'
             values.forEach(v => {
-                let rule = {}
+                let rule = {"value": []}
                 rule.field = field
                 rule.operator = op
-                rule.value = v
+                rule.value.push(v)
+                rule.fieldDisplayType = 'textbox'
                 rules[y].rules.push(rule)
             });
         }
         else if(rules[y].toString().includes(' <> ', 0)){
             let temp = rules[y].split(' <> ')
-            rules[y] = {}
+            rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
             else
                 rules[y].field = temp[0].trim()
             rules[y].operator = 'not_equal'
-            rules[y].value = temp[1].trim().split("'").join("")
+            rules[y].value.push(temp[1].trim().split("'").join(""))
+            rules[y].fieldDisplayType = 'textbox'
         }
     }
     return rules;
