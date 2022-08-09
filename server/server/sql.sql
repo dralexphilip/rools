@@ -506,13 +506,13 @@ else plan_type end
 where match_carrier_rule_id_extra = 'RULE_40B';
 
 
-update cob_lead_staging
-set group_name = (select Group_Name
-from public.benesys_decode
-where public.benesys_decode.Group_Number = cob_lead_staging.group_number)
-where carrier_name = 'BENESYS'
-and cob_lead_staging.group_number in (select Group_Number
-from public.benesys_decode);
+--update cob_lead_staging
+--set group_name = (select Group_Name
+--from public.benesys_decode
+--where public.benesys_decode.Group_Number = cob_lead_staging.group_number)
+--where carrier_name = 'BENESYS'
+--and cob_lead_staging.group_number in (select Group_Number
+--from public.benesys_decode);
 
 
 -- 'Rule 41 - Benesys Group Names'

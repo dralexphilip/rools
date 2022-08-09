@@ -25,10 +25,9 @@ function sqlToJson(sql) {
                 rool.depth = maxD
             }
         }
-        else if(allRools[y].toString().includes('update', 0)){
+        else if(allRools[y].toString().includes('update', 0)&&!allRools[y].toString().includes('cob_lead_staging', 0)){
             let updateStatement = allRools[y].toString().trim().split('where ')
             let sqlContent = updateStatement[0].toString().trim().split('set')[1].toUpperCase().trim()
-            console.log(updateStatement.length)
             let conditions = updateStatement[1].toUpperCase().trim()
             let maxD = maxDepth(sqlContent);
             //rools[y-1].updateSql = allRools[y].toString().trim()
@@ -87,7 +86,23 @@ function processUpdate(sql){
                 }
     sql = sql.trim()
     exp = sql.split(',');  
-       
+    for(let i=0;i<exp.length;i++){
+        if(!exp[i].includes('=')&&!exp[i].includes('||')){
+            exp[i-1]=exp[i-1]+','+exp[i]
+            console.log(exp[i])
+            exp.splice(i,1)
+        }
+        
+    };   
+    for(let i=0;i<exp.length;i++){
+        if(!exp[i].includes('=')&&!exp[i].includes('||')){
+            exp[i-1]=exp[i-1]+','+exp[i]
+            console.log(exp[i])
+            exp.splice(i,1)
+        }
+        
+    }; 
+
     rule.sets = processUpdateOperators(exp)   
 
     return rule
