@@ -10,12 +10,18 @@ function sqlToJson(sql) {
     let rools = []
     for(var y = 0; y < allRools.length; y++) {
         let rool = {}
-        
         if(allRools[y].toString().includes('insert', 0)){
             let sqlContent = allRools[y].toString().trim().split('where')[1].toUpperCase().trim()
             let maxD = maxDepth(sqlContent);
             if(maxD<2){
                 let index = allRools[y].toString().indexOf("'")
+                let date = new Date()
+                date = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear() + "  " + date.getHours()+":"+date.getMinutes()
+                rool.createdBy = "Sahadeo Bhogil"
+                rool.createdDate = date
+                rool.modifiedBy = "Sahadeo Bhogil"
+                rool.modifiedDate = date
+                rool.tradePartner = ""
                 rool.id = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
                 rool.description = rool.id
                 rool.status = 'Draft'
@@ -34,15 +40,25 @@ function sqlToJson(sql) {
             if(maxD<2&&rools[y-1].depth<2){
                 //rool.insertSql = allRools[y].toString().trim()
                 //rools[y-1].updateSql = allRools[y].toString().trim()
+                //console.log(rools[y-1].id)
                 rools[y-1].updateRules = processUpdate(sqlContent)
                 rools[y-1].updateDepth = maxD
-                rools[y-1].updateConditions = processInsert(conditions)
+                let updateConditions = processInsert(conditions)
+                if(updateConditions.length > 1){
+                    rools[y-1].updateConditions = updateConditions
+                    console.log(updateConditions)
+                }
+                else
+                    rools[y-1].updateConditions = null
+
             }
         }
+        
         rools.push(rool)
     }
     
     select = rools.filter(el => Object.keys(el).length);
+    select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
 }
 
@@ -89,7 +105,6 @@ function processUpdate(sql){
     for(let i=0;i<exp.length;i++){
         if(!exp[i].includes('=')&&!exp[i].includes('||')){
             exp[i-1]=exp[i-1]+','+exp[i]
-            console.log(exp[i])
             exp.splice(i,1)
         }
         
@@ -97,7 +112,6 @@ function processUpdate(sql){
     for(let i=0;i<exp.length;i++){
         if(!exp[i].includes('=')&&!exp[i].includes('||')){
             exp[i-1]=exp[i-1]+','+exp[i]
-            console.log(exp[i])
             exp.splice(i,1)
         }
         
@@ -264,16 +278,92 @@ function processOperators(rules){
 
 function processUpdateOperators(rules){
     for(var y = 0; y < rules.length; y++) {
+        
+        
         if(rules[y].toString().includes('=', 0)){
             let temp = rules[y].split('=')
-            rules[y] = {"value": []}
+            let tempValue = temp[1].trim()
+            if(tempValue.includes('CASE', 0)){
+                let endTemp = tempValue.trim().split('ELSE')
+                let setsql = endTemp[0].trim().split('CASE').join("").trim()
+                rules[y] = {
+                    "combinator": "case",
+                    "sets":[],
+                    "rootField": "",
+                    "defaultValue":""
+                }
+                rules[y].rootField = temp[0].trim()
+                if(endTemp[1]!=undefined && endTemp[1].toString().includes("END"))
+                    rules[y].defaultValue = endTemp[1].split("END").join("").trim()
+                else
+                    rules[y].defaultValue = endTemp[1]
+                rules[y].sets = processCase(setsql.split('WHEN ').filter(e=>e))
+            }
+            else{
+            rules[y] = {
+                "field": "",
+                "operator":"",
+                "value": [],
+                "fieldDisplayType":""
+            }
             rules[y].field = temp[0].trim()
-            rules[y].operator = 'equal to'
-            rules[y].value.push(temp[1].trim().split("'").join(""))
+            if(tempValue.includes('||')){
+                let value = tempValue.split(' || ')
+                if(value[0].includes("'")){
+                    rules[y].operator = 'prefix'
+                    rules[y].value.push(value[0].split("'").join(""))
+                    rules[y].value.push(value[1])
+                }
+                else{
+                    rules[y].operator = 'suffix'
+                    rules[y].value.push(value[1].split("'").join(""))
+                    rules[y].value.push(value[0])
+                }
+            }
+            else{
+                let tempValue = temp[1].trim().split("'").join("")
+                if(tempValue == 'NULL'){
+                    rules[y].operator = 'is null'
+                    rules[y].value = null
+                }
+                else{
+                    rules[y].operator = 'equal to'
+                    rules[y].value.push(tempValue)
+                }
+                
+            }
             rules[y].fieldDisplayType = 'textbox'
+        }
         }       
     }
     return rules;
+}
+
+function processCase(rules){
+    for(var y = 0; y < rules.length; y++) {
+        if(rules[y].toString().includes(' LIKE ', 0)){
+            let temp = rules[y].split(' LIKE ')
+            let value = temp[1].trim().split("'").join("").trim()
+            
+            
+            rules[y] = {"value": []}
+            rules[y].field = temp[0].split("::TEXT").join("").trim()
+            
+            let tempValue = value.split("{").join("").split("}").join("").split(" THEN ")
+            let begins_with = tempValue[0].trim().substring(0,1)
+            let ends_with = tempValue[0].trim().substring(tempValue[0].trim().length-1)
+            //console.log(tempValue)
+            if(begins_with=='%'&&ends_with=='%')
+                rules[y].operator = 'contains'
+            else if(begins_with=='%'&&ends_with!='%')
+                rules[y].operator = 'ends_with'
+            else if(begins_with!='%'&&ends_with=='%')
+                rules[y].operator = 'begins_with'
+            rules[y].value = value.split("%").join("").split("{").join("").split("}").join("").split(" THEN ")
+            rules[y].fieldDisplayType = 'textbox'
+        }
+    }
+    return rules
 }
 
 module.exports = { sqlToJson };
