@@ -50,7 +50,6 @@ function sqlToJson(sql) {
                 }
                 else
                     rools[y-1].updateConditions = null
-
             }
         }
         
@@ -58,6 +57,7 @@ function sqlToJson(sql) {
     }
     
     select = rools.filter(el => Object.keys(el).length);
+    select = select.filter(e => e.updateRules!=undefined)
     select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
 }
