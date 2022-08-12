@@ -15,19 +15,19 @@ function sqlToJson(sql) {
             let maxD = maxDepth(sqlContent);
             if(maxD<2){
                 let index = allRools[y].toString().indexOf("'")
-                let date = new Date()
-                date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+"Z"
-                rool.createdBy = "Sahadeo Bhogil"
-                rool.createdDate = date
-                rool.modifiedBy = "Sahadeo Bhogil"
-                rool.modifiedDate = date
+                //let date = new Date()
+                //date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+"Z"
+                //rool.createdBy = "Sahadeo Bhogil"
+                //rool.createdDate = date
+                //rool.modifiedBy = "Sahadeo Bhogil"
+                //rool.modifiedDate = date
                 rool.tradePartner = ""
                 rool.id = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
                 rool.description = rool.id
                 rool.status = 'Draft'
                 rool.version = '1.0'
                 //rool.insertSql = allRools[y].toString().trim()
-                rool.selectRules = processInsert(sqlContent)
+                rool.selectRule = processInsert(sqlContent)
                 rool.depth = maxD
             }
         }
@@ -41,15 +41,15 @@ function sqlToJson(sql) {
                 //rool.insertSql = allRools[y].toString().trim()
                 //rools[y-1].updateSql = allRools[y].toString().trim()
                 //console.log(rools[y-1].id)
-                rools[y-1].updateRules = processUpdate(sqlContent)
+                rools[y-1].updateRule = processUpdate(sqlContent)
                 rools[y-1].updateDepth = maxD
                 let updateConditions = processInsert(conditions)
                 if(updateConditions.length > 1){
-                    rools[y-1].updateConditions = updateConditions
+                    rools[y-1].updateCondition = updateConditions
                     console.log(updateConditions)
                 }
                 else
-                    rools[y-1].updateConditions = null
+                    rools[y-1].updateCondition = null
             }
         }
         
@@ -57,7 +57,7 @@ function sqlToJson(sql) {
     }
     
     select = rools.filter(el => Object.keys(el).length);
-    select = select.filter(e => e.updateRules!=undefined)
+    select = select.filter(e => e.updateRule!=undefined)
     select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
 }
@@ -170,12 +170,12 @@ function processOperators(rules){
             let temp = rules[y].split('=')
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
+                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase() //lower case changes
             else
-                rules[y].field = temp[0].trim()
+                rules[y].field = temp[0].trim().toLowerCase()    //lower case changes
             rules[y].operator = 'equal'
             rules[y].value.push(temp[1].trim().split("'").join(""))
-            if(rules[y].field == 'CARRIER_NAME')
+            if(rules[y].field == 'carrier_name')                        //lower case changes
                 rules[y].fieldDisplayType = 'single select'
             else
                 rules[y].fieldDisplayType = 'textbox'
@@ -187,9 +187,9 @@ function processOperators(rules){
             let ends_with = value.substring(value.length-1)
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
+                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase()    //lower case
             else
-                rules[y].field = temp[0].trim()
+                rules[y].field = temp[0].trim().toLowerCase()   //lower case
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].operator = 'not_contains'
             else if(begins_with=='%'&&ends_with!='%')
@@ -206,9 +206,9 @@ function processOperators(rules){
             let ends_with = value.substring(value.length-1)
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
+                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase()    //lower case
             else
-                rules[y].field = temp[0].trim()
+                rules[y].field = temp[0].trim().toLowerCase()   //lower case
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].operator = 'contains'
             else if(begins_with=='%'&&ends_with!='%')
@@ -232,7 +232,7 @@ function processOperators(rules){
             let op = 'not_equal'
             values.forEach(v => {
                 let rule = {"value": []}
-                rule.field = field
+                rule.field = field.toLowerCase()    //lower case
                 rule.operator = op
                 rule.value.push(v.trim())
                 rule.fieldDisplayType = 'textbox'
@@ -254,7 +254,7 @@ function processOperators(rules){
             let op = 'equal'
             values.forEach(v => {
                 let rule = {"value": []}
-                rule.field = field
+                rule.field = field.toLowerCase()    //lower case
                 rule.operator = op
                 rule.value.push(v.trim())
                 rule.fieldDisplayType = 'textbox'
@@ -265,9 +265,9 @@ function processOperators(rules){
             let temp = rules[y].split(' <> ')
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
+                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase()    //lower case
             else
-                rules[y].field = temp[0].trim()
+                rules[y].field = temp[0].trim().toLowerCase()   //lower case
             rules[y].operator = 'not_equal'
             rules[y].value.push(temp[1].trim().split("'").join(""))
             rules[y].fieldDisplayType = 'textbox'
@@ -297,6 +297,10 @@ function processUpdateOperators(rules){
                     rules[y].defaultValue = endTemp[1].split("END").join("").trim()
                 else
                     rules[y].defaultValue = endTemp[1]
+//lower case for plan end
+                if(rules[y].rootField == rules[y].defaultValue)
+                    rules[y].defaultValue = rules[y].defaultValue.toLowerCase()     //lower case
+                rules[y].rootField = rules[y].rootField.toLowerCase()               //lower case
                 rules[y].sets = processCase(setsql.split('WHEN ').filter(e=>e))
             }
             else{
@@ -306,7 +310,7 @@ function processUpdateOperators(rules){
                 "value": [],
                 "fieldDisplayType":""
             }
-            rules[y].field = temp[0].trim()
+            rules[y].field = temp[0].trim().toLowerCase()               //lower case
             if(tempValue.includes('||')){
                 let value = tempValue.split(' || ')
                 if(value[0].includes("'")){
@@ -347,18 +351,21 @@ function processCase(rules){
             
             
             rules[y] = {"value": []}
-            rules[y].field = temp[0].split("::TEXT").join("").trim()
+            rules[y].field = temp[0].split("::TEXT").join("").trim().toLowerCase()  //lower case
             
             let tempValue = value.split("{").join("").split("}").join("").split(" THEN ")
             let begins_with = tempValue[0].trim().substring(0,1)
             let ends_with = tempValue[0].trim().substring(tempValue[0].trim().length-1)
             //console.log(tempValue)
+            /**                                     operator dynamic for like statement
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].operator = 'contains'
             else if(begins_with=='%'&&ends_with!='%')
                 rules[y].operator = 'ends_with'
             else if(begins_with!='%'&&ends_with=='%')
                 rules[y].operator = 'begins_with'
+            */
+            rules[y].operator = 'equal to'
             rules[y].value = value.split("%").join("").split("{").join("").split("}").join("").split(" THEN ")
             rules[y].fieldDisplayType = 'textbox'
         }
