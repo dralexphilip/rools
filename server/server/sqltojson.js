@@ -22,8 +22,9 @@ function sqlToJson(sql) {
                 //rool.modifiedBy = "Sahadeo Bhogil"
                 //rool.modifiedDate = date
                 rool.tradePartner = ""
-                rool.id = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
-                rool.description = rool.id
+                let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
+                rool.id = roolId.split("RULE_").join("")
+                rool.description = roolId
                 rool.status = 'Draft'
                 rool.version = '1.0'
                 //rool.insertSql = allRools[y].toString().trim()
