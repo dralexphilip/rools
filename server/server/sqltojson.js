@@ -16,7 +16,7 @@ function sqlToJson(sql) {
             if(maxD<2){
                 let index = allRools[y].toString().indexOf("'")
                 let date = new Date()
-                date = (date.getMonth()+1) + "-" + date.getDate() + "-" + date.getFullYear() + "  " + date.getHours()+":"+date.getMinutes()
+                date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+"Z"
                 rool.createdBy = "Sahadeo Bhogil"
                 rool.createdDate = date
                 rool.modifiedBy = "Sahadeo Bhogil"
