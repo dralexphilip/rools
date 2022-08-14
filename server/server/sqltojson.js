@@ -9,7 +9,7 @@ function sqlToJson(sql) {
     
     var allRools = text.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)|(--[^.].*)/gm, '').replace(/^\s*\n/gm, "").replace(/^\s+/gm, "")
     allRools = allRools.split(/\r?\n|\r/g).join(" ")
-    console.log(allRools)
+    //console.log(allRools)
     allRools = allRools.split(';')
 
     let rools = []
@@ -34,7 +34,7 @@ function sqlToJson(sql) {
                 rool.version = '1.0'
                 rool.insertSql = allRools[y].toString().trim()
                 //console.log(sqlContent)
-                rool.selectRule = processInsert(sqlContent.split("\r").join(" "))
+                rool.selectRule = processInsert(sqlContent)
                 
                 rool.depth = maxD
             }
@@ -48,7 +48,7 @@ function sqlToJson(sql) {
             if(maxD<2&&rools[y-1].depth<2){
                 //rool.insertSql = allRools[y].toString().trim()
                 rools[y-1].updateSql = allRools[y].toString().trim()
-                rools[y-1].updateRule = processUpdate(sqlContent.split("\r").join(" "))
+                rools[y-1].updateRule = processUpdate(sqlContent)
                 rools[y-1].updateDepth = maxD
                 let updateConditions = processInsert(conditions)
                 if(updateConditions.length > 1){
