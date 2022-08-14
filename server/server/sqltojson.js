@@ -178,14 +178,23 @@ function processOperators(rules){
     for(var y = 0; y < rules.length; y++) {
         if(rules[y].toString().includes('=', 0)){
             let temp = rules[y].split('=')
+            
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase() //lower case changes
             else
                 rules[y].field = temp[0].trim().toLowerCase()    //lower case changes
-            rules[y].operator = 'equal'
-            rules[y].value.push(temp[1].trim().split("'").join(""))
-            if(rules[y].field == 'carrier_name')                        //lower case changes
+            let tempValue = temp[1].trim()
+            if((!tempValue.includes("'")&&tempValue!="NULL")){                
+                rules[y].operator = 'equal to field'
+                rules[y].value.push(tempValue.toLowerCase())
+            }
+            else{
+                rules[y].operator = 'equal'
+                rules[y].value.push(tempValue.split("'").join(""))
+            }
+            
+            if(rules[y].field == 'carrier_name'||(!tempValue.includes("'")&&tempValue!="NULL"))                        //lower case changes
                 rules[y].fieldDisplayType = 'single select'
             else
                 rules[y].fieldDisplayType = 'textbox'
@@ -201,7 +210,7 @@ function processOperators(rules){
             else
                 rules[y].field = temp[0].trim().toLowerCase()   //lower case
             if(begins_with=='%'&&ends_with=='%')
-                rules[y].operator = 'not_contains'
+                rules[y].operator = 'not contains'
             else if(begins_with=='%'&&ends_with!='%')
                 rules[y].operator = 'does_not_end_with'
             else if(begins_with!='%'&&ends_with=='%')
@@ -222,9 +231,9 @@ function processOperators(rules){
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].operator = 'contains'
             else if(begins_with=='%'&&ends_with!='%')
-                rules[y].operator = 'ends_with'
+                rules[y].operator = 'ends with'
             else if(begins_with!='%'&&ends_with=='%')
-                rules[y].operator = 'begins_with'
+                rules[y].operator = 'begins with'
             rules[y].value.push(value.split("%").join(""))
             rules[y].fieldDisplayType = 'textbox'
         }
@@ -250,7 +259,7 @@ function processOperators(rules){
             });
             
         }
-        else if(rules[y].toString().includes(' IN ', 0) || rules[y].toString().includes('IN(', 0) || rules[y].toString().includes(')IN', 0) || rules[y].toString().includes('\\rIN', 0) || rules[y].toString().includes('IN\\r', 0)){
+        else if(rules[y].toString().includes(' IN ', 0) || rules[y].toString().includes('IN(', 0) || rules[y].toString().includes(')IN', 0)){
             
             let temp = rules[y].toString().split(/IN(.*)/s)
             
@@ -284,7 +293,7 @@ function processOperators(rules){
                 rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase()    //lower case
             else
                 rules[y].field = temp[0].trim().toLowerCase()   //lower case
-            rules[y].operator = 'not_equal'
+            rules[y].operator = 'not equal'
             rules[y].value.push(temp[1].trim().split("'").join(""))
             rules[y].fieldDisplayType = 'textbox'
         }
@@ -329,8 +338,11 @@ function processUpdateOperators(rules) {
                     "value": [],
                     "fieldDisplayType": ""
                 }
-                rules[y].field = temp[0].trim().toLowerCase()               //lower case
-                rules[y].fieldDisplayType = 'textbox'
+                rules[y].field = temp[0].trim().toLowerCase()               //lower case 
+                if((tempValue.includes("UPPER")&&tempValue.includes("("))||(!tempValue.includes("'")&&tempValue!="NULL"))
+                    rules[y].fieldDisplayType = 'single select'
+                else
+                    rules[y].fieldDisplayType = 'textbox'
                 if (tempValue.includes('||') && (tempValue.includes('LEFT') || tempValue.includes('RIGHT'))) {
                     return rules = null
                 }
@@ -358,6 +370,11 @@ function processUpdateOperators(rules) {
                         rules[y].operator = 'right substring'
                         rules[y].value.push(value[1].replace(")", "").trim())
                     }
+                }
+                else if((tempValue.includes("UPPER")&&tempValue.includes("("))||(!tempValue.includes("'")&&tempValue!="NULL")){                        
+                    rules[y].operator = 'value of'
+                    rules[y].value.push(tempValue.replace("UPPER", "").replace("(","").replace(")","").toLowerCase())
+                    //console.log(tempValue)    
                 }
                 else {
                     let tempValue = temp[1].trim().split("'").join("")
