@@ -5,7 +5,12 @@ function sqlToJson(sql) {
     const path = require("path");
     var fs = require('fs');
     var text = fs.readFileSync(path.resolve(__dirname, "sql.sql"), 'utf-8');
-    var allRools = text.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)|(--[^.].*)/gm, '').replace(/^\s*\n/gm, "").replace(/^\s+/gm, "").split(';')
+    
+    
+    var allRools = text.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)|(--[^.].*)/gm, '').replace(/^\s*\n/gm, "").replace(/^\s+/gm, "")
+    allRools = allRools.split(/\r?\n|\r/g).join(" ")
+    console.log(allRools)
+    allRools = allRools.split(';')
 
     let rools = []
     for(var y = 0; y < allRools.length; y++) {
@@ -27,8 +32,10 @@ function sqlToJson(sql) {
                 rool.description = roolId
                 rool.status = 'Draft'
                 rool.version = '1.0'
-                //rool.insertSql = allRools[y].toString().trim()
-                rool.selectRule = processInsert(sqlContent)
+                rool.insertSql = allRools[y].toString().trim()
+                //console.log(sqlContent)
+                rool.selectRule = processInsert(sqlContent.split("\r").join(" "))
+                
                 rool.depth = maxD
             }
         }
@@ -40,14 +47,12 @@ function sqlToJson(sql) {
             //rools[y-1].updateSql = allRools[y].toString().trim()
             if(maxD<2&&rools[y-1].depth<2){
                 //rool.insertSql = allRools[y].toString().trim()
-                //rools[y-1].updateSql = allRools[y].toString().trim()
-                //console.log(rools[y-1].id)
-                rools[y-1].updateRule = processUpdate(sqlContent)
+                rools[y-1].updateSql = allRools[y].toString().trim()
+                rools[y-1].updateRule = processUpdate(sqlContent.split("\r").join(" "))
                 rools[y-1].updateDepth = maxD
                 let updateConditions = processInsert(conditions)
                 if(updateConditions.length > 1){
                     rools[y-1].updateCondition = updateConditions
-                    console.log(updateConditions)
                 }
                 else
                     rools[y-1].updateCondition = null
@@ -59,6 +64,7 @@ function sqlToJson(sql) {
     
     select = rools.filter(el => Object.keys(el).length);
     select = select.filter(e => e.updateRule!=undefined)
+    select = select.filter(e => e.updateRule.sets.length>0)
     select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
 }
@@ -73,7 +79,8 @@ function processInsert(sql){
     
     for(var i = 0; i < exp.length; i++) {
         exp[i] = exp[i].trim()
-        if(exp[i].includes('OR', 0)){
+        if(exp[i].includes(' OR ', 0)||exp[i].includes(')OR', 0)||exp[i].includes('OR(', 0)||exp[i].includes('\\rOR', 0)||exp[i].includes('OR\\r', 0)){
+            //console.log(exp[i])
             exp[i] = exp[i].substring(
                 exp[i].indexOf("(") + 1, 
                 exp[i].lastIndexOf(")")
@@ -118,7 +125,9 @@ function processUpdate(sql){
         
     }; 
 
-    rule.sets = processUpdateOperators(exp)   
+    let rules = processUpdateOperators(exp)  
+    if(rules != null)
+        rule.sets = rules  
 
     return rule
 }
@@ -241,12 +250,15 @@ function processOperators(rules){
             });
             
         }
-        else if(rules[y].toString().includes(' IN ', 0)){
-            let temp = rules[y].toString().split("'").join("").split(' IN ')
+        else if(rules[y].toString().includes(' IN ', 0) || rules[y].toString().includes('IN(', 0) || rules[y].toString().includes(')IN', 0) || rules[y].toString().includes('\\rIN', 0) || rules[y].toString().includes('IN\\r', 0)){
+            
+            let temp = rules[y].toString().split(/IN(.*)/s)
+            
             rules[y] = {}
             rules[y].combinator = "or"
             rules[y].rules = []
-            let values = temp[1].trim().substring(temp[1].trim().indexOf("(") + 1,temp[1].trim().lastIndexOf(")")).trim().split(',')
+            let values = temp[1].trim().substring(temp[1].trim().indexOf("(") + 1,temp[1].trim().lastIndexOf(")")).trim().split("',")
+            
             let field = temp[0].trim()
             if(temp[0].trim().includes('COALESCE',0))
                 field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
@@ -257,7 +269,10 @@ function processOperators(rules){
                 let rule = {"value": []}
                 rule.field = field.toLowerCase()    //lower case
                 rule.operator = op
-                rule.value.push(v.trim())
+                v = v.trim().replace("'","")
+                if(v.slice(-1)=="'")
+                    v = v.replace(/.$/,"")          //replace last character
+                rule.value.push(v)
                 rule.fieldDisplayType = 'textbox'
                 rules[y].rules.push(rule)
             });
@@ -277,69 +292,88 @@ function processOperators(rules){
     return rules;
 }
 
-function processUpdateOperators(rules){
-    for(var y = 0; y < rules.length; y++) {
-        
-        
-        if(rules[y].toString().includes('=', 0)){
+function processUpdateOperators(rules) {
+    for (var y = 0; y < rules.length; y++) {
+
+
+        if (rules[y].toString().includes('=', 0)) {
             let temp = rules[y].split('=')
             let tempValue = temp[1].trim()
-            if(tempValue.includes('CASE', 0)){
+            if (tempValue.includes('CASE', 0)) {
                 let endTemp = tempValue.trim().split('ELSE')
                 let setsql = endTemp[0].trim().split('CASE').join("").trim()
                 rules[y] = {
                     "combinator": "case",
-                    "sets":[],
-                    "rootField": "",
-                    "defaultValue":""
+                    "sets": [],
+                    "rootfield": "",
+                    "defaultValue": ""
                 }
-                rules[y].rootField = temp[0].trim()
-                if(endTemp[1]!=undefined && endTemp[1].toString().includes("END"))
+                rules[y].rootfield = temp[0].trim()
+                if (endTemp[1] != undefined && endTemp[1].toString().includes("END"))
                     rules[y].defaultValue = endTemp[1].split("END").join("").trim()
                 else
-                    rules[y].defaultValue = endTemp[1]
-//lower case for plan end
-                if(rules[y].rootField == rules[y].defaultValue)
-                    rules[y].defaultValue = rules[y].defaultValue.toLowerCase()     //lower case
-                rules[y].rootField = rules[y].rootField.toLowerCase()               //lower case
-                rules[y].sets = processCase(setsql.split('WHEN ').filter(e=>e))
+                    rules[y].defaultValue = endTemp[1]  //lower case for plan end
+                if (rules[y].rootfield == rules[y].defaultValue)
+                    rules[y].defaultValue = ""      //rules[y].defaultValue.toLowerCase()     //lower case
+                rules[y].rootfield = rules[y].rootfield.toLowerCase()               //lower case
+                let sets = processCase(setsql.split('WHEN ').filter(e => e))
+                if(sets)
+                    rules[y].sets = sets
+                else
+                    return rules = null
             }
-            else{
-            rules[y] = {
-                "field": "",
-                "operator":"",
-                "value": [],
-                "fieldDisplayType":""
+            else {
+                rules[y] = {
+                    "field": "",
+                    "operator": "",
+                    "value": [],
+                    "fieldDisplayType": ""
+                }
+                rules[y].field = temp[0].trim().toLowerCase()               //lower case
+                rules[y].fieldDisplayType = 'textbox'
+                if (tempValue.includes('||') && (tempValue.includes('LEFT') || tempValue.includes('RIGHT'))) {
+                    return rules = null
+                }
+                else if (tempValue.includes('||') && (!tempValue.includes('LEFT') || !tempValue.includes('RIGHT'))) {
+                    let value = tempValue.split('|| ')
+                    if (value[0].includes("'")) {
+                        rules[y].operator = 'prefix'
+                        rules[y].value.push(value[0].split("'").join("").replace("(",""))
+                        rules[y].value.push(value[1].replace(")",""))
+                    }
+                    else {
+                        rules[y].operator = 'suffix'
+                        rules[y].value.push(value[1].split("'").join("").replace(")",""))
+                        rules[y].value.push(value[0].replace("(",""))
+                    }
+                }
+                else if (tempValue.includes('LEFT') || tempValue.includes('RIGHT(')) {
+                    
+                    let value = tempValue.split(',')
+                    if(value[0].includes('LEFT')){
+                        rules[y].operator = 'left substring'
+                        rules[y].value.push(value[1].replace(")", "").trim())
+                    }
+                    else if(value[0].includes('RIGHT')){
+                        rules[y].operator = 'right substring'
+                        rules[y].value.push(value[1].replace(")", "").trim())
+                    }
+                }
+                else {
+                    let tempValue = temp[1].trim().split("'").join("")
+                    if (tempValue == 'NULL') {
+                        rules[y].operator = 'is null'
+                        rules[y].value = null
+                    }
+                    else {
+                        rules[y].operator = 'equal to'
+                        rules[y].value.push(tempValue)
+                    }
+
+                }
+
             }
-            rules[y].field = temp[0].trim().toLowerCase()               //lower case
-            if(tempValue.includes('||')){
-                let value = tempValue.split(' || ')
-                if(value[0].includes("'")){
-                    rules[y].operator = 'prefix'
-                    rules[y].value.push(value[0].split("'").join(""))
-                    rules[y].value.push(value[1])
-                }
-                else{
-                    rules[y].operator = 'suffix'
-                    rules[y].value.push(value[1].split("'").join(""))
-                    rules[y].value.push(value[0])
-                }
-            }
-            else{
-                let tempValue = temp[1].trim().split("'").join("")
-                if(tempValue == 'NULL'){
-                    rules[y].operator = 'is null'
-                    rules[y].value = null
-                }
-                else{
-                    rules[y].operator = 'equal to'
-                    rules[y].value.push(tempValue)
-                }
-                
-            }
-            rules[y].fieldDisplayType = 'textbox'
         }
-        }       
     }
     return rules;
 }
@@ -367,7 +401,11 @@ function processCase(rules){
                 rules[y].operator = 'begins_with'
             */
             rules[y].operator = 'equal to'
-            rules[y].value = value.split("%").join("").split("{").join("").split("}").join("").split(" THEN ")
+            if (value.includes('||') && (value.includes('LEFT') || value.includes('RIGHT'))) {
+                return rules = null
+            }
+            else
+                rules[y].value = value.split("%").join("").split("{").join("").split("}").join("").split(" THEN ")
             rules[y].fieldDisplayType = 'textbox'
         }
     }
