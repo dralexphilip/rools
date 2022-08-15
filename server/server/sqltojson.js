@@ -16,9 +16,9 @@ function sqlToJson(sql) {
     for(var y = 0; y < allRools.length; y++) {
         let rool = {}
         if(allRools[y].toString().includes('insert', 0)){
-            let sqlContent = allRools[y].toString().trim().split('where')[1].toUpperCase().trim()
+            let sqlContent = allRools[y].toString().trim().split('where')[1].trim()
             let maxD = maxDepth(sqlContent);
-            if(maxD<2){
+            if(maxD<3){
                 let index = allRools[y].toString().indexOf("'")
                 //let date = new Date()
                 //date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+"Z"
@@ -29,28 +29,29 @@ function sqlToJson(sql) {
                 rool.tradePartner = ""
                 let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
                 rool.id = roolId.split("RULE_").join("")
+                rool.ruleId = roolId
                 rool.description = roolId
                 rool.status = 'Draft'
                 rool.version = '1.0'
                 rool.insertSql = allRools[y].toString().trim()
                 //console.log(sqlContent)
-                rool.selectRule = processInsert(sqlContent)
+                rool.selectRule = processInsert(sqlContent.toUpperCase())
                 
                 rool.depth = maxD
             }
         }
         else if(allRools[y].toString().includes('update', 0)&&!allRools[y].toString().includes('cob_lead_staging', 0)){
             let updateStatement = allRools[y].toString().trim().split('where ')
-            let sqlContent = updateStatement[0].toString().trim().split('set')[1].toUpperCase().trim()
-            let conditions = updateStatement[1].toUpperCase().trim()
+            let sqlContent = updateStatement[0].toString().trim().split('set')[1].trim()
+            let conditions = updateStatement[1].trim()
             let maxD = maxDepth(sqlContent);
             //rools[y-1].updateSql = allRools[y].toString().trim()
-            if(maxD<2&&rools[y-1].depth<2){
+            if(maxD<3&&rools[y-1].depth<3){
                 //rool.insertSql = allRools[y].toString().trim()
                 rools[y-1].updateSql = allRools[y].toString().trim()
-                rools[y-1].updateRule = processUpdate(sqlContent)
+                rools[y-1].updateRule = processUpdate(sqlContent.toUpperCase())
                 rools[y-1].updateDepth = maxD
-                let updateConditions = processInsert(conditions)
+                let updateConditions = processInsert(conditions.toUpperCase())
                 if(updateConditions.length > 1){
                     rools[y-1].updateCondition = updateConditions
                 }

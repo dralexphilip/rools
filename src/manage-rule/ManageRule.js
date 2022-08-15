@@ -18,7 +18,7 @@ export default class ManageRule extends Component {
     filters = ruleoptions;
     state = {
         defaultRule: {
-        ruleid: "RULE_NEW",
+        ruleId: "RULE_NEW",
         description: "Rule New",
         status: "Active",
         version: "1.0",
@@ -72,7 +72,7 @@ export default class ManageRule extends Component {
             defaultRule = rules.find(rule => '' + rule.id === this.rowId);
         }
         let ruleQuery = this.state.ruleQuery;
-        
+        const row = history.location.state
         const activeTabIndex = this.state.activeTabIndex;
 
         
@@ -148,7 +148,7 @@ export default class ManageRule extends Component {
 
                         <div align="left" style={{ float: 'left', paddingRight: 50 }}>
                             <pre>
-                                {JSON.stringify(QueryBuilder.newFormatQuery(defaultRule), null, 2)}
+                                {JSON.stringify(QueryBuilder.newFormatQuery(row), null, 2)}
                             </pre>
 
                         </div>
@@ -207,6 +207,7 @@ export default class ManageRule extends Component {
                                 </>
                                 :
                                 <>
+                                {console.log(item)}
                                 <div>{index !==0? <b>{'AND '}</b>: ''}
                                 {fields[0].options.find(f=> (f.value === item.field))? fields[0].options.find(f=> (f.value === item.field)).label 
                                 : 
@@ -215,7 +216,7 @@ export default class ManageRule extends Component {
                                 fields[2].options.find(f=> (f.value === item.field))? fields[2].options.find(f=> (f.value === item.field)).label 
                                 :
                                 item.field}
-                                {' ' + operators.find(o=> (o.value === item.operator)).symbol + ' ' + item.value}</div>
+                                {' ' + operators.find(o=> (o.value === item.operator)) + ' ' + item.value}</div>
                                 </>
                             ))}
                             <br/>
@@ -248,7 +249,7 @@ export default class ManageRule extends Component {
                                 updateoptions[1].options.find(f=> (f.value === item.field))? updateoptions[1].options.find(f=> (f.value === item.field)).label 
                                 : 
                                 item.field}
-                                {' ' +operators.find(o=> (o.value === item.operator)).label + ' '} {item.value === 'null'? '': item.value}</div> 
+                                {' ' +operators.find(o=> (o.value === item.operator)) + ' '} {item.value === 'null'? '': item.value}</div> 
                             ))}
 
                         </div>

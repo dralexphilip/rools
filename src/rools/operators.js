@@ -7,7 +7,7 @@ const operators = [
     },
     {
         label: "not equal to",
-        value: "not_equal",
+        value: "not equal",
         types: ["date", "integer", "number", "radio", "select", "switch", "text"],
         symbol: "<>",
     },
@@ -19,19 +19,19 @@ const operators = [
     },
     {
         label: "does not contain",
-        value: "not_contains",
+        value: "not contains",
         types: ["text"],
         symbol: "not like",
     },
     {
         label: "begins with",
-        value: "begins_with",
+        value: "begins with",
         types: ["text"],
         symbol: "like",
     },
     {
         label: "ends with",
-        value: "ends_with",
+        value: "ends with",
         types: ["text"],
         symbol: "like",
     },
@@ -49,13 +49,13 @@ const operators = [
     },
     {
         label: "less or equal to",
-        value: "less_equal",
+        value: "less equal",
         types: ["number", "integer"],
         symbol: "<=",
     },
     {
         label: "greater or equal to",
-        value: "greater_equal",
+        value: "greater equal",
         types: ["number", "integer"],
         symbol: ">=",
     },
@@ -91,7 +91,7 @@ const operators = [
     },
     {
         label: "is not",
-        value: "not_in",
+        value: "not in",
         types: ["multiselect"],
         symbol: "not in",
     },
@@ -103,31 +103,31 @@ const operators = [
     },
     {
         label: "as null",
-        value: "as_null",
+        value: "as null",
         types: ["update"],
         symbol: "=",
     },
     {
         label: "is not null",
-        value: "not_null",
+        value: "not null",
         types: ["date", "integer", "number", "multiselect", "radio", "select", "switch", "text"],
         symbol: "is not null",
     },
     {
         label: "=",
-        value: "equals",
+        value: "equal to field",
         types: ["update"],
         symbol: "=",
     },
     {
         label: "Left Substring",
-        value: "left",
+        value: "left substring",
         types: ["substring"],
         symbol: "=",
     },
     {
         label: "Right Substring",
-        value: "right",
+        value: "right substring",
         types: ["substring"],
         symbol: "=",
     },
@@ -136,6 +136,18 @@ const operators = [
         value: "substring",
         types: ["substring"],
         symbol: "=",
+    },
+    {
+        label: "Prefix",
+        value: "prefix",
+        types: ["prefix"],
+        symbol: "||",
+    },
+    {
+        label: "Suffix",
+        value: "suffix",
+        types: ["suffix"],
+        symbol: "||",
     },
 ];
 
