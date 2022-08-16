@@ -351,13 +351,13 @@ function processUpdateOperators(rules) {
                     let value = tempValue.split('|| ')
                     if (value[0].includes("'")) {
                         rules[y].operator = 'prefix'
-                        rules[y].value.push(value[0].split("'").join("").replace("(",""))
-                        rules[y].value.push(value[1].replace(")",""))
+                        rules[y].value.push(value[0].split("'").join("").replace("(","").trim())
+                        rules[y].value.push(value[1].replace(")","").trim().toLowerCase())
                     }
                     else {
                         rules[y].operator = 'suffix'
-                        rules[y].value.push(value[1].split("'").join("").replace(")",""))
-                        rules[y].value.push(value[0].replace("(",""))
+                        rules[y].value.push(value[1].split("'").join("").replace(")","").trim())
+                        rules[y].value.push(value[0].replace("(","").trim().toLowerCase())
                     }
                 }
                 else if (tempValue.includes('LEFT') || tempValue.includes('RIGHT(')) {
