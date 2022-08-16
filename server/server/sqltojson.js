@@ -18,7 +18,7 @@ function sqlToJson(sql) {
         if(allRools[y].toString().includes('insert', 0)){
             let sqlContent = allRools[y].toString().trim().split('where')[1].trim()
             let maxD = maxDepth(sqlContent);
-            if(maxD<3){
+            if(maxD<2){
                 let index = allRools[y].toString().indexOf("'")
                 //let date = new Date()
                 //date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+"Z"
@@ -46,7 +46,7 @@ function sqlToJson(sql) {
             let conditions = updateStatement[1].trim()
             let maxD = maxDepth(sqlContent);
             //rools[y-1].updateSql = allRools[y].toString().trim()
-            if(maxD<3&&rools[y-1].depth<3){
+            if(maxD<2&&rools[y-1].depth<2){
                 //rool.insertSql = allRools[y].toString().trim()
                 rools[y-1].updateSql = allRools[y].toString().trim()
                 rools[y-1].updateRule = processUpdate(sqlContent.toUpperCase())
