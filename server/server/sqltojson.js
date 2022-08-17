@@ -26,7 +26,7 @@ function sqlToJson(sql) {
                 //rool.createdDate = date
                 //rool.modifiedBy = "Sahadeo Bhogil"
                 //rool.modifiedDate = date
-                rool.tradePartner = ""
+                rool.tradePartner = "TPL_Ameriben"
                 let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
                 rool.id = roolId.split("RULE_").join("")
                 rool.ruleId = roolId

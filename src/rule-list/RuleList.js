@@ -70,8 +70,6 @@ export default function RuleList() {
                 const onClick = () => {
                     console.log(config.token)
                     console.log(config.identity)
-                    let body = params.row
-                    body.tradingPartner = 'TPL_Ameriben'
                     fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule', {
                         method: 'POST',
                         headers: {
@@ -80,13 +78,12 @@ export default function RuleList() {
                             'authorization': `Bearer ` + config.token,
                             'identity': config.identity
                         },
-                        body: JSON.stringify(body)
+                        body: JSON.stringify(params.row)
                         })
                         .then(res => res.json())
                         .then(
                             (result) => {
                                 console.log(result)
-                                setPublished(true)
                             })
                 };
                 return (published? "Published" : <IconButton onClick={onClick}><Icon color="secondary">publish</Icon></IconButton>);
