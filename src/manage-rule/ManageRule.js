@@ -102,15 +102,13 @@ export default class ManageRule extends Component {
                                     this.setState((prevState) => ({ruleQuery: result.query}));
                                 })
                           }}                          
-                    >
-                        <Tab label="Rule Config" />
+                    >                        
                         <Tab label="JSON Output" />
-                        <Tab label="SQL Output" />
-                        <Tab label="Gherkin Syntax" />
+                        <Tab label="SQL Input" />
                     </Tabs> 
                     
                 </Paper>
-                <TabPanel activeTabIndex={activeTabIndex} index={0}>
+                <TabPanel activeTabIndex={activeTabIndex} index={2}>
 
 
 
@@ -142,7 +140,7 @@ export default class ManageRule extends Component {
                     />
 
                 </TabPanel>
-                <TabPanel activeTabIndex={activeTabIndex} index={1}>
+                <TabPanel activeTabIndex={activeTabIndex} index={0}>
 
                     <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10, paddingTop: 20 }}>
 
@@ -154,7 +152,7 @@ export default class ManageRule extends Component {
                         </div>
                     </div>
                 </TabPanel>
-                <TabPanel activeTabIndex={activeTabIndex} index={2}>
+                <TabPanel activeTabIndex={activeTabIndex} index={1}>
                     <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10, paddingTop: 20 }}>
 
 
@@ -162,11 +160,11 @@ export default class ManageRule extends Component {
                             <span style={{ fontWeight: 500 }}>
                                 <span style={{ color: "#3f51b5" }}>insert into</span> <span style={{ color: "#f50057" }}> clone_lead </span><br />
                                 <span style={{ color: "#3f51b5" }}>select </span> *, &apos;{this.ruleId}&apos; <span style={{ color: "#3f51b5" }}> from </span> <span style={{ color: "#f50057" }}> cob_lead_staging </span> <br />
-                                <span style={{ color: "#3f51b5" }}>where </span> {ruleQuery.selectRules + ';'} <br />
+                                <span style={{ color: "#3f51b5" }}>where </span> {row.insertSql + ';'} <br />
 
                                 <span style={{ color: "#3f51b5" }}>update </span> <span style={{ color: "#f50057" }}> clone_lead </span><br />
                                 <span style={{ color: "#3f51b5" }}>set </span> {ruleQuery.updateRules} <br />
-                                <span style={{ color: "#3f51b5" }}>where </span> {ruleQuery.updateConditions + ';'}
+                                <span style={{ color: "#3f51b5" }}>where </span> {row.updateSql + ';'}
                             </span>
 
                         </div>

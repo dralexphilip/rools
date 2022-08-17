@@ -3,6 +3,7 @@ const express = require('express');
 const services = require('./services');
 const sqlServices = require('./sqltojson')
 const cors = require('cors');
+const config = require('./config.json')
 
 const PORT = process.env.PORT || 3001;
 
@@ -32,6 +33,10 @@ app.post("/api", (req, res) => {
 
 app.get("/sqltojs", (req, res) => {
   res.json({query: sqlServices.sqlToJson(req.body)});
+});
+
+app.get("/config", (req, res) => {
+  res.json(config);
 });
 
 // All other GET requests not handled before will return our React app

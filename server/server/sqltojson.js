@@ -182,7 +182,7 @@ function processOperators(rules){
             
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase() //lower case changes
+                rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0].toLowerCase()+' - coalesce' //lower case changes
             else
                 rules[y].field = temp[0].trim().toLowerCase()    //lower case changes
             let tempValue = temp[1].trim()
@@ -207,7 +207,7 @@ function processOperators(rules){
             let ends_with = value.substring(value.length-1)
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase()    //lower case
+                rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0].toLowerCase()+' - coalesce'    //lower case
             else
                 rules[y].field = temp[0].trim().toLowerCase()   //lower case
             if(begins_with=='%'&&ends_with=='%')
@@ -226,7 +226,7 @@ function processOperators(rules){
             let ends_with = value.substring(value.length-1)
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase()    //lower case
+                rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0].toLowerCase()+' - coalesce'    //lower case
             else
                 rules[y].field = temp[0].trim().toLowerCase()   //lower case
             if(begins_with=='%'&&ends_with=='%')
@@ -246,7 +246,7 @@ function processOperators(rules){
             let values = temp[1].trim().substring(temp[1].trim().indexOf("(") + 1,temp[1].trim().lastIndexOf(")")).trim().split(',')
             let field = temp[0].trim()
             if(temp[0].trim().includes('COALESCE',0))
-                field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
+                field = temp[0].trim().replace('COALESCE(','').split(',')[0].toLowerCase()+' - coalesce'
             else
                 field = temp[0].trim()
             let op = 'not_equal'
@@ -271,7 +271,7 @@ function processOperators(rules){
             
             let field = temp[0].trim()
             if(temp[0].trim().includes('COALESCE',0))
-                field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0]
+                field = temp[0].trim().replace('COALESCE(','').split(',')[0].toLowerCase()+' - coalesce'
             else
                 field = temp[0].trim()
             let op = 'equal'
@@ -291,7 +291,7 @@ function processOperators(rules){
             let temp = rules[y].split(' <> ')
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','coalesce_').split(',')[0].toLowerCase()    //lower case
+                rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0].toLowerCase()+' - coalesce'    //lower case
             else
                 rules[y].field = temp[0].trim().toLowerCase()   //lower case
             rules[y].operator = 'not equal'

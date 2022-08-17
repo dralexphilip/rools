@@ -6,9 +6,10 @@ import './Rulelist.css';
 import history from '../history';
 
 export default function RuleList() {
+    const [config, setConfig] = useState({})
     const [rows, setRows] = useState([])
-
-    const [columns, setColumns] = useState([
+    const [published, setPublished] = useState(false)
+    const columns = [
         {
             field: 'id',
             headerName: 'ID',
@@ -49,6 +50,9 @@ export default function RuleList() {
             disableClickEventBubbling: true,
             renderCell: (params) => {     
                 const onClick = () => {
+                    
+                    console.log(config.token)
+                    console.log(config.identity)
                 history.push('/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleId, params.row);
                 };
                 return <IconButton onClick={onClick}><Icon color="secondary">pageview</Icon></IconButton>;
@@ -64,16 +68,47 @@ export default function RuleList() {
             disableClickEventBubbling: true,            
             renderCell: (params) => {     
                 const onClick = () => {
-                history.push('/LoadRule?row='+params.row.id+'&ruleId='+params.row.ruleId, params.row);
+                    console.log(config.token)
+                    console.log(config.identity)
+                    let body = params.row
+                    body.tradingPartner = 'TPL_Ameriben'
+                    fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule', {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            'authorization': `Bearer ` + config.token,
+                            'identity': config.identity
+                        },
+                        body: JSON.stringify(body)
+                        })
+                        .then(res => res.json())
+                        .then(
+                            (result) => {
+                                console.log(result)
+                                setPublished(true)
+                            })
                 };
-                return <IconButton onClick={onClick}><Icon color="secondary">publish</Icon></IconButton>;
+                return (published? "Published" : <IconButton onClick={onClick}><Icon color="secondary">publish</Icon></IconButton>);
             }
         },
-    ]);
+    ];
+
+    const fetchConfigData = async () => {
+        try {
+            const response1 = await fetch('http://localhost:3001/config');
+            const json1 = await response1.json();
+            setConfig(json1)
+            
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
+
 
     useEffect(() => {
+        
         const url = "http://localhost:3001/sqltojs";
-
         const fetchData = async () => {
             try {
                 const response = await fetch(url);
@@ -84,10 +119,14 @@ export default function RuleList() {
                 console.log("error", error);
             }
         };
-
         fetchData();
+
+        fetchConfigData();
+        
+
       }, []);
 
+   
     return (
         <div style={{ overflowX: 'hidden' }}>
             <div align="left" style={{ width: "100%", paddingBottom: 20 }}>
