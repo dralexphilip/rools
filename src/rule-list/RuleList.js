@@ -4,11 +4,14 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import './Rulelist.css';
 import history from '../history';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
 export default function RuleList() {
     const [config, setConfig] = useState({})
     const [rows, setRows] = useState([])
-    const [published, setPublished] = useState(false)
+    const [successAlert, setSuccessAlert] = useState(false)
+    const [selectedRule, setSelectedRule] = useState('')
     const columns = [
         {
             field: 'id',
@@ -68,8 +71,6 @@ export default function RuleList() {
             disableClickEventBubbling: true,            
             renderCell: (params) => {     
                 const onClick = () => {
-                    console.log(config.token)
-                    console.log(config.identity)
                     fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule/Create', {
                         method: 'POST',
                         headers: {
@@ -83,9 +84,11 @@ export default function RuleList() {
                         .then(
                             (result) => {
                                 console.log(result)
+                                setSuccessAlert(true)
+                                setSelectedRule(params.row.ruleId)
                             })
                 };
-                return (published? "Published" : <IconButton onClick={onClick}><Icon color="secondary">publish</Icon></IconButton>);
+                return <IconButton onClick={onClick}><Icon color="secondary">publish</Icon></IconButton>;
             }
         },
     ];
@@ -139,6 +142,22 @@ export default function RuleList() {
                     disableSelectionOnClick
                     rowsPerPageOptions={[5, 10, 20]}
                 />
+                <Snackbar 
+                    open={successAlert} 
+                    anchorOrigin={{ 'vertical': 'top', 'horizontal': 'right' }}
+                    autoHideDuration={6000} 
+                    onClose={() => {
+                            setSuccessAlert(false);
+                            }}>
+                    <Alert 
+                        onClose={() => {
+                            setSuccessAlert(false);
+                            }} 
+                        severity="success" 
+                        sx={{ width: '100%' }}>
+                    <b>{ selectedRule }</b> published successfully to TPL Match Next!
+                    </Alert>
+                </Snackbar>
             </div>
         </div>
     );
