@@ -158,13 +158,9 @@ export default class ManageRule extends Component {
 
                         <div align="left" style={{ paddingLeft: 30, paddingRight: 50 }}>
                             <span style={{ fontWeight: 500 }}>
-                                <span style={{ color: "#3f51b5" }}>insert into</span> <span style={{ color: "#f50057" }}> clone_lead </span><br />
-                                <span style={{ color: "#3f51b5" }}>select </span> *, &apos;{this.ruleId}&apos; <span style={{ color: "#3f51b5" }}> from </span> <span style={{ color: "#f50057" }}> cob_lead_staging </span> <br />
-                                <span style={{ color: "#3f51b5" }}>where </span> {row.insertSql + ';'} <br />
-
-                                <span style={{ color: "#3f51b5" }}>update </span> <span style={{ color: "#f50057" }}> clone_lead </span><br />
-                                <span style={{ color: "#3f51b5" }}>set </span> {ruleQuery.updateRules} <br />
-                                <span style={{ color: "#3f51b5" }}>where </span> {row.updateSql + ';'}
+                                {row.insertSql + ';'} <br />
+                                <br />
+                                {row.updateSql + ';'}
                             </span>
 
                         </div>
