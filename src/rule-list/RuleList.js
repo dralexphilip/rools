@@ -70,7 +70,7 @@ export default function RuleList() {
                 const onClick = () => {
                     console.log(config.token)
                     console.log(config.identity)
-                    fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule', {
+                    fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule/Create', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
