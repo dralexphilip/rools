@@ -73,7 +73,6 @@ export default function RuleList() {
                     fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule', {
                         method: 'POST',
                         headers: {
-                            Accept: 'application/json',
                             'Content-Type': 'application/json',
                             'authorization': `Bearer ` + config.token,
                             'identity': config.identity
