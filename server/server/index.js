@@ -32,7 +32,7 @@ app.post("/api", (req, res) => {
 });
 
 app.get("/sqltojs", (req, res) => {
-  res.json({query: sqlServices.sqlToJson(req.body)});
+  res.json({query: sqlServices.sqlToJson()});
 });
 
 app.get("/config", (req, res) => {
