@@ -211,7 +211,7 @@ function processOperators(rules){
                 rules[y].value.push(tempValue)
             }
             else{
-                rules[y].operator = 'equal'
+                rules[y].operator = 'equal to'
                 rules[y].value.push(tempValue.split("'").join(""))
             }
             
