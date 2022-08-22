@@ -19,9 +19,6 @@ function sqlToJson() {
             mappings.mappings.forEach(m => {                
                 if(sqlContent.includes(m.oldField)){
                     sqlContent = sqlContent.split(m.oldField).join(m.newField)
-                } 
-                else{
-                    console.log(sqlContent)
                 }                   
             });
             let maxD = maxDepth(sqlContent);
@@ -357,9 +354,11 @@ function processUpdateOperators(rules) {
                 
                 rules[y].defaultValue = ""
                 if (endTemp[1] != undefined && endTemp[1].toString().includes(" ENND"))
-                    rules[y].defaultValue = endTemp[1].split(" ENND").join("").trim()
+                    rules[y].defaultValue = endTemp[1].split(" ENND").join("").split("'").join("").trim()
+                else if(endTemp[1] != undefined)
+                    rules[y].defaultValue = endTemp[1].split("'").join("")  
                 else
-                    rules[y].defaultValue = endTemp[1]  //lower case for plan end
+                    rules[y].defaultValue = endTemp[1]
                 if (rules[y].rootfield == rules[y].defaultValue)
                     rules[y].defaultValue = ""      //rules[y].defaultValue.toLowerCase()     
                 rules[y].rootfield = rules[y].rootfield              

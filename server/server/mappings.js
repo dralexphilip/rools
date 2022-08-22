@@ -6,14 +6,14 @@ const mappings = [
     {
         oldField: "source_type",
         newField: "SOURCE_DATA_TYPE",
+    },    
+    {
+        oldField: "policy_id_alt",
+        newField: "POLICYHOLDER_ALTERNATE_ID",
     },
     {
         oldField: "policy_id",
         newField: "POLICYHOLDER_ID",
-    },
-    {
-        oldField: "policy_id_alt",
-        newField: "POLICYHOLDER_ALTERNATE_ID",
     },
     {
         oldField: "policy_hic",
@@ -26,6 +26,18 @@ const mappings = [
     {
         oldField: "policy_employer_addr1",
         newField: "POLICYHOLDER_EMPLOYER_ADDRESS_1",
+    },
+    {
+        oldField: "policy_employer_city",
+        newField: "POLICYHOLDER_EMPLOYER_CITY",
+    },
+    {
+        oldField: "policy_employer_state",
+        newField: "POLICYHOLDER_EMPLOYER_STATE",
+    },
+    {
+        oldField: "policy_employer_zip",
+        newField: "POLICYHOLDER_EMPLOYER_ZIP",
     },
     {
         oldField: "carrier_name",
@@ -48,6 +60,10 @@ const mappings = [
         newField: "GROUP_DESCRIPTION",
     },    
     {
+        oldField: "pbm_person_code",
+        newField: "PBM_PERSON_CODE",
+    },
+    {
         oldField: "pbm_bin",
         newField: "PBM_BIN",
     },
@@ -60,12 +76,32 @@ const mappings = [
         newField: "MEDICAL_NAME",
     },
     {
+        oldField: "medical_product",
+        newField: "MEDICAL_PRODUCT",
+    },
+    {
+        oldField: "member_id_alt",
+        newField: "MEMBER_ALTERNATE_ID",
+    },
+    {
+        oldField: "member_hic",
+        newField: "MEMBER_MEDICARE_ID",
+    },
+    {
+        oldField: "member_id",
+        newField: "MEMBER_KEY",
+    },
+    {
         oldField: "Submitter",
-        newField: "SUBMITTER",
+        newField: "TRADING_PARTNER_IDENTIFICATION",
     },
     {
         oldField: "plan_type",
         newField: "PLAN_TYPE",
+    },
+    {
+        oldField: "lob",
+        newField: "LINE_OF_BUSINESS",
     },
 ];
 
