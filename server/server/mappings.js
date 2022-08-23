@@ -49,7 +49,7 @@ const mappings = [
     },
     {
         oldField: "subgroup_number",
-        newField: "SUBGROUP_NUMBER",
+        newField: "SUB_GROUP_NUMBER",
     },
     {
         oldField: "group_number",
