@@ -105,17 +105,18 @@ export default class ManageRule extends Component {
                     >                        
                         <Tab label="JSON Output" />
                         <Tab label="SQL Input" />
+                        <Tab label="Manage Rule" />
                     </Tabs> 
                     
                 </Paper>
                 <TabPanel activeTabIndex={activeTabIndex} index={2}>
 
-
-
+                {row.publish==='S'?
+                <>
                     <div align="left" class="header"><b>When:</b></div>
                     <QueryBuilder
                         filters={this.filters}
-                        query={defaultRule.selectRules}
+                        query={row.selectRule}
                         maxLevels={4}
                         onChange={(defaultRule, valid) => {
                             this.setState(defaultRule.selectRules);
@@ -124,7 +125,7 @@ export default class ManageRule extends Component {
                     <div align="left"><b>Clone the Lead and Change:</b></div>
                     <UpdateQueryBuilder
                         filters={updateoptions}
-                        query={defaultRule.updateRules}
+                        query={row.updateRule}
                         maxLevels={1}
                         onChange={(defaultRule, valid) => {
                             this.setState(defaultRule.updateRules);
@@ -138,10 +139,18 @@ export default class ManageRule extends Component {
                             this.setState(defaultRule.updateConditions);
                         }}
                     />
+                    </>
+                    :
+                    <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10, paddingTop: 20 }}>
 
+                        <div align="left" style={{ float: 'left', paddingRight: 50 }}>
+                            Invalid JSON Data!
+                        </div>
+                    </div>
+                    }
                 </TabPanel>
                 <TabPanel activeTabIndex={activeTabIndex} index={0}>
-
+                    {row.publish==='S'?
                     <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10, paddingTop: 20 }}>
 
                         <div align="left" style={{ float: 'left', paddingRight: 50 }}>
@@ -151,6 +160,14 @@ export default class ManageRule extends Component {
 
                         </div>
                     </div>
+                    :
+                    <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10, paddingTop: 20 }}>
+
+                        <div align="left" style={{ float: 'left', paddingRight: 50 }}>
+                            Invalid JSON Data!
+                        </div>
+                    </div>
+                    }
                 </TabPanel>
                 <TabPanel activeTabIndex={activeTabIndex} index={1}>
                     <div style={{ display: 'inline-block', width: '100%', overflow: 'hidden', paddingLeft: 10, paddingTop: 20 }}>

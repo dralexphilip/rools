@@ -1,7 +1,7 @@
 const mappings = require('./mappings')
 
 function sqlToJson() {
-    let select = {}
+    let select = []
     const path = require("path");
     var fs = require('fs');
     var text = fs.readFileSync(path.resolve(__dirname, "sql.sql"), 'utf-8');
@@ -43,6 +43,18 @@ function sqlToJson() {
                 
                 rool.depth = maxD
             }
+            else{
+                let index = allRools[y].toString().indexOf("'")
+                rool.tradePartner = "TPL_Ameriben"
+                let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
+                rool.id = roolId.split("RULE_").join("")
+                rool.ruleId = roolId
+                rool.description = roolId
+                rool.status = 'Draft'
+                rool.version = '1.0'
+                rool.insertSql = allRools[y].toString().trim()
+                rool.depth = maxD
+            }
         }
         else if(allRools[y].toString().includes('update', 0)&&!allRools[y].toString().includes('cob_lead_staging', 0)){
             let updateStatement = allRools[y].toString().trim().split('where ')
@@ -66,16 +78,30 @@ function sqlToJson() {
                 }
                 else
                     rools[y-1].updateCondition = null
+                //rools[y-1].publish = true
+            }
+            else {
+                
+                //rool.insertSql = allRools[y].toString().trim()
+                rools[y-1].updateSql = allRools[y].toString().trim()
+                rools[y-1].updateDepth = maxD
+                //rools[y-1].publish = false
+                //console.log('other rools', rools[y-1])
             }
         }
-        
         rools.push(rool)
     }
-    
+    console.log(rools.length)
     select = rools.filter(el => Object.keys(el).length);
-    select = select.filter(e => e.updateRule!=undefined)
-    select = select.filter(e => e.updateRule.sets.length>0)
-    select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
+    console.log(select.length)
+    select.map((e) => e.selectRule!=undefined?e.publish='S':e.publish='C')
+    console.log(select.length)
+    select.map(e => e.updateRule!=undefined?e.publish='S':e.publish='C')
+    console.log(select.length)
+    select.map(e => e.updateRule?.sets.length>0?e.publish='S':e.publish='C')
+    console.log(select.length)
+    
+    //select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
 }
 
@@ -295,7 +321,7 @@ function processOperators(rules){
                 field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'
             else
                 field = temp[0].trim()
-            let op = 'equal'
+            let op = 'equal to'
             values.forEach(v => {
                 let rule = {"value": []}
                 rule.field = field 

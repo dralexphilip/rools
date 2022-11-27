@@ -4,42 +4,42 @@
         "options": [
             {
                 "label": "PBM BIN",
-                "value": "pbm_bin",
+                "value": "PBM_BIN",
                 "type": "update"
             },
             {
                 "label": "PBM PCN",
-                "value": "pbm_pcn",
+                "value": "PBM_PCN",
                 "type": "update"
             },
             {
                 "label": "Carrier Name",
-                "value": "carrier_name",
+                "value": "CARRIER_NAME",
                 "type": "update"
             },
             {
                 "label": "Member ID",
-                "value": "member_id",
+                "value": "MEMBER_KEY",
                 "type": "substring"
             },
             {
                 "label": "Group Name",
-                "value": "group_name3",
+                "value": "GROUP_NAME",
                 "type": "update"
             }, 
             {
                 "label": "Group Number",
-                "value": "group_number3",
+                "value": "GROUP_NUMBER",
                 "type": "update"
             }, 
             {
                 "label": "Plan Type",
-                "value": "plan_type",
+                "value": "PLAN_TYPE",
                 "type": "update"
             }, 
             {
                 "label": "Subgroup Number",
-                "value": "subgroup_number3",
+                "value": "SUB_GROUP_NUMBER",
                 "type": "update"
             }, 
             {

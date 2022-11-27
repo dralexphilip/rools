@@ -7926,7 +7926,7 @@ and policy_employer_name in ('SANFORD HEALTH PLN COMM', 'SANFORD HEALTH PLN HIX'
 
 -- 'Rule 369 - Clone Catamaran SANFORD HEALTH PLN COMM, SANFORD HEALTH PLN HIX, SANFORD HEALTH PLN NDPERS, SANFORD HEALTH PLN TPA'
 --- ********** left off here 
-row_cnt = 0;
+--row_cnt = 0; --commenting out for rule migration
 
 
 update clone_lead

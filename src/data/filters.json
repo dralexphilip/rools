@@ -4,7 +4,7 @@
         "options": [
             {
                 "label": "Carrier Name",
-                "value": "carrier_name",
+                "value": "CARRIER_NAME",
                 "type": "select",
                 "options": [
                     {
@@ -409,29 +409,34 @@
             },
             {
                 "label": "Group Name",
-                "value": "group_name1",
+                "value": "GROUP_NAME",
                 "type": "text"
             },
             {
                 "label": "Group Number",
-                "value": "group_number1",
+                "value": "GROUP_NUMBER",
                 "type": "text"
             },
             {
                 "label": "Sub-group Number",
-                "value": "subgroup_number1",
+                "value": "SUB_GROUP_NUMBER",
                 "type": "text"
             },
             {
                 "label": "Medical Name",
-                "value": "medical_name1",
+                "value": "MEDICAL_NAME",
                 "type": "text"
             }, 
             {
               "label": "Pbm Person Code",
-              "value": "pbm_person_code",
+              "value": "PBM_PERSON_CODE",
               "type": "text"
             }, 
+            {
+                "label": "Pbm Person Code",
+                "value": "PBM_BIN",
+                "type": "text"
+            },
             {
                 "label": "Match Carrier Rule ID",
                 "value": "match_carrier_rule_id_extra",

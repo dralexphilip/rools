@@ -1,7 +1,7 @@
 const operators = [
     {
         label: "equal to",
-        value: "equal",
+        value: "equal to",
         types: ["date", "integer", "number", "radio", "select", "switch", "text"],
         symbol: "=",
     },
@@ -97,7 +97,7 @@ const operators = [
     },
     {
         label: "is null",
-        value: "null",
+        value: "is null",
         types: ["date", "integer", "number", "multiselect", "radio", "select", "switch", "text"],
         symbol: "is null",
     },

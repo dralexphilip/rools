@@ -101,7 +101,7 @@ const Set = (props) => {
                 <Operator field={field} id={id} operator={operator} testId={testId} />
             </Grid>
             <Grid item className={classes.valueGridItem}>
-                <Value field={field} id={id} operator={operator} testId={testId} value={value} vtype="field"/>
+                <Value field={field} id={id} operator={operator} testId={testId} value={Array.isArray(value)? value[0]: value} vtype="field"/>
             </Grid>
             
             {combi === "case" ? (
@@ -132,7 +132,7 @@ const Set = (props) => {
                         </ToggleButtonGroup>                    
             </Grid>
             <Grid item className={classes.valueGridItem}>
-                <Value field={field} id={id} operator={toperator} testId={testId} value={tvalue} vtype="case"/>
+                <Value field={field} id={id} operator={toperator} testId={testId} value={value[1]} vtype="case"/>
             </Grid>
             </>
             ): ""}

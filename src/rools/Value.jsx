@@ -153,7 +153,7 @@ const Value = React.memo(
                         options={filter.options}
                         renderInput={(params) => <TextField {...params} variant="outlined" size="small" />}
                         style={{ width: "100%" }}
-                        value={filter.options.find((op) => value === op.value)}
+                        value={filter.options.find((op) => value[0] === op.value)} //support the values as array
                         onChange={(event, selected) => {
                             const value = selected ? selected.value : null;
                             dispatch({ type: "set-value", id, value });

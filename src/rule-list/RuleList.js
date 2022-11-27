@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import './Rulelist.css';
@@ -30,6 +30,18 @@ export default function RuleList() {
         {
             field: 'description',
             headerName: 'Description',
+            flex: 0.30,
+            editable: true,
+        },
+        {
+            field: 'insertSql',
+            headerName: 'Insert SQL',
+            flex: 0.30,
+            editable: true,
+        },
+        {
+            field: 'updateSql',
+            headerName: 'Update SQL',
             flex: 0.30,
             editable: true,
         },
@@ -65,30 +77,35 @@ export default function RuleList() {
             field: 'publish',
             headerName: 'Publish',
             flex: 0.1,
-            sortable: false,
+            sortable: true,
             disableColumnMenu: true,
             showColumnRightBorder: false,
             disableClickEventBubbling: true,            
-            renderCell: (params) => {     
-                const onClick = () => {
-                    fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule/Create', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'authorization': `Bearer ` + config.token,
-                            'identity': config.identity
-                        },
-                        body: JSON.stringify(params.row)
-                        })
-                        .then(res => res.json())
-                        .then(
-                            (result) => {
-                                console.log(result)
-                                setSuccessAlert(true)
-                                setSelectedRule(params.row.ruleId)
+            renderCell: (params) => {   
+                    if(params.row.publish==='S'){ 
+                    const onClick = () => {
+                        fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule/Create', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'authorization': `Bearer ` + config.token,
+                                'identity': config.identity
+                            },
+                            body: JSON.stringify(params.row)
                             })
-                };
-                return <IconButton onClick={onClick}><Icon color="secondary">publish</Icon></IconButton>;
+                            .then(res => res.json())
+                            .then(
+                                (result) => {
+                                    console.log(result)
+                                    setSuccessAlert(true)
+                                    setSelectedRule(params.row.ruleId)
+                                })
+                    };
+                    return <IconButton onClick={onClick}><Icon color="secondary">publish</Icon></IconButton>;
+                }
+                else{
+                    return <IconButton disabled ><Icon color="default">publish</Icon></IconButton>;
+                }
             }
         },
     ];
@@ -112,7 +129,7 @@ export default function RuleList() {
             try {
                 const response = await fetch(url);
                 const json = await response.json();
-                console.log(json);
+                //console.log(json);
                 setRows(json.query);
             } catch (error) {
                 console.log("error", error);
@@ -141,6 +158,18 @@ export default function RuleList() {
                     checkboxSelection
                     disableSelectionOnClick
                     rowsPerPageOptions={[5, 10, 20]}
+                    components={{
+                        Toolbar: GridToolbar,
+                      }}
+                    initialState={{
+                    columns: {
+                        columnVisibilityModel: {
+                        // Hide columns status and traderName, the other columns will remain visible
+                        'insertSql': false,
+                        'updateSql': false,
+                        },
+                    },
+                    }}
                 />
                 <Snackbar 
                     open={successAlert} 
