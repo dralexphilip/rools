@@ -93,13 +93,12 @@ function sqlToJson() {
     }
     console.log(rools.length)
     select = rools.filter(el => Object.keys(el).length);
-    console.log(select.length)
-    select.map((e) => e.selectRule!=undefined?e.publish='S':e.publish='C')
-    console.log(select.length)
-    select.map(e => e.updateRule!=undefined?e.publish='S':e.publish='C')
-    console.log(select.length)
-    select.map(e => e.updateRule?.sets.length>0?e.publish='S':e.publish='C')
-    console.log(select.length)
+    select.map((e) => e.selectRule!=undefined?e.publish='S':e.publish='C');
+    select.map(e => e.updateRule!=undefined?e.publish='S':e.publish='C');
+    select.map(e => e.updateRule?.sets.length>0?e.publish='S':e.publish='C');
+    select.map((e) => e.ruleId==='RULE_54'?e.publish='C':null); //scenario not addressed
+    select.map((e) => e.ruleId==='RULE_69'?e.publish='C':null); //scenario not addressed
+    select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
     
     //select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
@@ -241,7 +240,7 @@ function processOperators(rules){
                 rules[y].value.push(tempValue.split("'").join(""))
             }
             
-            if(rules[y].field == 'CARRIER_NAME'||(!tempValue.includes("'")&&tempValue!="NULL"))          //hardcoded carrier name uppercase            
+            if(rules[y].field == 'TRADING_PARTNER_CARRIER_NAME'||(!tempValue.includes("'")&&tempValue!="NULL"))          //hardcoded carrier name uppercase            
                 rules[y].fieldDisplayType = 'single select'
             else
                 rules[y].fieldDisplayType = 'textbox'

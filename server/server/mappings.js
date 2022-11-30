@@ -143,6 +143,14 @@ const mappings = [
         oldField: "member_city",
         newField: "TRADING_PARTNER_MEMBER_CITY",
     },
+    {
+        oldField: "policy_ssn",
+        newField: "TRADING_PARTNER_MEDICAL_POLICY_NUMBER", //to be updated
+    },
+    {
+        oldField: "member_ssn",
+        newField: "TRADING_PARTNER_MEMBER_KEY",  //to be updated
+    },
 ];
 
 module.exports = { mappings };

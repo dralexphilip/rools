@@ -4,7 +4,7 @@
         "options": [
             {
                 "label": "Carrier Name",
-                "value": "CARRIER_NAME",
+                "value": "TRADING_PARTNER_CARRIER_NAME",
                 "type": "select",
                 "options": [
                     {
@@ -23,7 +23,7 @@
             },
             {
                 "label": "Group Name",
-                "value": "group_name",
+                "value": "GROUP_NAME",
                 "type": "multiselect",
                 "options": [
                     {
@@ -409,32 +409,32 @@
             },
             {
                 "label": "Group Name",
-                "value": "GROUP_NAME",
+                "value": "TRADING_PARTNER_GROUP_NAME",
                 "type": "text"
             },
             {
                 "label": "Group Number",
-                "value": "GROUP_NUMBER",
+                "value": "TRADING_PARTNER_GROUP_NUMBER",
                 "type": "text"
             },
             {
                 "label": "Sub-group Number",
-                "value": "SUB_GROUP_NUMBER",
+                "value": "TRADING_PARTNER_SUB_GROUP_NUMBER",
                 "type": "text"
             },
             {
                 "label": "Medical Name",
-                "value": "MEDICAL_NAME",
+                "value": "TRADING_PARTNER_MEDICAL_NAME",
                 "type": "text"
             }, 
             {
               "label": "Pbm Person Code",
-              "value": "PBM_PERSON_CODE",
+              "value": "TRADING_PARTNER_PBM_PERSON_CODE",
               "type": "text"
             }, 
             {
                 "label": "Pbm Person Code",
-                "value": "PBM_BIN",
+                "value": "TRADING_PARTNER_PBM_BIN",
                 "type": "text"
             },
             {
