@@ -1,95 +1,123 @@
 const mappings = [
     {
         oldField: "filename",
-        newField: "ORIGINAL_FILENAME",
+        newField: "ORIGINAL_TRADING_PARTNER_FILENAME",
     },
     {
         oldField: "source_type",
-        newField: "SOURCE_DATA_TYPE",
+        newField: "TRADING_PARTNER_SOURCE_TYPE",
     },    
     {
         oldField: "policy_id_alt",
-        newField: "POLICYHOLDER_ALTERNATE_ID",
+        newField: "TRADING_PARTNER_POLICYHOLDER_ALTERNATE_ID",
     },
     {
         oldField: "policy_id",
-        newField: "POLICYHOLDER_ID",
+        newField: "TRADING_PARTNER_POLICYHOLDER_ID",
     },
     {
         oldField: "policy_hic",
-        newField: "POLICYHOLDER_MEDICARE_ID",
+        newField: "TRADING_PARTNER_POLICYHOLDER_MEDICARE_ID",
     },
     {
         oldField: "policy_employer_name",
-        newField: "POLICYHOLDER_EMPLOYER_NAME",
+        newField: "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
     },
     {
         oldField: "policy_employer_addr1",
-        newField: "POLICYHOLDER_EMPLOYER_ADDRESS_1",
+        newField: "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_ADDRESS_1",
     },
     {
         oldField: "policy_employer_city",
-        newField: "POLICYHOLDER_EMPLOYER_CITY",
+        newField: "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_CITY",
     },
     {
         oldField: "policy_employer_state",
-        newField: "POLICYHOLDER_EMPLOYER_STATE",
+        newField: "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_STATE",
     },
     {
         oldField: "policy_employer_zip",
-        newField: "POLICYHOLDER_EMPLOYER_ZIP",
+        newField: "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_ZIP",
     },
     {
         oldField: "carrier_name",
-        newField: "CARRIER_NAME",
+        newField: "TRADING_PARTNER_CARRIER_NAME",
     },
     {
         oldField: "group_name",
-        newField: "GROUP_NAME",
+        newField: "TRADING_PARTNER_GROUP_NAME",
     },
     {
         oldField: "subgroup_number",
-        newField: "SUB_GROUP_NUMBER",
+        newField: "TRADING_PARTNER_SUB_GROUP_NUMBER",
     },
     {
         oldField: "group_number",
-        newField: "GROUP_NUMBER",
+        newField: "TRADING_PARTNER_GROUP_NUMBER",
     },
     {
         oldField: "group_desc",
-        newField: "GROUP_DESCRIPTION",
-    },    
+        newField: "TRADING_PARTNER_GROUP_DESCRIPTION",
+    },
+    {
+        oldField: "pbm_name",
+        newField: "TRADING_PARTNER_PBM_NAME",
+    },
+    {
+        oldField: "pbm_card_holder_id",
+        newField: "TRADING_PARTNER_PBM_CARD_HOLDER_ID",
+    }, 
     {
         oldField: "pbm_person_code",
-        newField: "PBM_PERSON_CODE",
+        newField: "TRADING_PARTNER_PERSON_CODE",
     },
     {
         oldField: "pbm_bin",
-        newField: "PBM_BIN",
+        newField: "TRADING_PARTNER_BIN",
     },
     {
         oldField: "pbm_pcn",
-        newField: "PBM_PCN",
+        newField: "TRADING_PARTNER_PCN",
+    },
+    {
+        oldField: "vision_name",
+        newField: "TRADING_PARTNER_VISION_NAME",
+    },
+    {
+        oldField: "vision_policy_number",
+        newField: "TRADING_PARTNER_VISION_POLICY_NUMBER",
+    },
+    {
+        oldField: "dental_name",
+        newField: "TRADING_PARTNER_DENTAL_NAME",
+    },
+    {
+        oldField: "dental_policy_number",
+        newField: "TRADING_PARTNER_DENTAL_POLICY_NUMBER",
     },
     {
         oldField: "medical_name",
-        newField: "MEDICAL_NAME",
+        newField: "TRADING_PARTNER_MEDICAL_NAME",
     },
     {
         oldField: "medical_product",
-        newField: "MEDICAL_PRODUCT",
+        newField: "TRADING_PARTNER_MEDICAL_PRODUCT",
+    },
+    {
+        oldField: "medical_policy_number",
+        newField: "TRADING_PARTNER_MEDICAL_POLICY_NUMBER",
     },
     {
         oldField: "member_id_alt",
-        newField: "MEMBER_ALTERNATE_ID",
+        newField: "TRADING_PARTNER_POLICYHOLDER_ALTERNATE_ID",
     },
     {
         oldField: "member_hic",
-        newField: "MEMBER_MEDICARE_ID",
+        newField: "TRADING_PARTNER_POLICYHOLDER_MEDICARE_ID",
     },
     {
         oldField: "member_id",
-        newField: "MEMBER_KEY",
+        newField: "TRADING_PARTNER_MEMBER_KEY",
     },
     {
         oldField: "Submitter",
@@ -97,11 +125,23 @@ const mappings = [
     },
     {
         oldField: "plan_type",
-        newField: "PLAN_TYPE",
+        newField: "TRADING_PARTNER_PLAN_TYPE",
     },
     {
         oldField: "lob",
-        newField: "LINE_OF_BUSINESS",
+        newField: "TRADING_PARTNER_LOB",
+    },
+    {
+        oldField: "division_code",
+        newField: "TRADING_PARTNER_DIVISION_CODE",
+    },
+    {
+        oldField: "member_state",
+        newField: "TRADING_PARTNER_MEMBER_STATE",
+    },
+    {
+        oldField: "member_city",
+        newField: "TRADING_PARTNER_MEMBER_CITY",
     },
 ];
 
