@@ -145,11 +145,11 @@ const mappings = [
     },
     {
         oldField: "policy_ssn",
-        newField: "TRADING_PARTNER_MEDICAL_POLICY_NUMBER", //to be updated
+        newField: "TRADING_PARTNER_POLICYHOLDER_SSN", //to be updated
     },
     {
         oldField: "member_ssn",
-        newField: "TRADING_PARTNER_MEMBER_KEY",  //to be updated
+        newField: "TRADING_PARTNER_MEMBER_SSN",  //to be updated
     },
 ];
 

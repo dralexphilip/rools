@@ -84,7 +84,7 @@ export default function RuleList() {
             renderCell: (params) => {   
                     if(params.row.publish==='S'){ 
                     const onClick = () => {
-                        fetch('https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule/Create', {
+                        fetch(config.url, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
