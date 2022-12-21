@@ -403,6 +403,7 @@ function processUpdateOperators(rules) {
                     "fieldDisplayType": ""
                 }
                 rules[y].field = temp[0].trim() 
+                
                 if((tempValue.includes("UPPPER")&&tempValue.includes("("))||(!tempValue.includes("'")&&tempValue!="NULL"))
                     rules[y].fieldDisplayType = 'single select'
                 else
@@ -442,6 +443,9 @@ function processUpdateOperators(rules) {
                 }
                 else {
                     let tempValue = temp[1].trim().split("'").join("")
+                    if(tempValue.includes("{")&&tempValue.includes("}")){ //remove braces for plan_type values
+                        tempValue = tempValue.split("{").join("").split("}").join("")
+                    }
                     if (tempValue == 'NULL') {
                         rules[y].operator = 'is null'
                         rules[y].value = null

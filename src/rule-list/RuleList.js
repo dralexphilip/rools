@@ -153,6 +153,23 @@ export default function RuleList() {
 
                 <DataGrid
                     rows={rows}
+                    sx={{
+                        '@media print': {
+                          '.MuiDataGrid-main': {
+                            width: 'fit-content',
+                            fontSize: '10px',
+                            height: 'fit-content',
+                            overflow: 'visible',
+                          },
+                          '.MuiDataGrid-cellContent':{
+                            width: 'fit-content',
+                            fontSize: '10px',
+                            height: 'fit-content',
+                            overflow: 'visible',
+                          },
+                          marginBottom: 100,
+                        },
+                      }}
                     columns={columns}
                     pageSize={10}
                     checkboxSelection
@@ -160,6 +177,11 @@ export default function RuleList() {
                     rowsPerPageOptions={[5, 10, 20]}
                     components={{
                         Toolbar: GridToolbar,
+                        GridToolbar: {
+                            printOptions:{
+                              pageStyle: '.MuiDataGrid-root .MuiDataGrid-main { color: rgba(0, 0, 0, 0.87); }',
+                            }
+                          },
                       }}
                     initialState={{
                     columns: {
