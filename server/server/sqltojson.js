@@ -220,6 +220,7 @@ function processOperators(rules){
         rules[y] = rules[y].toString().split(" LIKE ").join(" LIKKE ").split(" Like ").join(" LIKKE ").split(" like ").join(" LIKKE ").trim()
         rules[y] = rules[y].toString().split(" NOT IN ").join(" NOTINN ").split(" Not in ").join(" NOTINN ").split(" not In ").join(" NOTINN ").split(" Not In ").join(" NOTINN ").split(" not in ").join(" NOTINN ").trim()
         rules[y] = rules[y].toString().split(" IN ").join(" INN ").split(" In ").join(" INN ").split(" in ").join(" INN ").split(")IN").join(")INN").split("IN(").join("INN(").split(")in").join(")INN ").split("in(").join("INN(").trim()
+        rules[y] = rules[y].toString().split("::TEXT").join("::TEXT").split("::Text").join("::TEXT").split("::text").join("::TEXT").trim()
 
         if(rules[y].toString().includes('=', 0)){
             let temp = rules[y].split('=')
@@ -231,6 +232,11 @@ function processOperators(rules){
             else
                 rules[y].field = temp[0].trim()    
             let tempValue = temp[1].trim()
+
+            if(tempValue.includes("{")&&tempValue.includes("}")){ //remove braces for plan_type values
+                tempValue = tempValue.split("{").join("").split("}").join("")
+            }
+            
             if((!tempValue.includes("'")&&tempValue!="NULL")){                
                 rules[y].operator = 'equal to field'
                 rules[y].value.push(tempValue)
@@ -254,7 +260,7 @@ function processOperators(rules){
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'    
             else
-                rules[y].field = temp[0].trim()  
+                rules[y].field = temp[0].split("::TEXT").join("").trim()  
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].operator = 'not contains'
             else if(begins_with=='%'&&ends_with!='%')
@@ -273,7 +279,7 @@ function processOperators(rules){
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'    
             else
-                rules[y].field = temp[0].trim() 
+                rules[y].field = temp[0].split("::TEXT").join("").trim()  
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].operator = 'contains'
             else if(begins_with=='%'&&ends_with!='%')
@@ -293,7 +299,7 @@ function processOperators(rules){
             if(temp[0].trim().includes('COALESCE',0))
                 field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'
             else
-                field = temp[0].trim()
+                field = temp[0].split("::TEXT").join("").trim() 
             let op = 'not_equal'
             values.forEach(v => {
                 let rule = {"value": []}
@@ -319,7 +325,7 @@ function processOperators(rules){
             if(temp[0].trim().includes('COALESCE',0))
                 field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'
             else
-                field = temp[0].trim()
+                field = temp[0].split("::TEXT").join("").trim() 
             let op = 'equal to'
             values.forEach(v => {
                 let rule = {"value": []}
