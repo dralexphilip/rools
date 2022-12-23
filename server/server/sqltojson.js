@@ -104,6 +104,7 @@ function sqlToJson() {
     select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
     //select.map((e) => e.ruleId==='RULE_656'?e = complex_656:null); //scenario not addressed
     select = select.filter((r)=>r.ruleId!=='RULE_656')
+    select.push(complex_656)
     select = select.filter((r)=>r.ruleId!=='RULE_545')
     select.push(simple_545)
     //select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
