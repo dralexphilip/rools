@@ -1,0 +1,2589 @@
+{
+	"tradePartner": "TPL_Ameriben",
+	"id": "656",
+	"ruleId": "RULE_656",
+	"description": "RULE_656",
+	"status": "Draft",
+	"version": "1.0",
+	"insertSql": "insert into clone_lead select *, 'RULE_656' from cob_lead_staging where carrier_name = 'CIGNA' and  Submitter = 'TPL_CIGNA_EMV' and  subgroup_number = 'OAP1' and  group_name in ( '3 TWENTY-THREE PERSONNEL,',  'ABRA AUTO BODY & GLASS',  'ACCOR MANAGEMENT US INC.',  'ADVANSIX INC.',  'AECOM',  'ALDI INC.',  'ALEXION PHARMACEUTICALS,',  'ALLIED BUILDING PRODUCTS',  'ALLSCRIPTS HEALTHCARE SOL',  'ALTRIA CLIENT SERVICES LL',  'AMDOCS, INC.',  'AMERICAN CENTURY SERVICES',  'AMERICAN MULTI-CINEMA, IN',  'AMERICAN RENAL MANAGEMENT',  'ARCADIS U.S., INC.',  'ARCOSA, INC.',  'ARIZONA PIPE TRADE HEALTH',  'ARLINGTON COUNTY SCHOOL B',  'ARS ACQUISITION HOLDINGS,',  'ASML US, LLC',  'ASSOCIATED WHOLESALE GROC',  'AUDATEX HOLDINGS, INC.',  'AXA EQUITABLE FINANCIAL S',  'BALL CORPORATION',  'BALTIMORE COUNTY PUBLIC S',  'BARRY-WEHMILLER COMPANIES',  'BEACON HEALTH OPTIONS',  'BEACON SALES ACQUISITION,',  'BIG Y FOODS, INC.',  'BMW OF NORTH AMERICA, LLC',  'BORAL INDUSTRIES INC.',  'BORGWARNER INC.',  'BREVARD COUNTY BOCC, FL',  'C.H. GUENTHER & SON, LLC',  'CAE USA',  'CANCER TREATMENT CENTERS',  'CARDINAL LOGISTICS MANAGE',  'CARECENTRIX, INC.',  'CAREMOUNT MEDICAL, P.C.',  'CATHOLIC DIOCESE OF ARLIN',  'CELGENE CORPORATION',  'CGI TECHNOLOGIES AND SOLU',  'CHOICE HOTELS INTERNATION',  'CIGNA COMPANIES',  'CINCINNATI FINANCIAL CORP',  'CIOX HEALTH, LLC',  'CITRIX SYSTEMS, INC.',  'CITY OF CLEARWATER',  'CITY OF HOLLYWOOD, FL',  'CITY OF HOUSTON',  'CITY OF INDEPENDENCE, MIS',  'CITY OF MCKINNEY',  'CITY OF OLATHE, KANSAS',  'CITY OF RICHMOND',  'CITY OF STAMFORD',  'CITY OF TUCSON',  'CLP HEALTHCARE SERVICES,',  'COLORADO SPRINGS UTILITIE',  'COMPUTER SCIENCES CORPORA',  'COVENANT TRANSPORT, INC.',  'CROSS COUNTRY HEALTHCARE,',  'D.R. HORTON, INC.',  'DAL GLOBAL SERVICES, LLC',  'DARLING INGREDIENTS INC.',  'DAVITA KIDNEY CARE',  'DOCUMENT TECHNOLOGIES LLC',  'DPR CONSTRUCTION',  'DSV AIR & SEA INC.',  'DYNCORP INTERNATIONAL, LL',  'ECHOSTAR CORPORATION',  'ELECTRONIC ARTS INC.',  'EMPLOYBRIDGE HOLDING COMP',  'ENTEGRIS, INC.',  'EPAM SYSTEMS, INC.',  'EQUIFAX INC.',  'ESTES EXPRESS LINES',  'EVERGY, INC.',  'EVERGY, INC./WESTAR ENERG',  'FAIRFAX COUNTY GOVERNMENT',  'FIREEYE, INC.',  'FIRSTCASH, INC.',  'FLOYD HEALTHCARE MANAGEME',  'FORMOSA PLASTICS CORPORAT',  'FORWARD AIR CORPORATION,',  'FOSSIL GROUP, INC.',  'FOUR SEASONS DBA VEBA',  'FUJIFILM HOLDINGS AMERICA',  'GARTNER, INC.',  'GENERAL DYNAMICS- BIW',  'GENERAL MOTORS FINANCIAL',  'GENWORTH NORTH AMERICA CO',  'GREAT HEARTS ACADEMIES',  'GROUP 1 AUTOMOTIVE',  'H&M HENNES & MAURITZ L.P.',  'HALLMARK CARDS INCORPORAT',  'HAMILTON COUNTY GOVERNMEN',  'HAMPTON CITY SCHOOLS',  'HANESBRANDS INC.',  'HARRIS COUNTY AND HARRIS',  'HARRIS TEETER, LLC',  'HARSCO CORPORATION',  'HELENA AGRI-ENTERPRISES,',  'HENSEL PHELPS CONSTRUCTIO',  'HERAEUS INCORPORATED',  'HILLSBOROUGH COUNTY BOARD',  'HILTON DOMESTIC OPERATING',  'HONEYWELL INTERNATIONAL I',  'HOUGHTON MIFFLIN HARCOURT',  'HUNTING ENERGY SERVICES,',  'IDEMIA IDENTITY & SECURIT',  'INTEPLAST GROUP CORPORATI',  'INTERACTIVE COMMUNICATION',  'INTERIOR LOGIC GROUP, INC',  'JETRO HOLDINGS, LLC',  'JTEKT NORTH AMERICA CORPO',  'JUNIPER NETWORKS, INC.',  'K12 SERVICES',  'KENCO',  'KLOECKNER METALS CORPORAT',  'KONICA MINOLTA BUSINESS S',  'KUEHNE || NAGEL INC.',  'LANE INDUSTRIES INC.',  'LARSEN & TOUBRO INFOTECH',  'LEE COUNTY SHERIFF''S OFFI',  'LEGRAND NORTH AMERICA',  'LINCOLN PROPERTY COMPANY',  'LINCOLN PROPERTY E.C.W.,',  'M. A. MORTENSON COMPANY',  'MAGIC LEAP INC. AND SUBSI',  'MARTA',  'MCCARTHY HOLDINGS, INC.',  'MCGUIREWOODS LLP',  'MDC HOLDINGS, INC.',  'MECKLENBURG COUNTY',  'MESA UNIFIED SCHOOL DISTR',  'METROPOLITAN GOVERNMENT O',  'METROPOLITAN NASHVILLE PU',  'MIAMI-DADE COUNTY PUBLIC',  'MIDWEST PUBLIC RISK OF MI',  'MINDTREE LIMITED',  'MISSOURI EDUCATORS UNIFIE',  'MORGAN AND MORGAN, P.A.',  'MOVEMENT MORTGAGE, LLC',  'MPHASIS CORPORATION',  'NATIONAL INSTRUMENTS CORP',  'NETFLIX, INC.',  'NEW LIFECARE MANAGEMENT S',  'NTHRIVE, INC.',  'OPPENHEIMER & CO. INC.',  'ORANGE COUNTY BOCC',  'ORANGE COUNTY SHERIFF''S O',  'O''REILLY AUTOMOTIVE, INC.',  'PACIFIC ARCHITECTS AND EN',  'PARTY CITY HOLDINGS, INC.',  'PCC STRUCTURALS, INC.',  'PEGASYSTEMS INC.',  'PEOPLE''S UNITED BANK, N.A',  'PINNACLE PROPERTY MANAGEM',  'PIPE INDUSTRY HEALTH & WE',  'POINT72, L.P.',  'PREMIER, INC',  'PRESIDIO LLC',  'PRIVATE NATIONAL MORTGAGE',  'PRO UNLIMITED GLOBAL SOLU',  'PTC INC.',  'PURE STORAGE, INC',  'PYRAMID HOTEL GROUP',  'RACETRAC PETROLEUM, INC.',  'RANGER ENERGY SERVICES, L',  'RC WILLEY HOME FURNISHING',  'REGAL CINEMAS',  'RESIDEO TECHNOLOGIES, INC',  'RGA REINSURANCE COMPANY',  'RICHMOND PUBLIC SCHOOLS',  'RUTHERFORD COUNTY EMPLOYE',  'S&B ENGINEERS AND CONSTRU',  'SAINT-GOBAIN CORPORATION',  'SASOL (USA) CORPORATION',  'SCHINDLER ELEVATOR CORPOR',  'SCHLUMBERGER',  'SCHOTTENSTEIN STORES CORP',  'SCL HEALTH',  'SELF-INSURANCE POOL OF GR',  'SENTARA HEALTHCARE MEDICA',  'SGT, INC.',  'SHELBY COUNTY SCHOOLS',  'SIERRA NEVADA CORPORATION',  'SIMON PROPERTY GROUP',  'SKY CHEFS, INC.',  'SLALOM LLC',  'SMITH & NEPHEW, INC.',  'SS&C TECHNOLOGIES, INC.',  'ST. LOUIS COMMUNITY COLLE',  'STANLEY BLACK & DECKER, I',  'STAR GROUP, L.P.',  'STARBUCKS CORPORATION',  'STV GROUP, INC.',  'SUMITOMO MITSUI BANKING C',  'SUNSTATE EQUIPMENT COMPAN',  'TAYLOR MORRISON, INC.',  'TEXAS ROADHOUSE MANAGEMEN',  'THE CORPS NETWORK',  'THE COUNTY SCHOOL BOARD O',  'THE FRESH MARKET, INC.',  'THE MIDDLEBY CORPORATION',  'THE QUIKRETE COMPANIES, I',  'THE REYNOLDS AND REYNOLDS',  'THE SCHOOL BOARD OF BREVA',  'THE SUNDT COMPANIES, INC.',  'THE WESTERN UNION COMPANY',  'TOKYO ELECTRON U.S. HOLDI',  'TOWNEBANK',  'TRINITY INDUSTRIES, INC.',  'TTM TECHNOLOGIES, INC.',  'TWITTER, INC.',  'ULINE, INC',  'UMB FINANCIAL CORPORATION',  'UNIVERSITY OF MAINE SYSTE',  'UNIVERSITY OF RICHMOND',  'VIRGINIA PREMIER HEALTH P',  'VIRTUSA CORPORATION',  'VISA INC.',  'VISION SERVICE PLAN',  'VOLUSIA COUNTY GOVERNMENT',  'WASHINGTON COUNTY PUBLIC',  'WASTE MANAGEMENT HOLDINGS',  'WATTS WATER TECHNOLOGIES,',  'WEBSTER BANK, N.A.',  'WESTERN GOVERNORS UNIVERS',  'WILLIAMSON COUNTY GOVERNM',  'WORKDAY, INC.',  'WYNDHAM DESTINATIONS',  'ZAYO GROUP, LLC',  'ZIONS BANCORPORATION',  'ZOVIO'  ) and  subgroup_number = 'OAPIN' and  group_name in ('AUSTIN INDUSTRIES, INC.', 'BALTIMORE COUNTY PUBLIC S', 'BALTIMORE COUNTY, MARYLAN', 'CHARTER SCHOOLS USA, INC', 'CHENEY BROTHERS, INC.', 'CITRIX SYSTEMS, INC.', 'CITY OF HOUSTON', 'CITY OF SCOTTSDALE', 'EXXONMOBIL', 'FREDERICK COUNTY GOVERNME', 'GENERAL DYNAMICS- BIW', 'HUNTER DOUGLAS INC.', 'IBEW LOCAL 613', 'LANDRY''S, LLC', 'MILLER MC, INC., DBA, LAR', 'O''REILLY AUTOMOTIVE, INC.', 'SCA EMPLOYEES OF MAXIMUS', 'SHELBY COUNTY GOVERNMENT', 'SHELBY COUNTY SCHOOLS', 'WASTE MANAGEMENT HOLDINGS', 'WYNDHAM DESTINATIONS') and  subgroup_number = 'OAP1R' and  group_name in ('CIGNA COMPANIES', 'DAVITA KIDNEY CARE', 'HILTON DOMESTIC OPERATING', 'MIAMI-DADE COUNTY PUBLIC', 'STARBUCKS CORPORATION') and  subgroup_number = 'EPP1' and  group_name in ('CHILDREN''S HEALTHCARE OF', 'CITY OF HOUSTON', 'CITY OF TUCSON', 'HOAG MEMORIAL HOSPITAL PR', 'MARICOPA COUNTY', 'PALM BEACH COUNTY SHERIFF') and  subgroup_number = 'PPO1' and  group_name in ('EMBASSY OF THE STATE OF K', 'NFL PLAYER INSURANCE PLAN', 'PLUMpbm_bin G & PIPEFITTING IN', 'THE UNIVERSITY OF OKLAHOM') and  subgroup_number = 'OAP1NR' and  group_name in ('SCHOOL DISTRICT OF OSCEOL', 'UNIVERSAL ORLANDO', 'WILLIAMSON COUNTY GOVERNM') and  subgroup_number = 'HMO1' and  group_name in ('COUNTY OF ORANGE', 'RADY CHILDREN''S HOSPITAL-') and  subgroup_number = 'BASEMM' and  group_name in ('BALTIMORE COUNTY PUBLIC S', 'BALTIMORE COUNTY, MARYLAN') and  subgroup_number = 'DPP1' and  group_name in ('PALM BEACH COUNTY SHERIFF', 'VISA INC.') and  subgroup_number = 'DPP4' and group_name in ('CITY OF MIAMI', 'IAFF LOCAL 587 HEALTH INS') and  subgroup_number = 'EPP4' and  group_name in ('HAMILTON COUNTY DEPARTMEN', 'ROBSON COMMUNITIES, INC.') and  subgroup_number = 'CHA4' and  group_name in ('CITY OF SOUTHAVEN, MS', 'UT GRADUATE MEDICAL EDUCA') and  subgroup_number = 'HMO4'",
+	"selectRule": {
+		"combinator": "and",
+		"rules": [
+			{
+				"value": [
+					"CIGNA"
+				],
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"fieldDisplayType": "single select"
+			},
+			{
+				"value": [
+					"TPL_CIGNA_EMV"
+				],
+				"field": "TRADING_PARTNER_IDENTIFICATION",
+				"operator": "equal to",
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"combinator": "or",
+				"rules": [
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"OAP1"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"3 TWENTY-THREE PERSONNEL,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ABRA AUTO BODY & GLASS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ACCOR MANAGEMENT US INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ADVANSIX INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"AECOM"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ALDI INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ALEXION PHARMACEUTICALS,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ALLIED BUILDING PRODUCTS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ALLSCRIPTS HEALTHCARE SOL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ALTRIA CLIENT SERVICES LL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"AMDOCS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"AMERICAN CENTURY SERVICES"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"AMERICAN MULTI-CINEMA, IN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"AMERICAN RENAL MANAGEMENT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ARCADIS U.S., INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ARCOSA, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ARIZONA PIPE TRADE HEALTH"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ARLINGTON COUNTY SCHOOL B"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ARS ACQUISITION HOLDINGS,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ASML US, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ASSOCIATED WHOLESALE GROC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"AUDATEX HOLDINGS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"AXA EQUITABLE FINANCIAL S"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BALL CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BALTIMORE COUNTY PUBLIC S"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BARRY-WEHMILLER COMPANIES"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BEACON HEALTH OPTIONS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BEACON SALES ACQUISITION,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BIG Y FOODS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BMW OF NORTH AMERICA, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BORAL INDUSTRIES INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BORGWARNER INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BREVARD COUNTY BOCC, FL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"C.H. GUENTHER & SON, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CAE USA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CANCER TREATMENT CENTERS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CARDINAL LOGISTICS MANAGE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CARECENTRIX, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CAREMOUNT MEDICAL, P.C."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CATHOLIC DIOCESE OF ARLIN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CELGENE CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CGI TECHNOLOGIES AND SOLU"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CHOICE HOTELS INTERNATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CIGNA COMPANIES"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CINCINNATI FINANCIAL CORP"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CIOX HEALTH, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITRIX SYSTEMS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF CLEARWATER"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF HOLLYWOOD, FL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF HOUSTON"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF INDEPENDENCE, MIS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF MCKINNEY"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF OLATHE, KANSAS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF RICHMOND"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF STAMFORD"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF TUCSON"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CLP HEALTHCARE SERVICES,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"COLORADO SPRINGS UTILITIE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"COMPUTER SCIENCES CORPORA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"COVENANT TRANSPORT, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CROSS COUNTRY HEALTHCARE,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"D.R. HORTON, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DAL GLOBAL SERVICES, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DARLING INGREDIENTS INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DAVITA KIDNEY CARE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DOCUMENT TECHNOLOGIES LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DPR CONSTRUCTION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DSV AIR & SEA INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DYNCORP INTERNATIONAL, LL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ECHOSTAR CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ELECTRONIC ARTS INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"EMPLOYBRIDGE HOLDING COMP"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ENTEGRIS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"EPAM SYSTEMS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"EQUIFAX INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ESTES EXPRESS LINES"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"EVERGY, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"EVERGY, INC./WESTAR ENERG"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FAIRFAX COUNTY GOVERNMENT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FIREEYE, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FIRSTCASH, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FLOYD HEALTHCARE MANAGEME"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FORMOSA PLASTICS CORPORAT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FORWARD AIR CORPORATION,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FOSSIL GROUP, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FOUR SEASONS DBA VEBA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FUJIFILM HOLDINGS AMERICA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"GARTNER, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"GENERAL DYNAMICS- BIW"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"GENERAL MOTORS FINANCIAL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"GENWORTH NORTH AMERICA CO"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"GREAT HEARTS ACADEMIES"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"GROUP 1 AUTOMOTIVE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"H&M HENNES & MAURITZ L.P."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HALLMARK CARDS INCORPORAT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HAMILTON COUNTY GOVERNMEN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HAMPTON CITY SCHOOLS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HANESBRANDS INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HARRIS COUNTY AND HARRIS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HARRIS TEETER, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HARSCO CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HELENA AGRI-ENTERPRISES,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HENSEL PHELPS CONSTRUCTIO"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HERAEUS INCORPORATED"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HILLSBOROUGH COUNTY BOARD"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HILTON DOMESTIC OPERATING"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HONEYWELL INTERNATIONAL I"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HOUGHTON MIFFLIN HARCOURT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HUNTING ENERGY SERVICES,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"IDEMIA IDENTITY & SECURIT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"INTEPLAST GROUP CORPORATI"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"INTERACTIVE COMMUNICATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"INTERIOR LOGIC GROUP, INC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"JETRO HOLDINGS, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"JTEKT NORTH AMERICA CORPO"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"JUNIPER NETWORKS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"K12 SERVICES"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"KENCO"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"KLOECKNER METALS CORPORAT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"KONICA MINOLTA BUSINESS S"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"KUEHNE || NAGEL INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"LANE INDUSTRIES INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"LARSEN & TOUBRO INFOTECH"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"LEE COUNTY SHERIFF''S OFFI"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"LEGRAND NORTH AMERICA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"LINCOLN PROPERTY COMPANY"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"LINCOLN PROPERTY E.C.W.,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"M. A. MORTENSON COMPANY"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MAGIC LEAP INC. AND SUBSI"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MARTA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MCCARTHY HOLDINGS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MCGUIREWOODS LLP"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MDC HOLDINGS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MECKLENBURG COUNTY"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MESA UNIFIED SCHOOL DISTR"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"METROPOLITAN GOVERNMENT O"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"METROPOLITAN NASHVILLE PU"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MIAMI-DADE COUNTY PUBLIC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MIDWEST PUBLIC RISK OF MI"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MINDTREE LIMITED"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MISSOURI EDUCATORS UNIFIE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MORGAN AND MORGAN, P.A."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MOVEMENT MORTGAGE, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MPHASIS CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"NATIONAL INSTRUMENTS CORP"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"NETFLIX, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"NEW LIFECARE MANAGEMENT S"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"NTHRIVE, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"OPPENHEIMER & CO. INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ORANGE COUNTY BOCC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ORANGE COUNTY SHERIFF''S O"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"O''REILLY AUTOMOTIVE, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PACIFIC ARCHITECTS AND EN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PARTY CITY HOLDINGS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PCC STRUCTURALS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PEGASYSTEMS INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PEOPLE''S UNITED BANK, N.A"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PINNACLE PROPERTY MANAGEM"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PIPE INDUSTRY HEALTH & WE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"POINT72, L.P."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PREMIER, INC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PRESIDIO LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PRIVATE NATIONAL MORTGAGE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PRO UNLIMITED GLOBAL SOLU"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PTC INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PURE STORAGE, INC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PYRAMID HOTEL GROUP"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RACETRAC PETROLEUM, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RANGER ENERGY SERVICES, L"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RC WILLEY HOME FURNISHING"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"REGAL CINEMAS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RESIDEO TECHNOLOGIES, INC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RGA REINSURANCE COMPANY"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RICHMOND PUBLIC SCHOOLS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RUTHERFORD COUNTY EMPLOYE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"S&B ENGINEERS AND CONSTRU"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SAINT-GOBAIN CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SASOL (USA) CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SCHINDLER ELEVATOR CORPOR"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SCHLUMBERGER"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SCHOTTENSTEIN STORES CORP"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SCL HEALTH"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SELF-INSURANCE POOL OF GR"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SENTARA HEALTHCARE MEDICA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SGT, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SHELBY COUNTY SCHOOLS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SIERRA NEVADA CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SIMON PROPERTY GROUP"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SKY CHEFS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SLALOM LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SMITH & NEPHEW, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SS&C TECHNOLOGIES, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ST. LOUIS COMMUNITY COLLE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"STANLEY BLACK & DECKER, I"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"STAR GROUP, L.P."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"STARBUCKS CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"STV GROUP, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SUMITOMO MITSUI BANKING C"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SUNSTATE EQUIPMENT COMPAN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"TAYLOR MORRISON, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"TEXAS ROADHOUSE MANAGEMEN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE CORPS NETWORK"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE COUNTY SCHOOL BOARD O"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE FRESH MARKET, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE MIDDLEBY CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE QUIKRETE COMPANIES, I"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE REYNOLDS AND REYNOLDS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE SCHOOL BOARD OF BREVA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE SUNDT COMPANIES, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE WESTERN UNION COMPANY"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"TOKYO ELECTRON U.S. HOLDI"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"TOWNEBANK"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"TRINITY INDUSTRIES, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"TTM TECHNOLOGIES, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"TWITTER, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ULINE, INC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"UMB FINANCIAL CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"UNIVERSITY OF MAINE SYSTE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"UNIVERSITY OF RICHMOND"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"VIRGINIA PREMIER HEALTH P"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"VIRTUSA CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"VISA INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"VISION SERVICE PLAN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"VOLUSIA COUNTY GOVERNMENT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WASHINGTON COUNTY PUBLIC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WASTE MANAGEMENT HOLDINGS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WATTS WATER TECHNOLOGIES,"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WEBSTER BANK, N.A."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WESTERN GOVERNORS UNIVERS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WILLIAMSON COUNTY GOVERNM"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WORKDAY, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WYNDHAM DESTINATIONS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ZAYO GROUP, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ZIONS BANCORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ZOVIO"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"OAPIN"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"AUSTIN INDUSTRIES, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BALTIMORE COUNTY PUBLIC S"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BALTIMORE COUNTY, MARYLAN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CHARTER SCHOOLS USA, INC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CHENEY BROTHERS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITRIX SYSTEMS, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF HOUSTON"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF SCOTTSDALE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"EXXONMOBIL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"FREDERICK COUNTY GOVERNME"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"GENERAL DYNAMICS- BIW"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HUNTER DOUGLAS INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"IBEW LOCAL 613"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"LANDRY''S, LLC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MILLER MC, INC., DBA, LAR"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"O''REILLY AUTOMOTIVE, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SCA EMPLOYEES OF MAXIMUS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SHELBY COUNTY GOVERNMENT"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"SHELBY COUNTY SCHOOLS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WASTE MANAGEMENT HOLDINGS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WYNDHAM DESTINATIONS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"OAP1R"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"CIGNA COMPANIES"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"DAVITA KIDNEY CARE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HILTON DOMESTIC OPERATING"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MIAMI-DADE COUNTY PUBLIC"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"STARBUCKS CORPORATION"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"EPP1"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"CHILDREN''S HEALTHCARE OF"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF HOUSTON"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CITY OF TUCSON"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"HOAG MEMORIAL HOSPITAL PR"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"MARICOPA COUNTY"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PALM BEACH COUNTY SHERIFF"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"PPO1"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"EMBASSY OF THE STATE OF K"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"NFL PLAYER INSURANCE PLAN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"PLUMTRADING_PARTNER_BIN G & PIPEFITTING IN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"THE UNIVERSITY OF OKLAHOM"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"OAP1NR"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"SCHOOL DISTRICT OF OSCEOL"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"UNIVERSAL ORLANDO"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"WILLIAMSON COUNTY GOVERNM"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"HMO1"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"COUNTY OF ORANGE"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RADY CHILDREN''S HOSPITAL-"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"BASEMM"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"BALTIMORE COUNTY PUBLIC S"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"BALTIMORE COUNTY, MARYLAN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"DPP1"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"PALM BEACH COUNTY SHERIFF"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"VISA INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"DPP4"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"CITY OF MIAMI"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"IAFF LOCAL 587 HEALTH INS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"EPP4"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"HAMILTON COUNTY DEPARTMEN"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"ROBSON COMMUNITIES, INC."
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"CHA4"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"CITY OF SOUTHAVEN, MS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"UT GRADUATE MEDICAL EDUCA"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"value": [
+							"HMO4"
+						],
+						"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+						"operator": "equal to",
+						"fieldDisplayType": "textbox"
+					}
+				]
+			}
+		]
+	},
+	"depth": 1,
+	"updateSql": "update clone_lead set carrier_name = 'DST HEALTH SOLUTIONS (ARGUS)', pbm_bin  = '017010', pbm_pcn  = '05180', plan_type = '{PA}' where match_carrier_rule_id_extra = 'RULE_656'",
+	"updateRule": {
+		"combinator": "set",
+		"sets": [
+			{
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"value": [
+					"DST HEALTH SOLUTIONS (ARGUS)"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_BIN",
+				"operator": "equal to",
+				"value": [
+					"017010"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_PCN",
+				"operator": "equal to",
+				"value": [
+					"05180"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_PLAN_TYPE",
+				"operator": "equal to",
+				"value": [
+					"PA"
+				],
+				"fieldDisplayType": "textbox"
+			}
+		]
+	},
+	"updateDepth": 1,
+	"updateCondition": null,
+	"publish": "S"
+}

@@ -1,4 +1,5 @@
 const mappings = require('./mappings')
+const complex_656 = require('./698.json')
 
 function sqlToJson() {
     let select = []
@@ -22,6 +23,7 @@ function sqlToJson() {
                 }                   
             });
             let maxD = maxDepth(sqlContent);
+            
             if(maxD<2){
                 let index = allRools[y].toString().indexOf("'")
                 //let date = new Date()
@@ -99,7 +101,9 @@ function sqlToJson() {
     select.map((e) => e.ruleId==='RULE_54'?e.publish='C':null); //scenario not addressed
     select.map((e) => e.ruleId==='RULE_69'?e.publish='C':null); //scenario not addressed
     select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
-    
+    //select.map((e) => e.ruleId==='RULE_656'?e = complex_656:null); //scenario not addressed
+    select = select.filter((r)=>r.ruleId!=='RULE_656')
+    select.push(complex_656)
     //select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
 }
@@ -116,6 +120,7 @@ function processInsert(sql){
     
     for(var i = 0; i < exp.length; i++) {
         exp[i] = exp[i].trim()
+        
         if(exp[i].includes(' OROR ')){
             //console.log(exp[i])
             exp[i] = exp[i].substring(
@@ -139,6 +144,7 @@ function processInsert(sql){
 
     return rule
 }
+
 
 function processUpdate(sql){   
     let rule = {
@@ -222,6 +228,8 @@ function processOperators(rules){
         rules[y] = rules[y].toString().split(" IN ").join(" INN ").split(" In ").join(" INN ").split(" in ").join(" INN ").split(")IN").join(")INN").split("IN(").join("INN(").split(")in").join(")INN ").split("in(").join("INN(").trim()
         rules[y] = rules[y].toString().split("::TEXT").join("::TEXT").split("::Text").join("::TEXT").split("::text").join("::TEXT").trim()
 
+        
+
         if(rules[y].toString().includes('=', 0)){
             let temp = rules[y].split('=')
             
@@ -236,7 +244,7 @@ function processOperators(rules){
             if(tempValue.includes("{")&&tempValue.includes("}")){ //remove braces for plan_type values
                 tempValue = tempValue.split("{").join("").split("}").join("")
             }
-            
+
             if((!tempValue.includes("'")&&tempValue!="NULL")){                
                 rules[y].operator = 'equal to field'
                 rules[y].value.push(tempValue)
@@ -300,7 +308,7 @@ function processOperators(rules){
                 field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'
             else
                 field = temp[0].split("::TEXT").join("").trim() 
-            let op = 'not_equal'
+            let op = 'not equal to'
             values.forEach(v => {
                 let rule = {"value": []}
                 rule.field = field 
@@ -346,7 +354,7 @@ function processOperators(rules){
                 rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'    
             else
                 rules[y].field = temp[0].trim() 
-            rules[y].operator = 'not equal'
+            rules[y].operator = 'not equal to'
             rules[y].value.push(temp[1].trim().split("'").join(""))
             rules[y].fieldDisplayType = 'textbox'
         }

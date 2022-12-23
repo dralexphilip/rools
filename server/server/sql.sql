@@ -14427,11 +14427,12 @@ when plan_type::text like '%MD%' then '{MC}'
 else plan_type end
 where match_carrier_rule_id_extra = 'RULE_655'
 ;
--- 'Rule 656 - Clone TPL_CIGNA_EMV Huge list'
+-- 'Rule 656 - Clone TPL_CIGNA_EMV Huge list' added carrier_name
 
 insert into clone_lead
 select *, 'RULE_656' from cob_lead_staging
-where Submitter = 'TPL_CIGNA_EMV'
+where carrier_name = 'CIGNA' and 
+Submitter = 'TPL_CIGNA_EMV'
 and ((subgroup_number = 'OAP1'
 and group_name in ('3 TWENTY-THREE PERSONNEL,',
 'ABRA AUTO BODY & GLASS',
@@ -14741,11 +14742,13 @@ pbm_pcn  = '05180',
 plan_type = '{PA}'
 where match_carrier_rule_id_extra = 'RULE_656'
 ;
--- 'Rule 657 - Clone TPL_CIGNA_EP List'
+
+-- 'Rule 657 - Clone TPL_CIGNA_EP List' added carrier_name
 
 insert into clone_lead
 select *, 'RULE_657' from cob_lead_staging
-where Submitter = 'TPL_CIGNA_EP'
+where carrier_name = 'CIGNA' and 
+Submitter = 'TPL_CIGNA_EP'
 and group_name in ('AMITA HEALTH ALEXIAN BROT',
 'ASCENSION',
 'ASCENSION HEALTH INFORMAT',
