@@ -1,5 +1,6 @@
 const mappings = require('./mappings')
 const complex_656 = require('./698.json')
+const simple_545 = require('./545.json')
 
 function sqlToJson() {
     let select = []
@@ -103,7 +104,8 @@ function sqlToJson() {
     select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
     //select.map((e) => e.ruleId==='RULE_656'?e = complex_656:null); //scenario not addressed
     select = select.filter((r)=>r.ruleId!=='RULE_656')
-    select.push(complex_656)
+    select = select.filter((r)=>r.ruleId!=='RULE_545')
+    select.push(simple_545)
     //select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
     return select;
 }
@@ -111,6 +113,10 @@ function sqlToJson() {
 function processInsert(sql){   
     let rule = {
                     "combinator": "and",
+                    "rules": []
+                }
+    let rule1 = {
+                    "combinator": "or",
                     "rules": []
                 }
     sql = sql.split(" AND ").join(" && ").split(" And ").join(" && ").split(" and ").join(" && ").trim()
@@ -127,8 +133,13 @@ function processInsert(sql){
                 exp[i].indexOf("(") + 1, 
                 exp[i].lastIndexOf(")")
             );
-            exp[i] = exp[i].split(' OROR ');  
-            exp[i] = processOperators(exp[i])            
+            exp[i] = exp[i].split(' OROR '); 
+            //console.log(exp[i]) 
+            exp[i] = processOperators(exp[i])  
+            //console.log(exp[i].length)
+            //rule.rules.push(exp[i])
+            //ule1.rules = exp[i]
+            //rule.rules = [...rule.rules, rule1]           
         }
         else if(exp[i].includes(' && ')){
             exp[i] = exp[i].substring(
@@ -136,11 +147,15 @@ function processInsert(sql){
                 exp[i].lastIndexOf(")")
             );
             exp[i] = exp[i].split(' && ');  
-            exp[i] = processOperators(exp[i])            
+            exp[i] = processOperators(exp[i])  
+            //rule.rules = [...rule.rules, exp[i]]            
         }        
         rule.rules.push(exp[i])
-    }    
-    rule.rules = processOperators(rule.rules)   
+    }  
+    //console.log(rule.rules)   
+    rule.rules = processOperators(rule.rules)  
+
+    console.log(rule.rules.length) 
 
     return rule
 }
@@ -278,24 +293,26 @@ function processOperators(rules){
             rules[y].value.push(value.split("%").join(""))
             rules[y].fieldDisplayType = 'textbox'
         }
-        else if(rules[y].toString().includes(' LIKKE ', 0)){
+        else if(rules[y].toString().includes(' LIKKE ')){
             let temp = rules[y].split(' LIKKE ')
             let value = temp[1].trim().split("'").join("")
             let begins_with = value.substring(0,1)
             let ends_with = value.substring(value.length-1)
-            rules[y] = {"value": []}
+            let rool = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
-                rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'    
+                rool.field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE'    
             else
-                rules[y].field = temp[0].split("::TEXT").join("").trim()  
+                rool.field = temp[0].split("::TEXT").join("").trim()  
             if(begins_with=='%'&&ends_with=='%')
-                rules[y].operator = 'contains'
+                rool.operator = 'contains'
             else if(begins_with=='%'&&ends_with!='%')
-                rules[y].operator = 'ends with'
+                rool.operator = 'ends with'
             else if(begins_with!='%'&&ends_with=='%')
-                rules[y].operator = 'begins with'
-            rules[y].value.push(value.split("%").join(""))
-            rules[y].fieldDisplayType = 'textbox'
+                rool.operator = 'begins with'
+            rool.value.push(value.split("%").join(""))
+            
+            rool.fieldDisplayType = 'textbox'
+            rules[y] = rool
         }
         else if(rules[y].toString().includes(' NOTINN ', 0)){
             let temp = rules[y].toString().split("'").join("").split(' NOTINN ')

@@ -11847,7 +11847,7 @@ where match_carrier_rule_id_extra = 'RULE_544'
 insert into clone_lead
 select *, 'RULE_545' from cob_lead_staging
 where carrier_name = 'VANTAGE HEALTH PLAN'
-and (plan_type::text like '%MM%'or plan_type::text like '%HM%')
+and (plan_type::text like '%BBMM%' or plan_type::text like '%HM%')
 
 ;
 update clone_lead

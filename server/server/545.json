@@ -1,0 +1,110 @@
+{
+	"tradePartner": "TPL_Ameriben",
+	"id": "545",
+	"ruleId": "RULE_545",
+	"description": "RULE_545",
+	"status": "Draft",
+	"version": "1.0",
+	"insertSql": "insert into clone_lead select *, 'RULE_545' from cob_lead_staging where carrier_name = 'VANTAGE HEALTH PLAN' and (plan_type::text like '%MM%' or plan_type::text like '%HM%')",
+	"selectRule": {
+		"combinator": "and",
+		"rules": [
+			{
+				"value": [
+					"VANTAGE HEALTH PLAN"
+				],
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"fieldDisplayType": "single select"
+			},
+			{
+				"combinator": "or",
+				"rules": [
+					{
+						"value": [
+							"MM"
+						],
+						"field": "TRADING_PARTNER_PLAN_TYPE",
+						"operator": "contains",
+						"fieldDisplayType": "textbox"
+					},
+					{
+						"value": [
+							"HM"
+						],
+						"field": "TRADING_PARTNER_PLAN_TYPE",
+						"operator": "contains",
+						"fieldDisplayType": "textbox"
+					}
+				]
+			}
+		]
+	},
+	"depth": 1,
+	"updateSql": "update clone_lead set carrier_name = 'NAVITUS PHARMACY BENEFITS', group_number = case when policy_employer_name like '%OFF%' then 'VTGOX' when policy_employer_name like '%ON%' then 'VTGX' else 'VTGC' end,  pbm_bin  = '610602', pbm_pcn  = 'NVT', plan_type = '{PA}' where match_carrier_rule_id_extra = 'RULE_545'",
+	"updateRule": {
+		"combinator": "set",
+		"sets": [
+			{
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"value": [
+					"NAVITUS PHARMACY BENEFITS"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"combinator": "case",
+				"sets": [
+					{
+						"value": [
+							"OFF",
+							" VTGOX"
+						],
+						"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+						"operator": "equal to",
+						"fieldDisplayType": "textbox"
+					},
+					{
+						"value": [
+							"ON",
+							" VTGX"
+						],
+						"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+						"operator": "equal to",
+						"fieldDisplayType": "textbox"
+					}
+				],
+				"rootfield": "TRADING_PARTNER_GROUP_NUMBER",
+				"defaultValue": "VTGC"
+			},
+			{
+				"field": "TRADING_PARTNER_BIN",
+				"operator": "equal to",
+				"value": [
+					"610602"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_PCN",
+				"operator": "equal to",
+				"value": [
+					"NVT"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_PLAN_TYPE",
+				"operator": "equal to",
+				"value": [
+					"PA"
+				],
+				"fieldDisplayType": "textbox"
+			}
+		]
+	},
+	"updateDepth": 0,
+	"updateCondition": null,
+	"publish": "S"
+}
