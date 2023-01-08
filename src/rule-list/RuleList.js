@@ -162,7 +162,7 @@ export default function RuleList() {
 
     const publishClick = async () => {        
         for (let i = 0; i < rows.length; i++) {
-            await sleep(rows[i].id.substring(rows[i].id.length - 1) === '0'?5000:50);          
+            await sleep(rows[i].id.substring(rows[i].id.length - 1) === '0'?config.apiInterval:50);          
             if (rows[i].publish === 'S') {                  
                 fetch(config.url, {
                 method: 'POST',
