@@ -1,5 +1,5 @@
 {
-    "url":"https://tpldev.pi.emdeon.net/carriereditapi/api/CarrierEditRule/Create",
+    "url":"http://localhost:3001/publishall",
     "token": "",
     "identity": ""
 }

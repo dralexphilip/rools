@@ -1,11 +1,22 @@
 import React, { Component, useEffect, useState } from 'react';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import './Rulelist.css';
 import history from '../history';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import Button from '@mui/material/Button';
+import {
+    DataGrid,
+    GridToolbar,
+    GridToolbarContainer,
+    GridToolbarColumnsButton,
+    GridToolbarFilterButton,
+    GridToolbarExport,
+    GridToolbarDensitySelector,
+  } from '@mui/x-data-grid';
+
+    
 
 export default function RuleList() {
     const [config, setConfig] = useState({})
@@ -130,6 +141,7 @@ export default function RuleList() {
                 const response = await fetch(url);
                 const json = await response.json();
                 //console.log(json);
+                json.query.sort((a, b) => a.ruleId > b.ruleId ? 1 : -1);
                 setRows(json.query);
             } catch (error) {
                 console.log("error", error);
@@ -141,6 +153,49 @@ export default function RuleList() {
         
 
       }, []);
+
+    const sleep = async (milliseconds) => {
+        await new Promise(resolve => {
+            return setTimeout(resolve, milliseconds)
+        });
+    };
+
+    const publishClick = async () => {        
+        for (let i = 0; i < rows.length; i++) {
+            await sleep(rows[i].id.substring(rows[i].id.length - 1) === '0'?5000:50);          
+            if (rows[i].publish === 'S') {                  
+                fetch(config.url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ` + config.token,
+                    'identity': config.identity
+                },
+                body: JSON.stringify(rows[i])
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log(result)
+                        setSuccessAlert(true)
+                        setSelectedRule(rows[i].ruleId)
+                    })                                  
+            }
+        }
+
+    };
+
+function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton />
+        <GridToolbarFilterButton />
+        <GridToolbarDensitySelector />
+        <GridToolbarExport />
+        <Button variant="text" size="small" startIcon={<Icon >publish</Icon>} onClick={publishClick} >Publish All</Button>
+      </GridToolbarContainer>
+    );
+  }
 
    
     return (
@@ -176,7 +231,7 @@ export default function RuleList() {
                     disableSelectionOnClick
                     rowsPerPageOptions={[5, 10, 20]}
                     components={{
-                        Toolbar: GridToolbar,
+                        Toolbar: CustomToolbar,
                         GridToolbar: {
                             printOptions:{
                               pageStyle: '.MuiDataGrid-root .MuiDataGrid-main { color: rgba(0, 0, 0, 0.87); }',
@@ -206,7 +261,7 @@ export default function RuleList() {
                             }} 
                         severity="success" 
                         sx={{ width: '100%' }}>
-                    <b>{ selectedRule }</b> published successfully to TPL Match Next!
+                    <b>RULE_{ selectedRule }</b> published successfully to TPL Match Next!
                     </Alert>
                 </Snackbar>
             </div>

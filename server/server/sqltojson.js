@@ -1,6 +1,7 @@
 const mappings = require('./mappings')
 const complex_656 = require('./698.json')
 const simple_545 = require('./545.json')
+const trading_partner_map = require('./tradingpartnerdata')
 
 function sqlToJson() {
     let select = []
@@ -27,12 +28,6 @@ function sqlToJson() {
             
             if(maxD<2){
                 let index = allRools[y].toString().indexOf("'")
-                //let date = new Date()
-                //date = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()+"Z"
-                //rool.createdBy = "Sahadeo Bhogil"
-                //rool.createdDate = date
-                //rool.modifiedBy = "Sahadeo Bhogil"
-                //rool.modifiedDate = date
                 rool.tradePartner = "TPL_Ameriben"
                 let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
                 rool.id = roolId.split("RULE_").join("")
@@ -41,7 +36,6 @@ function sqlToJson() {
                 rool.status = 'Draft'
                 rool.version = '1.0'
                 rool.insertSql = allRools[y].toString().trim()
-                //console.log(sqlContent)
                 rool.selectRule = processInsert(sqlContent)
                 
                 rool.depth = maxD
@@ -69,9 +63,7 @@ function sqlToJson() {
             });
             let conditions = updateStatement[1].trim()
             let maxD = maxDepth(sqlContent);
-            //rools[y-1].updateSql = allRools[y].toString().trim()
             if(maxD<2&&rools[y-1].depth<2){
-                //rool.insertSql = allRools[y].toString().trim()
                 rools[y-1].updateSql = allRools[y].toString().trim()
                 rools[y-1].updateRule = processUpdate(sqlContent)
                 rools[y-1].updateDepth = maxD
@@ -81,86 +73,118 @@ function sqlToJson() {
                 }
                 else
                     rools[y-1].updateCondition = null
-                //rools[y-1].publish = true
             }
-            else {
-                
-                //rool.insertSql = allRools[y].toString().trim()
+            else {                
                 rools[y-1].updateSql = allRools[y].toString().trim()
                 rools[y-1].updateDepth = maxD
-                //rools[y-1].publish = false
-                //console.log('other rools', rools[y-1])
             }
         }
         rools.push(rool)
     }
-    console.log(rools.length)
+    //console.log(rools.length)
     select = rools.filter(el => Object.keys(el).length);
     select.map((e) => e.selectRule!=undefined?e.publish='S':e.publish='C');
     select.map(e => e.updateRule!=undefined?e.publish='S':e.publish='C');
     select.map(e => e.updateRule?.sets.length>0?e.publish='S':e.publish='C');
+
     select.map((e) => e.ruleId==='RULE_54'?e.publish='C':null); //scenario not addressed
     select.map((e) => e.ruleId==='RULE_69'?e.publish='C':null); //scenario not addressed
     select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
-    //select.map((e) => e.ruleId==='RULE_656'?e = complex_656:null); //scenario not addressed
+
     select = select.filter((r)=>r.ruleId!=='RULE_656')
     select.push(complex_656)
     select = select.filter((r)=>r.ruleId!=='RULE_545')
     select.push(simple_545)
-    //select = select.map(({depth,updateDepth,...rest}) => ({...rest}));
+
+    select.map((e) => e.ruleId = parseInt(e.id));
+
+    select.map((e) => {if(e.selectRule?.rules?.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner){
+                            e.tradePartner = e.selectRule.rules.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner;
+                            delete e.selectRule.rules.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner
+                            }
+                         });
+
     return select;
 }
 
 function processInsert(sql){   
-    let rule = {
-                    "combinator": "and",
-                    "rules": []
-                }
+    //if(sql.includes('PACIFICSOURCE%'))
+    //    console.log(sql)
+    
     let rule1 = {
                     "combinator": "or",
                     "rules": []
                 }
     sql = sql.split(" AND ").join(" && ").split(" And ").join(" && ").split(" and ").join(" && ").trim()
     sql = sql.split(" OR ").join(" OROR ").split(" or ").join(" OROR ").split(" Or ").join(" OROR ").trim()
-    //console.log(sql)
+    //if(sql.includes('PACIFICSOURCE%'))
+    //    console.log(sql)
     exp = sql.split(' && ');  
-    
+    //if(sql.includes('PACIFICSOURCE%'))
+    //    console.log(exp)
+    let rule = {
+        "combinator": "and",
+        "rules": []
+    }    
+    //rule.rules.push(roolLoop(exp))
+    //console.log(rule)
+    return roolLoop(exp)
+}
+
+function roolLoop(exp){
+    let rule = {
+        "combinator": "and",
+        "rules": []
+    }
+    let subrule = {
+        "combinator": "or",
+        "rules": []
+    }
     for(var i = 0; i < exp.length; i++) {
         exp[i] = exp[i].trim()
+        //if(exp[i].includes('PACIFICSOURCE%'))       
+        //    console.log(exp[i])
         
         if(exp[i].includes(' OROR ')){
             //console.log(exp[i])
+            
             exp[i] = exp[i].substring(
                 exp[i].indexOf("(") + 1, 
                 exp[i].lastIndexOf(")")
-            );
-            exp[i] = exp[i].split(' OROR '); 
-            //console.log(exp[i]) 
-            exp[i] = processOperators(exp[i])  
-            //console.log(exp[i].length)
-            //rule.rules.push(exp[i])
-            //ule1.rules = exp[i]
-            //rule.rules = [...rule.rules, rule1]           
-        }
-        else if(exp[i].includes(' && ')){
-            exp[i] = exp[i].substring(
-                exp[i].indexOf("(") + 1, 
-                exp[i].lastIndexOf(")")
-            );
-            exp[i] = exp[i].split(' && ');  
-            exp[i] = processOperators(exp[i])  
-            //rule.rules = [...rule.rules, exp[i]]            
-        }        
-        rule.rules.push(exp[i])
-    }  
-    //console.log(rule.rules)   
-    rule.rules = processOperators(rule.rules)  
-
-    console.log(rule.rules.length) 
-
-    return rule
+            );            
+            let splitOrRools = exp[i].split(' OROR ');  
+            let orProcessedRules = []
+            for(var y = 0; y < splitOrRools.length; y++) {
+                orProcessedRules = processOperators(splitOrRools[y])
+                subrule.rules.push(processOperators(orProcessedRules))
+            } 
+            processOperators(subrule.rules)
+            rule.rules.push(subrule)
+            //if(exp[i].includes('PACIFICSOURCE%'))         
+            //console.log(roolLoop(exp[i]))
+            //roolLoop(exp[i])
+            //exp[i] = subrule
+            //if(exp[i].includes('PACIFICSOURCE%'))         
+            //console.log(exp[i])
+            
+                     
+        }   
+        else{
+            //console.log(exp[i])
+            exp[i] = processOperators([exp[i]]);
+            //console.log(exp[i])
+            //exp[i] = processOperators(exp[i]);
+            //console.log(processOperators(exp[i]))
+            //console.log(processOperators(exp[i]))
+            rule.rules.push(exp[i][0]);
+            
+        }  
+        
+        
+        //console.log(processOperators(rule.rules))
+    } 
+    return rule;
 }
-
 
 function processUpdate(sql){   
     let rule = {
@@ -234,7 +258,13 @@ function getR(sql) {
 }
 
 function processOperators(rules){
+    
     for(var y = 0; y < rules.length; y++) {
+
+        //if(rules[y].includes('PACIFICSOURCE%')){
+        //    console.log(exp)
+        //}
+        
 
         rules[y] = rules[y].toString().split(" Coalesce ").join(" COALESCE ").split(" coalesce ").join(" COALESCE ").trim()
         rules[y] = rules[y].toString().split(" Null ").join(" NULL ").split(" null ").join(" NULL ").trim()
@@ -252,26 +282,33 @@ function processOperators(rules){
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0))
                 rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE' 
-
             else
                 rules[y].field = temp[0].trim()    
+            
             let tempValue = temp[1].trim()
 
             if(tempValue.includes("{")&&tempValue.includes("}")){ //remove braces for plan_type values
                 tempValue = tempValue.split("{").join("").split("}").join("")
             }
 
-            if((!tempValue.includes("'")&&tempValue!="NULL")){                
+            if((!tempValue.includes("'")&&tempValue!="NULL")){     
+                //console.log(tempValue)           
                 rules[y].operator = 'equal to field'
-                rules[y].value.push(tempValue)
+                rules[y].value = [tempValue]
+                //rules[y].value = tempValue
+                //rules[y].value.push(tempValue)
             }
             else{
                 rules[y].operator = 'equal to'
                 rules[y].value.push(tempValue.split("'").join(""))
             }
             
-            if(rules[y].field == 'TRADING_PARTNER_CARRIER_NAME'||(!tempValue.includes("'")&&tempValue!="NULL"))          //hardcoded carrier name uppercase            
+            if(rules[y].field == 'TRADING_PARTNER_CARRIER_NAME'||(!tempValue.includes("'")&&tempValue!="NULL"))  {        //hardcoded carrier name uppercase            
                 rules[y].fieldDisplayType = 'single select'
+                //console.log(rules[y].value)
+                if(rules[y].value)
+                    rules[y].tradePartner =  trading_partner_map.trading_partner_map.find(m => m.carrierName === rules[y].value[0])?.tradePartner
+            }
             else
                 rules[y].fieldDisplayType = 'textbox'
         }
