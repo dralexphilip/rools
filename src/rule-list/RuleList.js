@@ -160,10 +160,11 @@ export default function RuleList() {
         });
     };
 
-    const publishClick = async () => {        
-        for (let i = 0; i < rows.length; i++) {
-            await sleep(rows[i].id.substring(rows[i].id.length - 1) === '0'?config.apiInterval:50);          
-            if (rows[i].publish === 'S') {                  
+    const publishClick = async () => {    
+        let rools = rows.filter((r)=>r.publish === 'S')    
+        for (let i = 0; i < rools.length; i++) {
+            await sleep(i%10 == 0?config.apiInterval:50);          
+            if (rools[i].publish === 'S') {                  
                 fetch(config.url, {
                 method: 'POST',
                 headers: {
@@ -171,14 +172,14 @@ export default function RuleList() {
                     'authorization': `Bearer ` + config.token,
                     'identity': config.identity
                 },
-                body: JSON.stringify(rows[i])
+                body: JSON.stringify(rools[i])
                 })
                 .then(res => res.json())
                 .then(
                     (result) => {
                         console.log(result)
                         setSuccessAlert(true)
-                        setSelectedRule(rows[i].ruleId)
+                        setSelectedRule(rools[i].ruleId)
                     })                                  
             }
         }
