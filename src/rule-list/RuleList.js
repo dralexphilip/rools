@@ -31,10 +31,15 @@ export default function RuleList() {
             minWidth: 100,
             editable: false,
         },
-
         {
             field: 'ruleId',
             headerName: 'Rule ID',
+            flex: 0.25,
+            editable: false,
+        },
+        {
+            field: 'tradePartner',
+            headerName: 'Trade Partner',
             flex: 0.25,
             editable: false,
         },

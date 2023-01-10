@@ -96,13 +96,15 @@ function sqlToJson() {
     select = select.filter((r)=>r.ruleId!=='RULE_545')
     select.push(simple_545)
 
-    select.map((e) => e.ruleId = parseInt(e.id));
-
     select.map((e) => {if(e.selectRule?.rules?.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner){
                             e.tradePartner = e.selectRule.rules.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner;
                             delete e.selectRule.rules.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner
                             }
                          });
+    select.map((e) => e.ruleId==='RULE_657'?e.tradePartner='TPL_CIGNA_EP':null);
+    select.map((e) => e.ruleId==='RULE_40B'?e.id=41:null);
+
+    select.map((e) => e.ruleId = parseInt(e.id));
 
     return select;
 }
@@ -142,12 +144,8 @@ function roolLoop(exp){
     }
     for(var i = 0; i < exp.length; i++) {
         exp[i] = exp[i].trim()
-        //if(exp[i].includes('PACIFICSOURCE%'))       
-        //    console.log(exp[i])
         
-        if(exp[i].includes(' OROR ')){
-            //console.log(exp[i])
-            
+        if(exp[i].includes(' OROR ')){  
             exp[i] = exp[i].substring(
                 exp[i].indexOf("(") + 1, 
                 exp[i].lastIndexOf(")")
@@ -159,29 +157,13 @@ function roolLoop(exp){
                 subrule.rules.push(processOperators(orProcessedRules))
             } 
             processOperators(subrule.rules)
-            rule.rules.push(subrule)
-            //if(exp[i].includes('PACIFICSOURCE%'))         
-            //console.log(roolLoop(exp[i]))
-            //roolLoop(exp[i])
-            //exp[i] = subrule
-            //if(exp[i].includes('PACIFICSOURCE%'))         
-            //console.log(exp[i])
-            
-                     
+            rule.rules.push(subrule)              
         }   
         else{
-            //console.log(exp[i])
             exp[i] = processOperators([exp[i]]);
-            //console.log(exp[i])
-            //exp[i] = processOperators(exp[i]);
-            //console.log(processOperators(exp[i]))
-            //console.log(processOperators(exp[i]))
             rule.rules.push(exp[i][0]);
             
         }  
-        
-        
-        //console.log(processOperators(rule.rules))
     } 
     return rule;
 }
@@ -266,7 +248,7 @@ function processOperators(rules){
         //}
         
 
-        rules[y] = rules[y].toString().split(" Coalesce ").join(" COALESCE ").split(" coalesce ").join(" COALESCE ").trim()
+        rules[y] = rules[y].toString().split("Coalesce").join("COALESCE").split("coalesce").join("COALESCE").trim()
         rules[y] = rules[y].toString().split(" Null ").join(" NULL ").split(" null ").join(" NULL ").trim()
         rules[y] = rules[y].toString().split(" NOT LIKE ").join(" NOTLIKKE ").split(" Not Like ").join(" NOTLIKKE ").split(" not like ").join(" NOTLIKKE ").trim()
         rules[y] = rules[y].toString().split(" LIKE ").join(" LIKKE ").split(" Like ").join(" LIKKE ").split(" like ").join(" LIKKE ").trim()
@@ -280,8 +262,10 @@ function processOperators(rules){
             let temp = rules[y].split('=')
             
             rules[y] = {"value": []}
-            if(temp[0].trim().includes('COALESCE',0))
+            if(temp[0].trim().includes('COALESCE',0)){
+                console.log(rules[y])
                 rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE' 
+            }
             else
                 rules[y].field = temp[0].trim()    
             
@@ -325,9 +309,9 @@ function processOperators(rules){
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].operator = 'not contains'
             else if(begins_with=='%'&&ends_with!='%')
-                rules[y].operator = 'does_not_end_with'
+                rules[y].operator = 'does not end with'
             else if(begins_with!='%'&&ends_with=='%')
-                rules[y].operator = 'does_not_begin_with'
+                rules[y].operator = 'does not begin with'
             rules[y].value.push(value.split("%").join(""))
             rules[y].fieldDisplayType = 'textbox'
         }
