@@ -523,6 +523,7 @@ function processUpdateOperators(rules) {
 }
 
 function processCase(rules){
+    
     for(var y = 0; y < rules.length; y++) {
         rules[y] = rules[y].toString().split(" LIKE ").join(" LIKKE ").split(" Like ").join(" LIKKE ").split(" like ").join(" LIKKE ").trim()
         rules[y] = rules[y].toString().split("::TEXT").join("::TEXT").split("::Text").join("::TEXT").split("::text").join("::TEXT").trim()
@@ -533,53 +534,78 @@ function processCase(rules){
         if(rules[y].toString().includes(' LIKKE ', 0)){
             let temp = rules[y].split(' LIKKE ')
             let value = temp[1].trim().split("'").join("").trim()
+            //console.log(value)
             
-            
-            rules[y] = {"value": []}
-            rules[y].field = temp[0].split("::TEXT").join("").trim() 
+            rules[y] = {
+                "when":{"value": []},
+                "then":{"value": []},
+                }
+            rules[y].when.field = temp[0].split("::TEXT").join("").trim() 
+            rules[y].then.field = rules[y].when.field 
             
             let tempValue = value.split("{").join("").split("}").join("").split(" THHEN ")
-            /**
+            
+            ///**
             let begins_with = tempValue[0].trim().substring(0,1)
             let ends_with = tempValue[0].trim().substring(tempValue[0].trim().length-1)
             //console.log(tempValue)
-                                                 operator dynamic for like statement
+                                                 
             if(begins_with=='%'&&ends_with=='%')
-                rules[y].operator = 'contains'
+                rules[y].when.operator = 'contains'
             else if(begins_with=='%'&&ends_with!='%')
-                rules[y].operator = 'ends_with'
+                rules[y].when.operator = 'ends_with'
             else if(begins_with!='%'&&ends_with=='%')
-                rules[y].operator = 'begins_with'
-            */
-            rules[y].operator = 'equal to'
+                rules[y].when.operator = 'begins_with'
+
             if (value.includes('||') && (value.includes('LEFFT') || value.includes('RIGGHT'))) {
                 return rules = null
             }
             else if (value.includes('LEFFT') || value.includes('RIGGHT')) {
+                console.log('is it reaching he.........')
+                console.log(rules)
                 return rules = null
             }
-            else
-                rules[y].value = value.split("%").join("").split("{").join("").split("}").join("").split(" THHEN ")
-            rules[y].fieldDisplayType = 'textbox'
+            rules[y].then.operator = 'equal to'
+
+            rules[y].when.value.push(tempValue[0].split("%").join("").trim())
+            rules[y].then.value.push(tempValue[1].trim())
+            //*/
+            //rules[y].operator = 'equal to'
+            
+            //else
+                
+            rules[y].when.fieldDisplayType = 'textbox'
+            rules[y].then.fieldDisplayType = 'textbox'
+            //console.log(rules)
         }
         else if(rules[y].toString().includes(' = ', 0)){
             let temp = rules[y].split(' = ')
             let value = temp[1].trim().split("'").join("").trim()
             //console.log(rules[y])
             
-            rules[y] = {"value": []}
-            rules[y].field = temp[0].split("::TEXT").join("").trim() 
+            rules[y] = {
+                "when":{"value": []},
+                "then":{"value": []},
+                }
+            rules[y].when.field = temp[0].split("::TEXT").join("").trim() 
+            rules[y].then.field = rules[y].when.field 
+
+            let tempValue = value.split("{").join("").split("}").join("").split(" THHEN ")
                         
-            rules[y].operator = 'equal to'
+            rules[y].when.operator = 'equal to'
             if (value.includes('||') && (value.includes('LEFFT') || value.includes('RIGGHT'))) {
                 return rules = null
             }
             else if (value.includes('LEFFT') || value.includes('RIGGHT')) {
                 return rules = null
             }
-            else
-                rules[y].value = value.split("%").join("").split("{").join("").split("}").join("").split(" THHEN ")
-            rules[y].fieldDisplayType = 'textbox'
+            rules[y].then.operator = rules[y].when.operator
+            
+            rules[y].when.value.push(tempValue[0].split("%").join("").trim())
+            rules[y].then.value.push(tempValue[1].trim())
+            
+            rules[y].when.fieldDisplayType = 'textbox'
+            rules[y].then.fieldDisplayType = 'textbox'
         }
         //let mappedField = mappings.mappings.find(mapping => mapping.oldField === rules[y].field)
         //if(mappedField)
