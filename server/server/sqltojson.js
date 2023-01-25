@@ -423,22 +423,22 @@ function processUpdateOperators(rules) {
                     "combinator": "case",
                     "sets": [],
                     "rootfield": "",
-                    "defaultValue": ""
+                    "defaultvalue": ""
                 }
                 rules[y].rootfield = temp[0].split("=")[0].trim()
                 let tempValue = temp[1].trim()//temp[0].replace(rules[y].rootfield+' =', "").trim()//temp[1].trim()
                 let endTemp = tempValue.trim().split('ELLSE')
                 let setsql = endTemp[0].trim().split('CAASE').join("").trim()
                 
-                rules[y].defaultValue = ""
+                rules[y].defaultvalue = ""
                 if (endTemp[1] != undefined && endTemp[1].toString().includes(" ENND"))
-                    rules[y].defaultValue = endTemp[1].split(" ENND").join("").split("'").join("").trim()
+                    rules[y].defaultvalue = endTemp[1].split(" ENND").join("").split("'").join("").trim()
                 else if(endTemp[1] != undefined)
-                    rules[y].defaultValue = endTemp[1].split("'").join("")  
+                    rules[y].defaultvalue = endTemp[1].split("'").join("")  
                 else
-                    rules[y].defaultValue = endTemp[1]
-                if (rules[y].rootfield == rules[y].defaultValue)
-                    rules[y].defaultValue = ""      //rules[y].defaultValue.toLowerCase()     
+                    rules[y].defaultvalue = endTemp[1]
+                if (rules[y].rootfield == rules[y].defaultvalue)
+                    rules[y].defaultvalue = ""      //rules[y].defaultValue.toLowerCase()     
                 rules[y].rootfield = rules[y].rootfield              
                 let sets = processCase(setsql.split('WHHEN ').filter(e => e))
                 if(sets)
@@ -458,10 +458,13 @@ function processUpdateOperators(rules) {
                 rules[y].field = temp[0].trim() 
                 
                 if((tempValue.includes("UPPPER")&&tempValue.includes("("))||(!tempValue.includes("'")&&tempValue!="NULL"))
-                    rules[y].fieldDisplayType = 'single select'
-                else
                     rules[y].fieldDisplayType = 'textbox'
-                if (tempValue.includes('||') && (tempValue.includes('LEFFT') || tempValue.includes('RIGGHT'))) {
+                else{
+                    rules[y].fieldDisplayType = 'textbox'   
+                    console.log(tempValue)    
+                }         
+
+                if (tempValue.includes('||') && (tempValue.includes('LEFFT') || tempValue.includes('RIGGHT'))) {                    
                     return rules = null
                 }
                 else if (tempValue.includes('||') && (!tempValue.includes('LEFFT') || !tempValue.includes('RIGGHT'))) {
@@ -557,12 +560,13 @@ function processCase(rules){
             else if(begins_with!='%'&&ends_with=='%')
                 rules[y].when.operator = 'begins_with'
 
+             
             if (value.includes('||') && (value.includes('LEFFT') || value.includes('RIGGHT'))) {
                 return rules = null
             }
             else if (value.includes('LEFFT') || value.includes('RIGGHT')) {
-                console.log('is it reaching he.........')
-                console.log(rules)
+                //console.log('is it reaching he.........')
+                //console.log(rules)
                 return rules = null
             }
             rules[y].then.operator = 'equal to'
