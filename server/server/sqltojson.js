@@ -573,6 +573,10 @@ function processCase(rules){
 
             rules[y].when.value.push(tempValue[0].split("%").join("").trim())
             rules[y].then.value.push(tempValue[1].trim())
+            if (tempValue[1].trim() == 'NULL') {
+                rules[y].then.operator = 'is null'
+                rules[y].then.value = null
+            }
             //*/
             //rules[y].operator = 'equal to'
             
@@ -607,6 +611,11 @@ function processCase(rules){
             
             rules[y].when.value.push(tempValue[0].split("%").join("").trim())
             rules[y].then.value.push(tempValue[1].trim())
+
+            if (tempValue[1].trim() == 'NULL') {
+                rules[y].then.operator = 'is null'
+                rules[y].then.value = null
+            }
             
             rules[y].when.fieldDisplayType = 'textbox'
             rules[y].then.fieldDisplayType = 'textbox'
