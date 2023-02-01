@@ -263,7 +263,7 @@ function processOperators(rules){
             
             rules[y] = {"value": []}
             if(temp[0].trim().includes('COALESCE',0)){
-                console.log(rules[y])
+                //console.log(rules[y])
                 rules[y].field = temp[0].trim().replace('COALESCE(','').split(',')[0]+' - COALESCE' 
             }
             else
@@ -284,7 +284,13 @@ function processOperators(rules){
             }
             else{
                 rules[y].operator = 'equal to'
-                rules[y].value.push(tempValue.split("'").join(""))
+                tempValue = tempValue.substring(
+                    tempValue.indexOf("'") + 1, 
+                    tempValue.lastIndexOf("'")
+                )
+                if(tempValue.includes("'"))
+                console.log(tempValue)
+                rules[y].value.push(tempValue)
             }
             
             if(rules[y].field == 'TRADING_PARTNER_CARRIER_NAME'||(!tempValue.includes("'")&&tempValue!="NULL"))  {        //hardcoded carrier name uppercase            
@@ -298,7 +304,13 @@ function processOperators(rules){
         }
         else if(rules[y].toString().includes(' NOTLIKKE ', 0)){
             let temp = rules[y].split(' NOTLIKKE ')
-            let value = temp[1].trim().split("'").join("")
+            let value = temp[1].trim()
+            value = value.substring(
+                value.indexOf("'") + 1, 
+                value.lastIndexOf("'")
+            )
+            if(value.includes("'"))
+            console.log(value)
             let begins_with = value.substring(0,1)
             let ends_with = value.substring(value.length-1)
             rules[y] = {"value": []}
@@ -307,7 +319,7 @@ function processOperators(rules){
             else
                 rules[y].field = temp[0].split("::TEXT").join("").trim()  
             if(begins_with=='%'&&ends_with=='%')
-                rules[y].operator = 'not contains'
+                rules[y].operator = 'does not contain'
             else if(begins_with=='%'&&ends_with!='%')
                 rules[y].operator = 'does not end with'
             else if(begins_with!='%'&&ends_with=='%')
@@ -317,7 +329,13 @@ function processOperators(rules){
         }
         else if(rules[y].toString().includes(' LIKKE ')){
             let temp = rules[y].split(' LIKKE ')
-            let value = temp[1].trim().split("'").join("")
+            let value = temp[1].trim()
+            value = value.substring(
+                value.indexOf("'") + 1, 
+                value.lastIndexOf("'")
+            )
+            if(value.includes("'"))
+            console.log(value)
             let begins_with = value.substring(0,1)
             let ends_with = value.substring(value.length-1)
             let rool = {"value": []}
@@ -461,7 +479,7 @@ function processUpdateOperators(rules) {
                     rules[y].fieldDisplayType = 'textbox'
                 else{
                     rules[y].fieldDisplayType = 'textbox'   
-                    console.log(tempValue)    
+                    //console.log(tempValue)    
                 }         
 
                 if (tempValue.includes('||') && (tempValue.includes('LEFFT') || tempValue.includes('RIGGHT'))) {                    
@@ -498,7 +516,13 @@ function processUpdateOperators(rules) {
                     //console.log(tempValue)    
                 }
                 else {
-                    let tempValue = temp[1].trim().split("'").join("")
+                    let tempValue = temp[1].trim()   ////.split("'").join("")
+                    tempValue = tempValue.substring(
+                        tempValue.indexOf("'") + 1, 
+                        tempValue.lastIndexOf("'")
+                    )
+                    if(tempValue.includes("'"))
+                    console.log(tempValue)
                     if(tempValue.includes("{")&&tempValue.includes("}")){ //remove braces for plan_type values
                         tempValue = tempValue.split("{").join("").split("}").join("")
                     }

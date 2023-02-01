@@ -1649,8 +1649,8 @@ insert into clone_lead
 select *, 'RULE_92' from cob_lead_staging
 where carrier_name = 'CVS_CAREMARK'
 and (group_name like 'MVP ASO%' or
-group_name = 'MEDICARE D HMO WEST' or     --Added 2/14/2019 DM3.7_Updates
-group_name = 'MVP MEDICARE D PPO' or	--Added 2/14/2019 DM3.7_Updates
+group_name = 'MEDICARE D HMO WEST' or --Added 2/14/2019 DM3.7_Updates
+group_name = 'MVP MEDICARE D PPO' or --Added 2/14/2019 DM3.7_Updates
 group_name like 'MVP NH%' or
 group_name like 'MVP NY INSURED%' or
 group_name like 'MVP NY OFF%' or
