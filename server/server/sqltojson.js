@@ -536,10 +536,13 @@ function processUpdateOperators(rules) {
                 }
                 else {
                     let tempValue = temp[1].trim()   ////.split("'").join("")
-                    tempValue = tempValue.substring(
-                        tempValue.indexOf("'") + 1, 
-                        tempValue.lastIndexOf("'")
-                    )
+                    //console.log(tempValue)
+                    if(tempValue.includes("'"))
+                        tempValue = tempValue.substring(
+                            tempValue.indexOf("'") + 1, 
+                            tempValue.lastIndexOf("'")
+                        )
+                    //console.log(tempValue)
                     if(tempValue.includes("''")){
                         tempValue = tempValue.replace("''", "'")
                     }
