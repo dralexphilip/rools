@@ -57,22 +57,40 @@
 				"combinator": "case",
 				"sets": [
 					{
-						"value": [
-							"OFF",
-							" VTGOX"
-						],
-						"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
-						"operator": "equal to",
-						"fieldDisplayType": "textbox"
+						"when":{
+							"value": [
+								"OFF"
+							],
+							"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then":{
+							"value": [
+								" VTGOX"
+							],
+							"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
 					},
 					{
-						"value": [
-							"ON",
-							" VTGX"
-						],
-						"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
-						"operator": "equal to",
-						"fieldDisplayType": "textbox"
+						"when":{
+							"value": [
+								"ON"
+							],
+							"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then":{
+							"value": [
+								" VTGX"
+							],
+							"field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
 					}
 				],
 				"rootfield": "TRADING_PARTNER_GROUP_NUMBER",

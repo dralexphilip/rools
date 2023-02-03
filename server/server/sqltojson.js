@@ -1,5 +1,5 @@
 const mappings = require('./mappings')
-const complex_656 = require('./698.json')
+const complex_656 = require('./656.json')
 const simple_545 = require('./545.json')
 const trading_partner_map = require('./tradingpartnerdata')
 
@@ -288,8 +288,9 @@ function processOperators(rules){
                     tempValue.indexOf("'") + 1, 
                     tempValue.lastIndexOf("'")
                 )
-                if(tempValue.includes("'"))
-                console.log(tempValue)
+                if(tempValue.includes("''")){
+                    tempValue = tempValue.replace("''", "'")
+                }
                 rules[y].value.push(tempValue)
             }
             
@@ -309,8 +310,9 @@ function processOperators(rules){
                 value.indexOf("'") + 1, 
                 value.lastIndexOf("'")
             )
-            if(value.includes("'"))
-            console.log(value)
+            if(value.includes("''")){
+                value = value.replace("''", "'")
+            }
             let begins_with = value.substring(0,1)
             let ends_with = value.substring(value.length-1)
             rules[y] = {"value": []}
@@ -334,8 +336,9 @@ function processOperators(rules){
                 value.indexOf("'") + 1, 
                 value.lastIndexOf("'")
             )
-            if(value.includes("'"))
-            console.log(value)
+            if(value.includes("''")){
+                value = value.replace("''", "'")
+            }
             let begins_with = value.substring(0,1)
             let ends_with = value.substring(value.length-1)
             let rool = {"value": []}
@@ -370,6 +373,9 @@ function processOperators(rules){
                 let rule = {"value": []}
                 rule.field = field 
                 rule.operator = op
+                if(v.includes("''")){
+                    v = v.replace("''", "'")
+                }
                 rule.value.push(v.trim())
                 rule.fieldDisplayType = 'textbox'
                 rules[y].rules.push(rule)
@@ -399,6 +405,9 @@ function processOperators(rules){
                 v = v.trim().replace("'","")
                 if(v.slice(-1)=="'")
                     v = v.replace(/.$/,"")          //replace last character
+                if(v.includes("''")){
+                    v = v.replace("''","'")
+                }
                 rule.value.push(v)
                 rule.fieldDisplayType = 'textbox'
                 rules[y].rules.push(rule)
@@ -521,8 +530,9 @@ function processUpdateOperators(rules) {
                         tempValue.indexOf("'") + 1, 
                         tempValue.lastIndexOf("'")
                     )
-                    if(tempValue.includes("'"))
-                    console.log(tempValue)
+                    if(tempValue.includes("''")){
+                        tempValue = tempValue.replace("''", "'")
+                    }
                     if(tempValue.includes("{")&&tempValue.includes("}")){ //remove braces for plan_type values
                         tempValue = tempValue.split("{").join("").split("}").join("")
                     }
