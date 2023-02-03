@@ -90,6 +90,16 @@ function sqlToJson() {
     select.map((e) => e.ruleId==='RULE_54'?e.publish='C':null); //scenario not addressed
     select.map((e) => e.ruleId==='RULE_69'?e.publish='C':null); //scenario not addressed
     select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
+    select.map((e) => {
+        e.ruleId==='RULE_72'?e.publish='C':null;
+        e.ruleId==='RULE_202'?e.publish='C':null;
+        e.ruleId==='RULE_217'?e.publish='C':null;
+        e.ruleId==='RULE_294'?e.publish='C':null;
+        e.ruleId==='RULE_347'?e.publish='C':null;
+        e.ruleId==='RULE_381'?e.publish='C':null;
+        e.ruleId==='RULE_388'?e.publish='C':null;
+        e.ruleId==='RULE_392'?e.publish='C':null;
+    });
 
     select = select.filter((r)=>r.ruleId!=='RULE_656')
     select.push(complex_656)
