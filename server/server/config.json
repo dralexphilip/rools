@@ -2,5 +2,6 @@
     "url":"http://localhost:3001/publishall",
     "token": "",
     "identity": "",
-    "apiInterval": 5000
+    "apiInterval": 5000,
+    "maxDepth": 2
 }

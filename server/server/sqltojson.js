@@ -1,7 +1,9 @@
 const mappings = require('./mappings')
 const complex_656 = require('./656.json')
 const simple_545 = require('./545.json')
+const simple_25 = require('./25.json')
 const trading_partner_map = require('./tradingpartnerdata')
+const maxIterationDepth = require('./config.json')
 
 function sqlToJson() {
     let select = []
@@ -26,7 +28,7 @@ function sqlToJson() {
             });
             let maxD = maxDepth(sqlContent);
             
-            if(maxD<2){
+            if(maxD<maxIterationDepth.maxDepth){
                 let index = allRools[y].toString().indexOf("'")
                 rool.tradePartner = "TPL_Ameriben"
                 let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
@@ -63,7 +65,7 @@ function sqlToJson() {
             });
             let conditions = updateStatement[1].trim()
             let maxD = maxDepth(sqlContent);
-            if(maxD<2&&rools[y-1].depth<2){
+            if(maxD<maxIterationDepth.maxDepth && rools[y-1].depth<maxIterationDepth.maxDepth){
                 rools[y-1].updateSql = allRools[y].toString().trim()
                 rools[y-1].updateRule = processUpdate(sqlContent)
                 rools[y-1].updateDepth = maxD
@@ -105,6 +107,8 @@ function sqlToJson() {
     select.push(complex_656)
     select = select.filter((r)=>r.ruleId!=='RULE_545')
     select.push(simple_545)
+    select = select.filter((r)=>r.ruleId!=='RULE_25')
+    select.push(simple_25)
 
     select.map((e) => {if(e.selectRule?.rules?.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner){
                             e.tradePartner = e.selectRule.rules.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner;
