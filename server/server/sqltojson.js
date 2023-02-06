@@ -286,7 +286,7 @@ function processOperators(rules){
             }
 
             if((!tempValue.includes("'")&&tempValue!="NULL")){     
-                //console.log(tempValue)           
+                console.log(tempValue)           
                 rules[y].operator = 'equal to field'
                 rules[y].value = [tempValue]
                 //rules[y].value = tempValue
@@ -304,7 +304,7 @@ function processOperators(rules){
                 rules[y].value.push(tempValue)
             }
             
-            if(rules[y].field == 'TRADING_PARTNER_CARRIER_NAME'||(!tempValue.includes("'")&&tempValue!="NULL"))  {        //hardcoded carrier name uppercase            
+            if(rules[y].field == 'TRADING_PARTNER_CARRIER_NAME'&&(!tempValue.includes("'")&&tempValue!="NULL"))  {        //hardcoded carrier name uppercase            
                 rules[y].fieldDisplayType = 'single select'
                 //console.log(rules[y].value)
                 if(rules[y].value)
