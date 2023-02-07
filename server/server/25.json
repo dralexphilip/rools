@@ -66,30 +66,30 @@
           "fieldDisplayType": "textbox"
         },
         {
-            "combinator": "case",
-            "sets": [
-              {
-                "when": {
-                  "value": [
-                    "BCTCOMM"
-                  ],
-                  "field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
-                  "operator": "equal to",
-                  "fieldDisplayType": "textbox"
-                },
-                "then": {
-                  "value": [
-                    "AKL",
-                    "TRADING_PARTNER_MEMBER_KEY"
-                  ],
-                  "field": "TRADING_PARTNER_MEMBER_KEY",
-                  "operator": "equal to",
-                  "fieldDisplayType": "textbox"
-                }
+          "combinator": "case",
+          "sets": [
+            {
+              "when": {
+                "value": [
+                  "BCTCOMM"
+                ],
+                "field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              "then": {
+                "value": [
+                  "AKL",
+                  "TRADING_PARTNER_MEMBER_KEY"
+                ],
+                "field": "TRADING_PARTNER_MEMBER_KEY",
+                "operator": "prefix",
+                "fieldDisplayType": "textbox"
               }
-            ],
-            "rootfield": "TRADING_PARTNER_MEMBER_KEY",
-            "defaultvalue": ""
+            }
+          ],
+          "rootfield": "TRADING_PARTNER_MEMBER_KEY",
+          "defaultvalue": ""
         },
         {
           "field": "TRADING_PARTNER_GROUP_NUMBER",

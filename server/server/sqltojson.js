@@ -290,7 +290,7 @@ function processOperators(rules){
             }
 
             if((!tempValue.includes("'")&&tempValue!="NULL")){     
-                console.log(tempValue)           
+                //console.log(tempValue)           
                 rules[y].operator = 'equal to field'
                 rules[y].value = [tempValue]
                 //rules[y].value = tempValue
