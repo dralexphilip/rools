@@ -2,6 +2,7 @@ const mappings = require('./mappings')
 const complex_656 = require('./656.json')
 const simple_545 = require('./545.json')
 const simple_25 = require('./25.json')
+const simple_26 = require('./26.json')
 const trading_partner_map = require('./tradingpartnerdata')
 const maxIterationDepth = require('./config.json')
 
@@ -109,6 +110,8 @@ function sqlToJson() {
     select.push(simple_545)
     select = select.filter((r)=>r.ruleId!=='RULE_25')
     select.push(simple_25)
+    select = select.filter((r)=>r.ruleId!=='RULE_26')
+    select.push(simple_26)
 
     select.map((e) => {if(e.selectRule?.rules?.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner){
                             e.tradePartner = e.selectRule.rules.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner;
