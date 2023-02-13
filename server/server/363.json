@@ -1,0 +1,165 @@
+{
+	"tradePartner": "TPL_EXPRESS_SCRIPTS",
+	"id": "363",
+	"ruleId": 363,
+	"description": "RULE_363",
+	"status": "Draft",
+	"version": "1.0",
+	"insertSql": "insert into clone_lead select *, 'RULE_363' from cob_lead_staging where carrier_name = 'EXPRESS_SCRIPTS' and (subgroup_number = 'AV8A' or (subgroup_number = 'JCEA' and group_name = 'BUTLER HEALTH PLAN'))",
+	"selectRule": {
+		"combinator": "and",
+		"rules": [
+			{
+				"value": [
+					"EXPRESS_SCRIPTS"
+				],
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"fieldDisplayType": "single select"
+			},
+			{
+				"combinator": "or",
+				"rules": [
+					{
+						"value": [
+							"AV8A"
+						],
+						"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+						"operator": "equal to",
+						"fieldDisplayType": "textbox"
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"JCEA"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"value": [
+									"BUTLER HEALTH PLAN"
+								],
+								"field": "TRADING_PARTNER_GROUP_NAME",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"depth": 1,
+	"updateSql": "update clone_lead set carrier_name = 'ANTHEM BCBS OH', member_id = NULL, group_number = NULL, group_name = NULL, pbm_bin  = NULL, pbm_pcn  = NULL, plan_type = case when plan_type::text like '%PA%' then '{MM}' when plan_type::text like '%PM%' then '{MM}' when plan_type::text like '%MD%' then '{MC}' else plan_type end where match_carrier_rule_id_extra = 'RULE_363'",
+	"updateRule": {
+		"combinator": "set",
+		"sets": [
+			{
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"value": [
+					"ANTHEM BCBS OH"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_MEMBER_KEY",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_GROUP_NUMBER",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_GROUP_NAME",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_BIN",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_PCN",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"combinator": "case",
+				"sets": [
+					{
+						"when": {
+							"value": [
+								"PA"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then": {
+							"value": [
+								"MM"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
+					},
+					{
+						"when": {
+							"value": [
+								"PM"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then": {
+							"value": [
+								"MM"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
+					},
+					{
+						"when": {
+							"value": [
+								"MD"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then": {
+							"value": [
+								"MC"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
+					}
+				],
+				"rootfield": "TRADING_PARTNER_PLAN_TYPE",
+				"defaultvalue": ""
+			}
+		]
+	},
+	"updateDepth": 0,
+	"updateCondition": null,
+	"publish": "S"
+}

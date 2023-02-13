@@ -1,0 +1,276 @@
+{
+	"tradePartner": "TPL_EXPRESS_SCRIPTS",
+	"id": "122",
+	"ruleId": 122,
+	"description": "RULE_122",
+	"status": "Draft",
+	"version": "1.0",
+	"insertSql": "insert into clone_lead select * , 'RULE_122' from cob_lead_staging where carrier_name = 'EXPRESS_SCRIPTS' and ((subgroup_number in ('CSRAINC', 'RX4CCPS')  and group_name like '%CAREFIRST%')  or (subgroup_number = 'CSRA1RX'  and (group_name like '%CAREFIRST%' or group_name like '%CFIRST%' or group_name like '%CSRA CFIRST%')) or (subgroup_number = 'JOHNSHOPKINSRX' and (group_name like '%CAREFIRST%' or group_name like 'JHU BCBS%')) or subgroup_number in ('SODEXO', 'BLTA'))",
+	"selectRule": {
+		"combinator": "and",
+		"rules": [
+			{
+				"value": [
+					"EXPRESS_SCRIPTS"
+				],
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"fieldDisplayType": "single select"
+			},
+			{
+				"combinator": "or",
+				"rules": [
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"CSRAINC"
+										],
+										"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"RX4CCPS"
+										],
+										"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+										"operator": "equal to",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							},
+							{
+								"value": [
+									"CAREFIRST"
+								],
+								"field": "TRADING_PARTNER_GROUP_NAME",
+								"operator": "contains",
+								"fieldDisplayType": "textbox"
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"CSRA1RX"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"CAREFIRST"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "contains",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CFIRST"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "contains",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"CSRA CFIRST"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "contains",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "and",
+						"rules": [
+							{
+								"value": [
+									"JOHNSHOPKINSRX"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"combinator": "or",
+								"rules": [
+									{
+										"value": [
+											"CAREFIRST"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "contains",
+										"fieldDisplayType": "textbox"
+									},
+									{
+										"value": [
+											"JHU BCBS"
+										],
+										"field": "TRADING_PARTNER_GROUP_NAME",
+										"operator": "begins with",
+										"fieldDisplayType": "textbox"
+									}
+								]
+							}
+						]
+					},
+					{
+						"combinator": "or",
+						"rules": [
+							{
+								"value": [
+									"SODEXO"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							},
+							{
+								"value": [
+									"BLTA"
+								],
+								"field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+								"operator": "equal to",
+								"fieldDisplayType": "textbox"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"depth": 3,
+	"updateSql": "update clone_lead set pbm_bin  = NULL, pbm_pcn  = NULL, carrier_name = 'CAREFIRST BCBS', member_id = 'CAA' || policy_ssn,  group_number = NULL, group_name = NULL, pbm_person_code = NULL, plan_type = case when plan_type::text like '%PA%' then '{MM}' when plan_type::text like '%PM%' then '{MM}' when plan_type::text like '%MD%' then '{MC}' else plan_type end where match_carrier_rule_id_extra = 'RULE_122'",
+	"updateRule": {
+		"combinator": "set",
+		"sets": [
+			{
+				"field": "TRADING_PARTNER_BIN",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_PCN",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_CARRIER_NAME",
+				"operator": "equal to",
+				"value": [
+					"CAREFIRST BCBS"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_MEMBER_KEY",
+				"operator": "prefix",
+				"value": [
+					"CAA",
+					"TRADING_PARTNER_POLICYHOLDER_SSN"
+				],
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_GROUP_NUMBER",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_GROUP_NAME",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"field": "TRADING_PARTNER_PERSON_CODE",
+				"operator": "is null",
+				"value": null,
+				"fieldDisplayType": "textbox"
+			},
+			{
+				"combinator": "case",
+				"sets": [
+					{
+						"when": {
+							"value": [
+								"PA"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then": {
+							"value": [
+								"MM"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
+					},
+					{
+						"when": {
+							"value": [
+								"PM"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then": {
+							"value": [
+								"MM"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
+					},
+					{
+						"when": {
+							"value": [
+								"MD"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "contains",
+							"fieldDisplayType": "textbox"
+						},
+						"then": {
+							"value": [
+								"MC"
+							],
+							"field": "TRADING_PARTNER_PLAN_TYPE",
+							"operator": "equal to",
+							"fieldDisplayType": "textbox"
+						}
+					}
+				],
+				"rootfield": "TRADING_PARTNER_PLAN_TYPE",
+				"defaultvalue": ""
+			}
+		]
+	},
+	"updateDepth": 0,
+	"updateCondition": null,
+	"publish": "S"
+}

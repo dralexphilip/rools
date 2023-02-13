@@ -1,0 +1,147 @@
+{
+  "tradePartner": "TPL_DDCA",
+  "id": "197",
+  "ruleId": 197,
+  "description": "RULE_197",
+  "status": "Draft",
+  "version": "1.0",
+  "insertSql": "insert into clone_lead select *, 'RULE_197' from cob_lead_staging where carrier_name = 'DELTA DENTAL INSURANCE COMPANY' and (group_name like 'KAISER FOUNDATION HEALTH%' or group_name in ('KAISER FOUNDATION INDIVIDUAL','KHP'))",
+  "selectRule": {
+    "combinator": "and",
+    "rules": [
+      {
+        "value": [
+          "DELTA DENTAL INSURANCE COMPANY"
+        ],
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "single select"
+      },
+      {
+        "combinator": "or",
+        "rules": [
+          {
+            "value": [
+              "KAISER FOUNDATION HEALTH"
+            ],
+            "field": "TRADING_PARTNER_GROUP_NAME",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "combinator": "or",
+            "rules": [
+              {
+                "value": [
+                  "KAISER FOUNDATION INDIVIDUAL"
+                ],
+                "field": "TRADING_PARTNER_GROUP_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              {
+                "value": [
+                  "KHP"
+                ],
+                "field": "TRADING_PARTNER_GROUP_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "depth": 2,
+  "updateSql": "update clone_lead set carrier_name = 'KAISER FOUNDATION HEALTH PLAN', member_id = NULL, group_number = NULL, group_name=NULL, pbm_bin  = NULL, pbm_pcn  = NULL, plan_type = case when plan_type::text like '%DE%' then '{MM}' when plan_type::text like '%DH%' then '{MM}' else plan_type end where match_carrier_rule_id_extra = 'RULE_197'",
+  "updateRule": {
+    "combinator": "set",
+    "sets": [
+      {
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "value": [
+          "KAISER FOUNDATION HEALTH PLAN"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_MEMBER_KEY",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NUMBER",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_BIN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PCN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "case",
+        "sets": [
+          {
+            "when": {
+              "value": [
+                "DE"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MM"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          },
+          {
+            "when": {
+              "value": [
+                "DH"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MM"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          }
+        ],
+        "rootfield": "TRADING_PARTNER_PLAN_TYPE",
+        "defaultvalue": ""
+      }
+    ]
+  },
+  "updateDepth": 0,
+  "updateCondition": null,
+  "publish": "S"
+}

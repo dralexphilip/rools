@@ -1,0 +1,172 @@
+{
+  "tradePartner": "TPL_CAREMARK",
+  "id": "617",
+  "ruleId": 617,
+  "description": "RULE_617",
+  "status": "Draft",
+  "version": "1.0",
+  "insertSql": "insert into clone_lead select *, 'RULE_617' from cob_lead_staging where carrier_name = 'CVS_CAREMARK' and (group_name like 'STATE OF MARYLAND%' or group_name in ('PRINCE GEORGES CTY PB SCH', 'LIFEBRIDGE HEALTH','FREDERICK CNTY PUBL SCH', 'MONTGOMERY CO PUB SCHOOLS'))",
+  "selectRule": {
+    "combinator": "and",
+    "rules": [
+      {
+        "value": [
+          "CVS_CAREMARK"
+        ],
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "single select"
+      },
+      {
+        "combinator": "or",
+        "rules": [
+          {
+            "value": [
+              "STATE OF MARYLAND"
+            ],
+            "field": "TRADING_PARTNER_GROUP_NAME",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "combinator": "or",
+            "rules": [
+              {
+                "value": [
+                  "PRINCE GEORGES CTY PB SCH"
+                ],
+                "field": "TRADING_PARTNER_GROUP_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              {
+                "value": [
+                  "LIFEBRIDGE HEALTH"
+                ],
+                "field": "TRADING_PARTNER_GROUP_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              {
+                "value": [
+                  "FREDERICK CNTY PUBL SCH"
+                ],
+                "field": "TRADING_PARTNER_GROUP_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              {
+                "value": [
+                  "MONTGOMERY CO PUB SCHOOLS"
+                ],
+                "field": "TRADING_PARTNER_GROUP_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "depth": 1,
+  "updateSql": "update clone_lead set carrier_name = 'CAREFIRST BCBS', member_id = 'CAA' || policy_ssn, group_number = NULL, group_name = NULL, pbm_bin  = NULL, pbm_pcn  = NULL, pbm_person_code = NULL, plan_type = case when plan_type::text like '%PA%' then '{MM}' when plan_type::text like '%MD%' then '{MC}' else plan_type end where match_carrier_rule_id_extra = 'RULE_617'",
+  "updateRule": {
+    "combinator": "set",
+    "sets": [
+      {
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "value": [
+          "CAREFIRST BCBS"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_MEMBER_KEY",
+        "operator": "prefix",
+        "value": [
+          "CAA",
+          "TRADING_PARTNER_POLICYHOLDER_SSN"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NUMBER",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_BIN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PCN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PERSON_CODE",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "case",
+        "sets": [
+          {
+            "when": {
+              "value": [
+                "PA"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MM"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          },
+          {
+            "when": {
+              "value": [
+                "MD"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MC"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          }
+        ],
+        "rootfield": "TRADING_PARTNER_PLAN_TYPE",
+        "defaultvalue": ""
+      }
+    ]
+  },
+  "updateDepth": 0,
+  "updateCondition": null,
+  "publish": "S"
+}

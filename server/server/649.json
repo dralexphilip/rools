@@ -1,0 +1,175 @@
+{
+  "tradePartner": "TPL_CATAMARAN",
+  "id": "649",
+  "ruleId": 649,
+  "description": "RULE_649",
+  "status": "Draft",
+  "version": "1.0",
+  "insertSql": "insert into clone_lead select *, 'RULE_649' from cob_lead_staging where carrier_name = 'CATAMARAN' and medical_name = 'VPSRX' and (group_desc in ('ACTIVE - CORE PLAN','ACTIVE - HDHP FAMILY','ACTIVE - HDHP INDIVIDUAL') or group_desc like '%CORE%' or group_desc like '%BASIC%' or group_desc like '%PREMIER%')",
+  "selectRule": {
+    "combinator": "and",
+    "rules": [
+      {
+        "value": [
+          "CATAMARAN"
+        ],
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "single select"
+      },
+      {
+        "value": [
+          "VPSRX"
+        ],
+        "field": "TRADING_PARTNER_MEDICAL_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "or",
+        "rules": [
+          {
+            "combinator": "or",
+            "rules": [
+              {
+                "value": [
+                  "ACTIVE - CORE PLAN"
+                ],
+                "field": "TRADING_PARTNER_GROUP_DESCRIPTION",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              {
+                "value": [
+                  "ACTIVE - HDHP FAMILY"
+                ],
+                "field": "TRADING_PARTNER_GROUP_DESCRIPTION",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              {
+                "value": [
+                  "ACTIVE - HDHP INDIVIDUAL"
+                ],
+                "field": "TRADING_PARTNER_GROUP_DESCRIPTION",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              }
+            ]
+          },
+          {
+            "value": [
+              "CORE"
+            ],
+            "field": "TRADING_PARTNER_GROUP_DESCRIPTION",
+            "operator": "contains",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "value": [
+              "BASIC"
+            ],
+            "field": "TRADING_PARTNER_GROUP_DESCRIPTION",
+            "operator": "contains",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "value": [
+              "PREMIER"
+            ],
+            "field": "TRADING_PARTNER_GROUP_DESCRIPTION",
+            "operator": "contains",
+            "fieldDisplayType": "textbox"
+          }
+        ]
+      }
+    ]
+  },
+  "depth": 1,
+  "updateSql": "update clone_lead set carrier_name = 'GILSBAR', member_id = left(member_id, 10), group_number = NULL, pbm_bin  = NULL, pbm_pcn  = NULL, plan_type = case when plan_type::text like '%PA%' then '{MM}' when plan_type::text like '%MD%' then '{MC}' else plan_type end where match_carrier_rule_id_extra = 'RULE_649'",
+  "updateRule": {
+    "combinator": "set",
+    "sets": [
+      {
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "value": [
+          "GILSBAR"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_MEMBER_KEY",
+        "operator": "left substring",
+        "value": [
+          "10"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NUMBER",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_BIN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PCN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "case",
+        "sets": [
+          {
+            "when": {
+              "value": [
+                "PA"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MM"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          },
+          {
+            "when": {
+              "value": [
+                "MD"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MC"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          }
+        ],
+        "rootfield": "TRADING_PARTNER_PLAN_TYPE",
+        "defaultvalue": ""
+      }
+    ]
+  },
+  "updateDepth": 1,
+  "updateCondition": null,
+  "publish": "S"
+}

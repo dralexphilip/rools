@@ -1,0 +1,157 @@
+{
+  "tradePartner": "TPL_CATAMARAN",
+  "id": "121",
+  "ruleId": 121,
+  "description": "RULE_121",
+  "status": "Draft",
+  "version": "1.0",
+  "insertSql": "insert into clone_lead select *, 'RULE_121' from cob_lead_staging where carrier_name = 'CATAMARAN' and (subgroup_number like 'EBAM%' or subgroup_number like 'EBA&M%' or medical_name in ('RWTEBAMPB','RWTEBAM'))",
+  "selectRule": {
+    "combinator": "and",
+    "rules": [
+      {
+        "value": [
+          "CATAMARAN"
+        ],
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "single select"
+      },
+      {
+        "combinator": "or",
+        "rules": [
+          {
+            "value": [
+              "EBAM"
+            ],
+            "field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "value": [
+              "EBA&M"
+            ],
+            "field": "TRADING_PARTNER_SUB_GROUP_NUMBER",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "combinator": "or",
+            "rules": [
+              {
+                "value": [
+                  "RWTEBAMPB"
+                ],
+                "field": "TRADING_PARTNER_MEDICAL_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              },
+              {
+                "value": [
+                  "RWTEBAM"
+                ],
+                "field": "TRADING_PARTNER_MEDICAL_NAME",
+                "operator": "equal to",
+                "fieldDisplayType": "textbox"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "depth": 1,
+  "updateSql": "update clone_lead set pbm_bin  = NULL, pbm_pcn  = NULL, carrier_name = 'EBA&M', member_id = left(member_id,11), group_number = NULL, group_name = NULL, plan_type = case when plan_type::text like '%PA%' then '{MM}' when plan_type::text like '%MD%' then '{MC}' else plan_type end where match_carrier_rule_id_extra = 'RULE_121'",
+  "updateRule": {
+    "combinator": "set",
+    "sets": [
+      {
+        "field": "TRADING_PARTNER_BIN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PCN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "value": [
+          "EBA&M"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_MEMBER_KEY",
+        "operator": "left substring",
+        "value": [
+          "11"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NUMBER",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "case",
+        "sets": [
+          {
+            "when": {
+              "value": [
+                "PA"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MM"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          },
+          {
+            "when": {
+              "value": [
+                "MD"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MC"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          }
+        ],
+        "rootfield": "TRADING_PARTNER_PLAN_TYPE",
+        "defaultvalue": ""
+      }
+    ]
+  },
+  "updateDepth": 1,
+  "updateCondition": null,
+  "publish": "S"
+}
