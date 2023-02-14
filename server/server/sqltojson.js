@@ -27,7 +27,7 @@ function sqlToJson() {
     let select = []
     const path = require("path");
     var fs = require('fs');
-    var text = fs.readFileSync(path.resolve(__dirname, "sql.sql"), 'utf-8');
+    var text = fs.readFileSync(path.resolve(__dirname, "complex.sql"), 'utf-8');
 
     var allRools = text.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)|(--[^.].*)/gm, '').replace(/^\s*\n/gm, "").replace(/^\s+/gm, "")
     allRools = allRools.split(/\r?\n|\r/g).join(" ")
@@ -46,7 +46,7 @@ function sqlToJson() {
             });
             let maxD = maxDepth(sqlContent);
             
-            if(maxD<maxIterationDepth.maxDepth){
+            //if(maxD<maxIterationDepth.maxDepth){
                 let index = allRools[y].toString().indexOf("'")
                 rool.tradePartner = "TPL_Ameriben"
                 let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
@@ -59,19 +59,8 @@ function sqlToJson() {
                 rool.selectRule = processInsert(sqlContent)
                 
                 rool.depth = maxD
-            }
-            else{
-                let index = allRools[y].toString().indexOf("'")
-                rool.tradePartner = "TPL_Ameriben"
-                let roolId = allRools[y].toString().trim().substring(allRools[y].toString().indexOf("'"), index+8).replace("'", "")
-                rool.id = roolId.split("RULE_").join("")
-                rool.ruleId = roolId
-                rool.description = roolId
-                rool.status = 'Draft'
-                rool.version = '1.0'
-                rool.insertSql = allRools[y].toString().trim()
-                rool.depth = maxD
-            }
+           // }
+            
         }
         else if(allRools[y].toString().includes('update', 0)&&!allRools[y].toString().includes('cob_lead_staging', 0)){
             let updateStatement = allRools[y].toString().trim().split('where ')
@@ -83,7 +72,7 @@ function sqlToJson() {
             });
             let conditions = updateStatement[1].trim()
             let maxD = maxDepth(sqlContent);
-            if(maxD<maxIterationDepth.maxDepth && rools[y-1].depth<maxIterationDepth.maxDepth){
+            //if(maxD<maxIterationDepth.maxDepth && rools[y-1].depth<maxIterationDepth.maxDepth){
                 rools[y-1].updateSql = allRools[y].toString().trim()
                 rools[y-1].updateRule = processUpdate(sqlContent)
                 rools[y-1].updateDepth = maxD
@@ -93,11 +82,8 @@ function sqlToJson() {
                 }
                 else
                     rools[y-1].updateCondition = null
-            }
-            else {                
-                rools[y-1].updateSql = allRools[y].toString().trim()
-                rools[y-1].updateDepth = maxD
-            }
+            //}
+            
         }
         rools.push(rool)
     }
@@ -107,62 +93,21 @@ function sqlToJson() {
     select.map(e => e.updateRule!=undefined?e.publish='S':e.publish='C');
     select.map(e => e.updateRule?.sets.length>0?e.publish='S':e.publish='C');
 
-    select.map((e) => e.ruleId==='RULE_54'?e.publish='C':null); //scenario not addressed
-    select.map((e) => e.ruleId==='RULE_69'?e.publish='C':null); //scenario not addressed
-    select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
-    select.map((e) => {
-        e.ruleId==='RULE_72'?e.publish='C':null;
-        e.ruleId==='RULE_202'?e.publish='C':null;
-        e.ruleId==='RULE_217'?e.publish='C':null;
-        e.ruleId==='RULE_294'?e.publish='C':null;
-        e.ruleId==='RULE_347'?e.publish='C':null;
-        e.ruleId==='RULE_381'?e.publish='C':null;
-        e.ruleId==='RULE_388'?e.publish='C':null;
-        e.ruleId==='RULE_392'?e.publish='C':null;
-    });
+    //select.map((e) => e.ruleId==='RULE_54'?e.publish='C':null); //scenario not addressed
+    //select.map((e) => e.ruleId==='RULE_69'?e.publish='C':null); //scenario not addressed
+    //select.map((e) => e.ruleId==='RULE_462'?e.publish='C':null); //scenario not addressed
+    //select.map((e) => {
+        //e.ruleId==='RULE_72'?e.publish='C':null;
+        //e.ruleId==='RULE_202'?e.publish='C':null;
+        //e.ruleId==='RULE_217'?e.publish='C':null;
+        //e.ruleId==='RULE_294'?e.publish='C':null;
+        //e.ruleId==='RULE_347'?e.publish='C':null;
+        //e.ruleId==='RULE_381'?e.publish='C':null;
+        //e.ruleId==='RULE_388'?e.publish='C':null;
+        //e.ruleId==='RULE_392'?e.publish='C':null;
+    //});
 
-    select = select.filter((r)=>r.ruleId!=='RULE_656')
-    select.push(complex_656)
-    select = select.filter((r)=>r.ruleId!=='RULE_545')
-    select.push(simple_545)
-    select = select.filter((r)=>r.ruleId!=='RULE_25')
-    select.push(simple_25)
-    select = select.filter((r)=>r.ruleId!=='RULE_26')
-    select.push(simple_26)
-    select = select.filter((r)=>r.ruleId!=='RULE_49')
-    select.push(simple_49)
-    select = select.filter((r)=>r.ruleId!=='RULE_121')
-    select.push(simple_121)
-    select = select.filter((r)=>r.ruleId!=='RULE_122')
-    select.push(simple_122)
-    select = select.filter((r)=>r.ruleId!=='RULE_154')
-    select.push(simple_154)
-    select = select.filter((r)=>r.ruleId!=='RULE_177')
-    select.push(simple_177)
-    select = select.filter((r)=>r.ruleId!=='RULE_184')
-    select.push(simple_184)
-    select = select.filter((r)=>r.ruleId!=='RULE_197')
-    select.push(simple_197)
-    select = select.filter((r)=>r.ruleId!=='RULE_198')
-    select.push(simple_198)
-    select = select.filter((r)=>r.ruleId!=='RULE_207')
-    select.push(simple_207)
-    select = select.filter((r)=>r.ruleId!=='RULE_208')
-    select.push(simple_208)
-    select = select.filter((r)=>r.ruleId!=='RULE_228')
-    select.push(simple_228)
-    select = select.filter((r)=>r.ruleId!=='RULE_264')
-    select.push(simple_264)
-    select = select.filter((r)=>r.ruleId!=='RULE_331')
-    select.push(simple_331)
-    select = select.filter((r)=>r.ruleId!=='RULE_363')
-    select.push(simple_363)
-    select = select.filter((r)=>r.ruleId!=='RULE_441')
-    select.push(simple_441)
-    select = select.filter((r)=>r.ruleId!=='RULE_617')
-    select.push(simple_617)
-    select = select.filter((r)=>r.ruleId!=='RULE_649')
-    select.push(simple_649)
+    
 
     select.map((e) => {if(e.selectRule?.rules?.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner){
                             e.tradePartner = e.selectRule.rules.find(r=>r.field==='TRADING_PARTNER_CARRIER_NAME' && r.tradePartner)?.tradePartner;
@@ -677,10 +622,12 @@ function processCase(rules){
             rules[y].then.operator = 'equal to'
 
             rules[y].when.value.push(tempValue[0].split("%").join("").trim())
-            rules[y].then.value.push(tempValue[1].trim())
-            if (tempValue[1].trim() == 'NULL') {
-                rules[y].then.operator = 'is null'
-                rules[y].then.value = null
+            if(tempValue[1]!=undefined){
+                rules[y].then.value.push(tempValue[1].trim())
+                if (tempValue[1].trim() == 'NULL') {
+                    rules[y].then.operator = 'is null'
+                    rules[y].then.value = null
+                }
             }
             //*/
             //rules[y].operator = 'equal to'

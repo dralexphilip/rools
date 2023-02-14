@@ -3,5 +3,5 @@
     "token": "",
     "identity": "",
     "apiInterval": 5000,
-    "maxDepth": 2
+    "maxDepth": 5
 }
