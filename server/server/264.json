@@ -1,0 +1,115 @@
+{
+  "tradePartner": "TPL_CAREMARK",
+  "id": "264",
+  "ruleId": 264,
+  "description": "RULE_264",
+  "status": "Draft",
+  "version": "1.0",
+  "insertSql": "insert into clone_lead select * , 'RULE_264' from cob_lead_staging where carrier_name = 'CVS_CAREMARK' and group_name like 'CNC OR MAPD%'",
+  "selectRule": {
+    "combinator": "and",
+    "rules": [
+      {
+        "value": [
+          "CVS_CAREMARK"
+        ],
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "single select"
+      },
+      {
+        "value": [
+          "CNC OR MAPD"
+        ],
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "begins with",
+        "fieldDisplayType": "textbox"
+      }
+    ]
+  },
+  "depth": 0,
+  "updateSql": "update clone_lead set carrier_name = 'ALLWELL OR (TRILLIUM MEDICARE ADVANTAGE)', group_number = NULL, group_name= NULL, pbm_bin  = NULL, pbm_pcn  = NULL, plan_type = case when plan_type::text like '%PA%' then '{MC}' when plan_type::text like '%MD%' then '{MC}' else plan_type end where match_carrier_rule_id_extra = 'RULE_264'",
+  "updateRule": {
+    "combinator": "set",
+    "sets": [
+      {
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "value": [
+          "ALLWELL OR (TRILLIUM MEDICARE ADVANTAGE)"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NUMBER",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_BIN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PCN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "case",
+        "sets": [
+          {
+            "when": {
+              "value": [
+                "PA"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MC"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          },
+          {
+            "when": {
+              "value": [
+                "MD"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MC"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          }
+        ],
+        "rootfield": "TRADING_PARTNER_PLAN_TYPE",
+        "defaultvalue": ""
+      }
+    ]
+  },
+  "updateDepth": 1,
+  "updateCondition": null,
+  "publish": "S"
+}

@@ -3,13 +3,18 @@ const complex_656 = require('./656.json')
 const simple_545 = require('./545.json')
 const simple_25 = require('./25.json')
 const simple_26 = require('./26.json')
+const simple_49 = require('./49.json')
 const simple_121 = require('./121.json')
 const simple_122 = require('./122.json')
 const simple_154 = require('./154.json')
 const simple_177 = require('./177.json')
 const simple_184 = require('./184.json')
 const simple_197 = require('./197.json')
+const simple_198 = require('./198.json')
+const simple_207 = require('./207.json')
+const simple_208 = require('./208.json')
 const simple_228 = require('./228.json')
+const simple_264 = require('./264.json')
 const simple_331 = require('./331.json')
 const simple_363 = require('./363.json')
 const simple_441 = require('./441.json')
@@ -124,6 +129,8 @@ function sqlToJson() {
     select.push(simple_25)
     select = select.filter((r)=>r.ruleId!=='RULE_26')
     select.push(simple_26)
+    select = select.filter((r)=>r.ruleId!=='RULE_49')
+    select.push(simple_49)
     select = select.filter((r)=>r.ruleId!=='RULE_121')
     select.push(simple_121)
     select = select.filter((r)=>r.ruleId!=='RULE_122')
@@ -136,8 +143,16 @@ function sqlToJson() {
     select.push(simple_184)
     select = select.filter((r)=>r.ruleId!=='RULE_197')
     select.push(simple_197)
+    select = select.filter((r)=>r.ruleId!=='RULE_198')
+    select.push(simple_198)
+    select = select.filter((r)=>r.ruleId!=='RULE_207')
+    select.push(simple_207)
+    select = select.filter((r)=>r.ruleId!=='RULE_208')
+    select.push(simple_208)
     select = select.filter((r)=>r.ruleId!=='RULE_228')
     select.push(simple_228)
+    select = select.filter((r)=>r.ruleId!=='RULE_264')
+    select.push(simple_264)
     select = select.filter((r)=>r.ruleId!=='RULE_331')
     select.push(simple_331)
     select = select.filter((r)=>r.ruleId!=='RULE_363')
@@ -646,9 +661,9 @@ function processCase(rules){
             if(begins_with=='%'&&ends_with=='%')
                 rules[y].when.operator = 'contains'
             else if(begins_with=='%'&&ends_with!='%')
-                rules[y].when.operator = 'ends_with'
+                rules[y].when.operator = 'ends with'
             else if(begins_with!='%'&&ends_with=='%')
-                rules[y].when.operator = 'begins_with'
+                rules[y].when.operator = 'begins with'
 
              
             if (value.includes('||') && (value.includes('LEFFT') || value.includes('RIGGHT'))) {

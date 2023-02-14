@@ -1,0 +1,88 @@
+{
+  "tradePartner": "TPL_DDCA",
+  "id": "198",
+  "ruleId": 198,
+  "description": "RULE_198",
+  "status": "Draft",
+  "version": "1.0",
+  "insertSql": "insert into clone_lead select * , 'RULE_198' from cob_lead_staging where carrier_name = 'DELTA DENTAL INSURANCE COMPANY' and group_name like 'KAISER FOUNDATION S%'",
+  "selectRule": {
+    "combinator": "and",
+    "rules": [
+      {
+        "value": [
+          "DELTA DENTAL INSURANCE COMPANY"
+        ],
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "single select"
+      },
+      {
+        "value": [
+          "KAISER FOUNDATION S"
+        ],
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "begins with",
+        "fieldDisplayType": "textbox"
+      }
+    ]
+  },
+  "depth": 0,
+  "updateSql": "update clone_lead set carrier_name = 'KAISER FOUNDATION HEALTH PLAN', member_id = substring(member_id,5,8), group_number = NULL, group_name=NULL, pbm_bin  = NULL, pbm_pcn  = NULL, plan_type = '{MM}' where match_carrier_rule_id_extra = 'RULE_198'",
+  "updateRule": {
+    "combinator": "set",
+    "sets": [
+      {
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "value": [
+          "KAISER FOUNDATION HEALTH PLAN"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_MEMBER_KEY",
+        "operator": "substring",
+        "value": [
+          "5,8"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NUMBER",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_BIN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PCN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PLAN_TYPE",
+        "operator": "equal to",
+        "value": [
+          "MM"
+        ],
+        "fieldDisplayType": "textbox"
+      }
+    ]
+  },
+  "updateDepth": 1,
+  "updateCondition": null,
+  "publish": "S"
+}

@@ -1,0 +1,175 @@
+{
+  "tradePartner": "TPL_CATAMARAN",
+  "id": "49",
+  "ruleId": 49,
+  "description": "RULE_49",
+  "status": "Draft",
+  "version": "1.0",
+  "insertSql": "insert into clone_lead select *, 'RULE_49' from cob_lead_staging where carrier_name = 'CATAMARAN' and (policy_employer_name like 'HAP ALLIANCE%' or policy_employer_name like 'HAP COMMERCIAL%' or policy_employer_name like 'HAPMEDD%' or policy_employer_name like 'HAPQ%' or group_number like 'HAPA%')",
+  "selectRule": {
+    "combinator": "and",
+    "rules": [
+      {
+        "value": [
+          "CATAMARAN"
+        ],
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "fieldDisplayType": "single select"
+      },
+      {
+        "combinator": "or",
+        "rules": [
+          {
+            "value": [
+              "HAP ALLIANCE"
+            ],
+            "field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "value": [
+              "HAP COMMERCIAL"
+            ],
+            "field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "value": [
+              "HAPMEDD"
+            ],
+            "field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "value": [
+              "HAPQ"
+            ],
+            "field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          },
+          {
+            "value": [
+              "HAPA"
+            ],
+            "field": "TRADING_PARTNER_GROUP_NUMBER",
+            "operator": "begins with",
+            "fieldDisplayType": "textbox"
+          }
+        ]
+      }
+    ]
+  },
+  "depth": 1,
+  "updateSql": "update clone_lead set pbm_bin  = NULL, pbm_pcn  = NULL, carrier_name = 'HEALTH ALLIANCE PLAN OF MICHIGAN', member_id = case when policy_employer_name like 'HAPMEDD%' then NULL else member_id end, group_number = NULL, group_name = NULL, plan_type = case when plan_type::text like '%PA%' then '{MM}' when plan_type::text like '%MD%' then '{MC}' else plan_type end where match_carrier_rule_id_extra = 'RULE_49'",
+  "updateRule": {
+    "combinator": "set",
+    "sets": [
+      {
+        "field": "TRADING_PARTNER_BIN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_PCN",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_CARRIER_NAME",
+        "operator": "equal to",
+        "value": [
+          "HEALTH ALLIANCE PLAN OF MICHIGAN"
+        ],
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "case",
+        "sets": [
+          {
+            "when": {
+              "value": [
+                "HAPMEDD"
+              ],
+              "field": "TRADING_PARTNER_POLICYHOLDER_EMPLOYER_NAME",
+              "operator": "begins with",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": null,
+              "field": "TRADING_PARTNER_MEMBER_KEY",
+              "operator": "is null",
+              "fieldDisplayType": "textbox"
+            }
+          }
+        ],
+        "rootfield": "TRADING_PARTNER_MEMBER_KEY",
+        "defaultvalue": ""
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NUMBER",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "field": "TRADING_PARTNER_GROUP_NAME",
+        "operator": "is null",
+        "value": null,
+        "fieldDisplayType": "textbox"
+      },
+      {
+        "combinator": "case",
+        "sets": [
+          {
+            "when": {
+              "value": [
+                "PA"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MM"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          },
+          {
+            "when": {
+              "value": [
+                "MD"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "contains",
+              "fieldDisplayType": "textbox"
+            },
+            "then": {
+              "value": [
+                "MC"
+              ],
+              "field": "TRADING_PARTNER_PLAN_TYPE",
+              "operator": "equal to",
+              "fieldDisplayType": "textbox"
+            }
+          }
+        ],
+        "rootfield": "TRADING_PARTNER_PLAN_TYPE",
+        "defaultvalue": ""
+      }
+    ]
+  },
+  "updateDepth": 0,
+  "updateCondition": null,
+  "publish": "S"
+}
