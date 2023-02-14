@@ -11713,13 +11713,13 @@ when plan_type::text like '%MD%' then '{MC}'
 else plan_type end
 where match_carrier_rule_id_extra = 'RULE_537'
 ;
--- 'Rule 538 - Clone CVS_Caremark CNC % HIM PA'
+-- 'Rule 538 - Clone CVS_Caremark CNC % HIM PA' - added percentage to HIM PA 
 
 insert into clone_lead
 select *, 'RULE_538' from cob_lead_staging
 where carrier_name = 'CVS_CAREMARK'
 and group_name like 'CNC %'
-and group_name like 'HIM PA'
+and group_name like '%HIM PA%'
 
 ;
 update clone_lead
