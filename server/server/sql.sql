@@ -7927,6 +7927,7 @@ and policy_employer_name in ('SANFORD HEALTH PLN COMM', 'SANFORD HEALTH PLN HIX'
 -- 'Rule 369 - Clone Catamaran SANFORD HEALTH PLN COMM, SANFORD HEALTH PLN HIX, SANFORD HEALTH PLN NDPERS, SANFORD HEALTH PLN TPA'
 --- ********** left off here 
 --row_cnt = 0; --commenting out for rule migration
+--removed plan_type_group
 
 
 update clone_lead
@@ -7939,8 +7940,8 @@ pbm_pcn  = NULL,
 plan_type = case
 when plan_type::text like '%PA%' then '{MM}'
 when plan_type::text like '%MD%' then '{MC}'
-else plan_type end,
-plan_type_group = 'M'
+else plan_type end--,
+--plan_type_group = 'M'
 where match_carrier_rule_id_extra = 'RULE_369'
 ;
 -- 'Rule 370 - Clone Catamaran SWHP%'
